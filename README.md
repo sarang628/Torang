@@ -3,5 +3,5 @@
 ## modules
 
 ### feed
-<img scr ="screenshot/feed.png"/>
+<img src="screenshot/feed.png" width="50%" height="50%"/>
 https://github.com/sarang628/Feed
