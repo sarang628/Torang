@@ -1,0 +1,45 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+plugins {
+    id 'com.android.application' version '8.2.0' apply false
+    id 'com.android.library' version '8.2.0' apply false
+    id 'org.jetbrains.kotlin.android' version '1.8.20' apply false
+    id 'com.google.dagger.hilt.android' version '2.44' apply false
+}
+
+ext {
+    // Sdk and tools
+    compileSdk = 34
+    minSdk = 26
+    targetSdk = 34
+    buildToolsVersion = '30.0.3'
+
+    //hilt
+    hiltVersion = '2.46'
+
+    //navigation
+    navigationVersion = '2.4.0-alpha06'
+    nav_version = '2.5.3'
+
+    addReviewVersion = '3510520058'
+    alarmVersion = '2bf7ba7bdf'
+    baseFeedVersion = 'fe603983cc'
+    cardInfoVersion = '30e8604397'
+    feedVersion = '014623bc5d'
+    profileVersion = '6fd5503ebc'
+    findingVersion = '7e3622b409'
+    themeVersion = '28a1702347'
+    myReviewVersion = '7788b8d9f7'
+    torangDetailVersion = '4346da1a38'
+    loginVersion = '04459b8015'
+    splashVersion = 'ea97b19733'
+    torangRepositoryVersion = 'ba032f80ca'
+    settingsVersion = '9058c03310'
+    mapVersion = '64559814e8'
+    torangBottomSheetVersion = '605516c161'
+    instaGramGalleryVersion = '4742515032'
+    filterVersion = 'e0228f69df'
+    mainVersion = 'c5311a5716'
+    reportVersion = '4fb865eeb3'
+    mediaContentResolverVersion = '54ff69ee3a'
+    commentVersion = '69ccb633b0'
+}
