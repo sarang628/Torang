@@ -1,6 +1,3 @@
-[submodule "TorangApp"]
-	path = TorangApp
-	url = https://github.com/sarang628/TorangApp
 [submodule "app/src/main/java/com/sarang/torang/di/repository"]
 	path = app/src/main/java/com/sarang/torang/di/repository
 	url = https://github.com/sarang628/repository.git
