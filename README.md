@@ -1,5 +1,7 @@
 ![Torang](docs/images/torang-splash.jpg "Torang")
-<a href="https://play.google.com/store/apps/details?id=com.sarang.torang"><img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="70"></a>
+<a href="https://play.google.com/store/apps/details?id=com.sarang.torang">
+<img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" height="70">
+</a>
 
 # Torang
 
@@ -10,9 +12,14 @@
 다양한 사람들과 교류하고 재미있는 컨텐츠들이 가득
 
 # Features
-### 피드
+
+### [피드](https://github.com/sarang628/Feed)
+![피드](screenshot/feed.png "feed")
+
 ### 맛집 찾기
+
 ### 음식점 정보
+
 ### 리뷰 등록
 
 ## Screenshots
