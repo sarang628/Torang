@@ -22,7 +22,7 @@
 ### Screenshots
 
 ![피드](screenshot/feed.png "feed")
-![피드](screenshot/feed1.gif "feed")
+![피드](screenshot/feed.gif "feed")
 
 ### 맛집 찾기
 
