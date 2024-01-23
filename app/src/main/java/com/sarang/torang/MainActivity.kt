@@ -42,6 +42,7 @@ import com.sarang.torang.di.torang.ProvideSplashScreen
 import com.sarang.torang.di.util.singleTop
 import com.sryang.settings.di.settings.ProvideSettingScreen
 import com.sarang.torang.di.main_di.ProvideMainScreen
+import com.sryang.findinglinkmodules.di.finding.Finding
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -98,7 +99,9 @@ class MainActivity : ComponentActivity() {
                 ProvideMainScreen(navController = navController,
                     myProfileScreen = {
                         ProvideProfileScreen(navController = navController)
-                    })
+                    },
+                    findingScreen = { Finding(navController = navController) }
+                )
             },
             modReviewScreen = {
                 ProvideModReviewScreen(
