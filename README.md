@@ -13,13 +13,16 @@
 
 # Features
 
-### [피드](https://github.com/sarang628/Feed)
+## [피드](https://github.com/sarang628/Feed)
 
 - 최신 음식 트랜드
 - 핫한 음식점 소개
 - 후기를 올려 서로 소통할 수 있는 공간
 
+### Screenshots
+
 ![피드](screenshot/feed.png "feed")
+![피드](screenshot/feed1.gif "feed")
 
 ### 맛집 찾기
 
