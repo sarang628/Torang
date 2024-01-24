@@ -18,7 +18,6 @@ fun ProvideRestaurantScreen(backStackEntry: NavBackStackEntry) {
                         feedsUiState = FeedsUiState.Success(arrayListOf()),
                         isRefreshing = false,
                         onRefresh = { },
-                        ratingBar = { _, _ -> },
                         onBottom = {},
                     )
                 }

@@ -31,18 +31,15 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
 import com.example.myapplication.di.restaurant_detail.ProvideRestaurantScreen
 import com.google.samples.apps.sunflower.ui.TorangTheme
-import com.sarang.instagralleryModule.activity.go
 import com.sarang.torang.compose.LoginNavHost
+import com.sarang.torang.di.main_di.ProvideMainScreen
 import com.sarang.torang.di.torang.ProvideAddReviewScreen
 import com.sarang.torang.di.torang.ProvideEditProfileImageScreen
 import com.sarang.torang.di.torang.ProvideEditProfileScreen
 import com.sarang.torang.di.torang.ProvideModReviewScreen
 import com.sarang.torang.di.torang.ProvideProfileScreen
 import com.sarang.torang.di.torang.ProvideSplashScreen
-import com.sarang.torang.di.util.singleTop
 import com.sryang.settings.di.settings.ProvideSettingScreen
-import com.sarang.torang.di.main_di.ProvideMainScreen
-import com.sryang.findinglinkmodules.di.finding.Finding
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -96,12 +93,7 @@ class MainActivity : ComponentActivity() {
             editProfileImageScreen = { ProvideEditProfileImageScreen(navController) },
             restaurantScreen = { ProvideRestaurantScreen(it) },
             mainScreen = {
-                ProvideMainScreen(navController = navController,
-                    myProfileScreen = {
-                        ProvideProfileScreen(navController = navController)
-                    },
-                    findingScreen = { Finding(navController = navController) }
-                )
+                ProvideMainScreen(navController = navController)
             },
             modReviewScreen = {
                 ProvideModReviewScreen(

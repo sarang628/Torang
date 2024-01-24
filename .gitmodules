@@ -22,3 +22,6 @@
 [submodule "app/src/main/java/com/sarang/torang/di/torangcomposepack"]
 	path = app/src/main/java/com/sarang/torang/di/torangcomposepack
 	url = https://github.com/sarang628/torangcomposepack.git
+[submodule "app/src/main/java/com/sarang/torang/di/finding_di"]
+	path = app/src/main/java/com/sarang/torang/di/finding_di
+	url = https://github.com/sarang628/finding_di.git
