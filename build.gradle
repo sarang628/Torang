@@ -22,7 +22,7 @@ ext {
 
     addReviewVersion = '3510520058'
     alarmVersion = '2bf7ba7bdf'
-    baseFeedVersion = '23438c04a3'
+    baseFeedVersion = '4c771a16c8'
     cardInfoVersion = '30e8604397'
     feedVersion = '2dac5c1c40'
     profileVersion = '1e37a448e7'
@@ -41,5 +41,5 @@ ext {
     mainVersion = '1e2d243262'
     reportVersion = '4fb865eeb3'
     mediaContentResolverVersion = '54ff69ee3a'
-    commentVersion = '69ccb633b0'
+    commentVersion = 'b386f82b0b'
 }
