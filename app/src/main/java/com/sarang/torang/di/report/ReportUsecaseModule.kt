@@ -1,6 +1,6 @@
 package com.sryang.torang.report.test.di.report
 
-import com.sarang.torang.data.report.ReviewDTO
+import com.sryang.torang.data.report.ReviewDTO
 import com.sryang.torang.usecases.report.BlockUserUseCase
 import com.sryang.torang.usecases.report.LoadReviewUseCase
 import com.sryang.torang.usecases.report.ReportUseCase
