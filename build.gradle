@@ -24,7 +24,7 @@ ext {
     alarmVersion = '2bf7ba7bdf'
     baseFeedVersion = '4c771a16c8'
     cardInfoVersion = '30e8604397'
-    feedVersion = '2dac5c1c40'
+    feedVersion = '16201a07db'
     profileVersion = '1e37a448e7'
     findingVersion = '7e3622b409'
     themeVersion = '28a1702347'
