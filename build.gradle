@@ -32,7 +32,7 @@ ext {
     torangDetailVersion = '4346da1a38'
     loginVersion = '6a1f3d1198'
     splashVersion = 'ea97b19733'
-    torangRepositoryVersion = '400634cf35'
+    torangRepositoryVersion = '94db3942a6'
     settingsVersion = '9058c03310'
     mapVersion = '64559814e8'
     torangBottomSheetVersion = '605516c161'
@@ -41,5 +41,5 @@ ext {
     mainVersion = '1e2d243262'
     reportVersion = '4fb865eeb3'
     mediaContentResolverVersion = '54ff69ee3a'
-    commentVersion = 'b386f82b0b'
+    commentVersion = '6bfa591f20'
 }

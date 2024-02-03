@@ -9,10 +9,10 @@ import com.sarang.torang.usecase.GetMenuUseCase
 import com.sarang.torang.usecase.GetRestaurantGalleryUseCase
 import com.sarang.torang.usecase.GetRestaurantInfoUseCase
 import com.sarang.torang.usecase.RestaurantInfoService
-import com.sryang.torang_repository.api.ApiRestaurant
-import com.sryang.torang_repository.api.ApiReview
-import com.sryang.torang_repository.api.handle
-import com.sryang.torang_repository.data.RestaurantDetail
+import com.sarang.torang.api.ApiRestaurant
+import com.sarang.torang.api.ApiReview
+import com.sarang.torang.api.handle
+import com.sarang.torang.data.RestaurantDetail
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

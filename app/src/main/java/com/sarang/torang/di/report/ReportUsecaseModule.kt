@@ -1,13 +1,13 @@
 package com.sryang.torang.report.test.di.report
 
-import com.sryang.torang.data.report.ReviewDTO
+import com.sarang.torang.data.report.ReviewDTO
 import com.sryang.torang.usecases.report.BlockUserUseCase
 import com.sryang.torang.usecases.report.LoadReviewUseCase
 import com.sryang.torang.usecases.report.ReportUseCase
-import com.sryang.torang_repository.api.ApiReview
-import com.sryang.torang_repository.api.handle
-import com.sryang.torang_repository.repository.ReportReason
-import com.sryang.torang_repository.repository.ReportRepository
+import com.sarang.torang.api.ApiReview
+import com.sarang.torang.api.handle
+import com.sarang.torang.repository.ReportReason
+import com.sarang.torang.repository.ReportRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

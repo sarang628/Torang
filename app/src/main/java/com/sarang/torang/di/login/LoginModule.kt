@@ -5,8 +5,8 @@ import com.sarang.torang.usecase.EmailLoginUseCase
 import com.sarang.torang.usecase.IsLoginFlowUseCase
 import com.sarang.torang.usecase.LogoutUseCase
 import com.sarang.torang.usecase.SignUpUseCase
-import com.sryang.torang_repository.repository.LoginRepository
-import com.sryang.torang_repository.session.SessionService
+import com.sarang.torang.repository.LoginRepository
+import com.sarang.torang.session.SessionService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

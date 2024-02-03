@@ -2,8 +2,8 @@ package com.sryang.findinglinkmodules.di.filter
 
 import com.sryang.screen_filter.data.City
 import com.sryang.screen_filter.usecase.GetCitiesUseCase
-import com.sryang.torang_repository.api.ApiFilter
-import com.sryang.torang_repository.data.remote.response.RemoteCity
+import com.sarang.torang.api.ApiFilter
+import com.sarang.torang.data.remote.response.RemoteCity
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
