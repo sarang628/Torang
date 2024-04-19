@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
-    id 'com.android.application' version '8.2.2' apply false
-    id 'com.android.library' version '8.2.2' apply false
+    id 'com.android.application' version '8.3.2' apply false
+    id 'com.android.library' version '8.3.2' apply false
     id 'org.jetbrains.kotlin.android' version '1.8.20' apply false
     id 'com.google.dagger.hilt.android' version '2.44' apply false
 }
@@ -22,24 +22,24 @@ ext {
 
     addReviewVersion = '3510520058'
     alarmVersion = '2bf7ba7bdf'
-    baseFeedVersion = '4c771a16c8'
+    baseFeedVersion = 'd039154e76'
     cardInfoVersion = '30e8604397'
     feedVersion = '16201a07db'
-    profileVersion = '1e37a448e7'
+    profileVersion = '2ffeeddbc6'
     findingVersion = '7e3622b409'
     themeVersion = '28a1702347'
     myReviewVersion = '7788b8d9f7'
     torangDetailVersion = '4346da1a38'
     loginVersion = '6a1f3d1198'
     splashVersion = 'ea97b19733'
-    torangRepositoryVersion = '94db3942a6'
+    torangRepositoryVersion = 'e08e769c25'
     settingsVersion = '9058c03310'
     mapVersion = '64559814e8'
-    torangBottomSheetVersion = '605516c161'
-    instaGramGalleryVersion = '4742515032'
+    torangBottomSheetVersion = '8701e223ab'
+    instaGramGalleryVersion = 'd9f9e5ee73'
     filterVersion = '5c0074be37'
-    mainVersion = '1e2d243262'
-    reportVersion = '4fb865eeb3'
+    mainVersion = 'bdf3ec6568'
+    reportVersion = 'f0d81b77a6'
     mediaContentResolverVersion = '54ff69ee3a'
-    commentVersion = '6bfa591f20'
+    commentVersion = '2e477719c6'
 }

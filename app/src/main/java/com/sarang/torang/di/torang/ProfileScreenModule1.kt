@@ -5,7 +5,7 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import com.sarang.instagralleryModule.GalleryNavHost
 import com.sarang.torang.compose.edit.EditProfileScreen
-import com.sryang.myapplication.di.profile_di.ProfileScreen
+import com.sarang.torang.di.profile_di.ProfileScreen
 
 
 @Composable
