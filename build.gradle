@@ -32,7 +32,7 @@ ext {
     torangDetailVersion = '4346da1a38'
     loginVersion = '6a1f3d1198'
     splashVersion = 'ea97b19733'
-    torangRepositoryVersion = 'ddea611460'
+    torangRepositoryVersion = '544b126a86'
     settingsVersion = '9058c03310'
     mapVersion = '64559814e8'
     torangBottomSheetVersion = '8701e223ab'
