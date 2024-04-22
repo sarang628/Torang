@@ -5,8 +5,7 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.sarang.instagralleryModule.GalleryNavHost
-import com.sryang.addreview.compose.AddReviewScreen
-import com.sryang.addreview.compose.ModReviewScreen
+import com.sarang.torang.addreview.compose.ModReviewScreen
 
 @Composable
 fun ProvideModReviewScreen(
@@ -29,6 +28,7 @@ fun ProvideModReviewScreen(
         onRestaurant = { navController.popBackStack() },
         onShared = { navHostController.popBackStack() },
         onNext = { },
-        onClose = { navHostController.popBackStack() }
+        onClose = { navHostController.popBackStack() },
+        onNotSelected = { navController.popBackStack() }
     )
 }
