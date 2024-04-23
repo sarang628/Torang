@@ -22,8 +22,8 @@ ext {
 
     addReviewVersion = '93ed66c880'
     alarmVersion = '2bf7ba7bdf'
-    baseFeedVersion = 'd039154e76'
-    cardInfoVersion = '30e8604397'
+    baseFeedVersion = '995db5233a'
+    cardInfoVersion = "30e8604397"
     feedVersion = '16201a07db'
     profileVersion = 'cc3a5fb301'
     findingVersion = '7e3622b409'
@@ -33,7 +33,7 @@ ext {
     loginVersion = '6a1f3d1198'
     splashVersion = 'ea97b19733'
     torangRepositoryVersion = '544b126a86'
-    settingsVersion = '9058c03310'
+    settingsVersion = '06efa47b11'
     mapVersion = '64559814e8'
     torangBottomSheetVersion = '8701e223ab'
     instaGramGalleryVersion = 'd9f9e5ee73'
