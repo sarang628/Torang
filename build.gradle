@@ -22,7 +22,7 @@ ext {
 
     addReviewVersion = '93ed66c880'
     alarmVersion = '2bf7ba7bdf'
-    baseFeedVersion = '995db5233a'
+    baseFeedVersion = '0f5d4a4485'
     cardInfoVersion = "30e8604397"
     feedVersion = '16201a07db'
     profileVersion = 'cc3a5fb301'
