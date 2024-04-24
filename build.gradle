@@ -35,11 +35,11 @@ ext {
     torangRepositoryVersion = '544b126a86'
     settingsVersion = '06efa47b11'
     mapVersion = '64559814e8'
-    torangBottomSheetVersion = '8701e223ab'
+    torangBottomSheetVersion = '14a7e440d1'
     instaGramGalleryVersion = 'd9f9e5ee73'
     filterVersion = '5c0074be37'
     mainVersion = '79f344a333'
     reportVersion = 'bb52e7be2e'
     mediaContentResolverVersion = '54ff69ee3a'
-    commentVersion = '2e477719c6'
+    commentVersion = '1ab0cba914'
 }
