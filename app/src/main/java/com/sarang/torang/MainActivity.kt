@@ -32,6 +32,9 @@ import androidx.navigation.compose.rememberNavController
 import com.example.myapplication.di.restaurant_detail.ProvideRestaurantScreen
 import com.google.samples.apps.sunflower.ui.TorangTheme
 import com.sarang.torang.compose.LoginNavHost
+import com.sarang.torang.compose.feed.FeedScreen
+import com.sarang.torang.compose.feed.Feeds
+import com.sarang.torang.di.feed_di.review
 import com.sarang.torang.di.main_di.ProvideMainScreen
 import com.sarang.torang.di.torang.ProvideAddReviewScreen
 import com.sarang.torang.di.torang.ProvideEditProfileImageScreen
@@ -39,6 +42,8 @@ import com.sarang.torang.di.torang.ProvideEditProfileScreen
 import com.sarang.torang.di.torang.ProvideModReviewScreen
 import com.sarang.torang.di.torang.ProvideProfileScreen
 import com.sarang.torang.di.torang.ProvideSplashScreen
+import com.sarang.torang.uistate.FeedUiState
+import com.sarang.torang.uistate.FeedsUiState
 import com.sryang.settings.di.settings.ProvideSettingScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -108,6 +113,56 @@ class MainActivity : ComponentActivity() {
                     showTopBar = true,
                     onBack = { navController.popBackStack() },
                     showLookAround = false
+                )
+            },
+            myFeed = {
+                FeedScreen(
+                    onAddReview = { navController.navigate("addReview") },
+                    feeds = { uiState, onRefresh, onBottom, isRefreshing ->
+                        when (uiState) {
+                            is FeedUiState.Success -> {
+                                Feeds(
+                                    onRefresh = onRefresh,
+                                    onBottom = onBottom,
+                                    isRefreshing = isRefreshing,
+                                    feedsUiState = FeedsUiState.Success(uiState.list.map {
+                                        it.review(
+                                            onProfile = { navController.navigate("profile/${it.userId}") },
+                                            onName = { navController.navigate("profile/${it.userId}") },
+                                            onMenu = {
+                                                //onMenu.invoke(it.reviewId)
+                                                     },
+                                            onShare = {
+                                                //onShare.invoke(it.reviewId)
+                                                      },
+                                            onComment = {
+                                                //show = true
+                                                //onComment.invoke(it.reviewId)
+                                            },
+                                            onRestaurant = { navController.navigate("restaurant/${it.restaurantId}") }
+                                        )
+                                    }),
+                                    progressTintColor = Color(0xffe6cc00)
+                                )
+                            }
+
+                            is FeedUiState.Loading -> {
+                                Feeds(
+                                    onRefresh = onRefresh,
+                                    onBottom = onBottom,
+                                    isRefreshing = isRefreshing,
+                                    feedsUiState = FeedsUiState.Loading
+                                )
+                            }
+
+                            is FeedUiState.Error -> {
+
+                            }
+                        }
+                        if (uiState is FeedUiState.Success) {
+
+                        }
+                    },
                 )
             }
         )
