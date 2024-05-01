@@ -1,6 +1,7 @@
 package com.sarang.torang
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.core.RepeatMode
@@ -14,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -21,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
@@ -32,8 +35,8 @@ import androidx.navigation.compose.rememberNavController
 import com.example.myapplication.di.restaurant_detail.ProvideRestaurantScreen
 import com.google.samples.apps.sunflower.ui.TorangTheme
 import com.sarang.torang.compose.LoginNavHost
-import com.sarang.torang.compose.feed.FeedScreen
 import com.sarang.torang.compose.feed.Feeds
+import com.sarang.torang.compose.feed.MyFeedScreen
 import com.sarang.torang.di.feed_di.review
 import com.sarang.torang.di.main_di.ProvideMainScreen
 import com.sarang.torang.di.torang.ProvideAddReviewScreen
@@ -70,12 +73,18 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun TorangScreen() {
         val navController = rememberNavController()
+        val listState = rememberLazyListState()
         TorangScreen(
             navController = navController,
             profileScreen = {
+                Log.d("__TORANG", "move ProvideProfileScreen")
                 ProvideProfileScreen(
                     navController = navController,
-                    navBackStackEntry = it
+                    navBackStackEntry = it,
+                    onReview = {
+                        Log.d("__TORANG", "reviewId = ${it}")
+                        navController.navigate("myFeed/${it}")
+                    }
                 )
             },
             settings = { ProvideSettingScreen(navController) },
@@ -116,12 +125,16 @@ class MainActivity : ComponentActivity() {
                 )
             },
             myFeed = {
-                FeedScreen(
+                MyFeedScreen(
                     onAddReview = { navController.navigate("addReview") },
+                    reviewId = it.arguments?.getString("reviewId")?.toInt() ?: 0,
+                    onBack = { navController.popBackStack() },
+                    listState = listState,
                     feeds = { uiState, onRefresh, onBottom, isRefreshing ->
                         when (uiState) {
                             is FeedUiState.Success -> {
                                 Feeds(
+                                    listState = listState,
                                     onRefresh = onRefresh,
                                     onBottom = onBottom,
                                     isRefreshing = isRefreshing,
@@ -131,10 +144,10 @@ class MainActivity : ComponentActivity() {
                                             onName = { navController.navigate("profile/${it.userId}") },
                                             onMenu = {
                                                 //onMenu.invoke(it.reviewId)
-                                                     },
+                                            },
                                             onShare = {
                                                 //onShare.invoke(it.reviewId)
-                                                      },
+                                            },
                                             onComment = {
                                                 //show = true
                                                 //onComment.invoke(it.reviewId)

@@ -6,6 +6,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 
+/**
+ * @param profileScreen 피드화면에서 프로필 클릭 시 이동하는 화면. 메인 하단 내 프로필과 관련없음.
+ */
 @Composable
 fun TorangScreen(
     navController: NavHostController,
@@ -58,7 +61,7 @@ fun TorangScreen(
         composable("emailLogin") {
             emailLoginScreen.invoke()
         }
-        composable("myFeed/{id}"){
+        composable("myFeed/{reviewId}"){
             myFeed.invoke(it)
         }
     }

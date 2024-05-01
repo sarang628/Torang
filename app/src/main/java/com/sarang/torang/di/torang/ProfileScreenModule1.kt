@@ -1,5 +1,6 @@
 package com.sarang.torang.di.torang
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
@@ -31,12 +32,14 @@ fun ProvideEditProfileScreen(navController: NavHostController) {
 @Composable
 fun ProvideProfileScreen(
     navBackStackEntry: NavBackStackEntry? = null,
-    navController: NavHostController
+    navController: NavHostController,
+    onReview: ((Int) -> Unit)? = null
 ) {
     ProfileScreen(
         onSetting = { navController.navigate("settings") },
         navBackStackEntry = navBackStackEntry,
         onClose = { navController.popBackStack() },
-        onEmailLogin = {navController.navigate("emailLogin")}
+        onEmailLogin = {navController.navigate("emailLogin")},
+        onReview = onReview
     )
 }
