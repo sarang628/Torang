@@ -1,6 +1,7 @@
 package com.example.myapplication.di.restaurant_detail
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavBackStackEntry
 import com.sarang.torang.compose.feed.Feeds
@@ -19,6 +20,7 @@ fun ProvideRestaurantScreen(backStackEntry: NavBackStackEntry) {
                         isRefreshing = false,
                         onRefresh = { },
                         onBottom = {},
+                        listState = rememberLazyListState()
                     )
                 }
             })

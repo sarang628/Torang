@@ -1,6 +1,7 @@
 package com.sarang.torang.di.torang
 
 import android.util.Log
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
@@ -33,13 +34,20 @@ fun ProvideEditProfileScreen(navController: NavHostController) {
 fun ProvideProfileScreen(
     navBackStackEntry: NavBackStackEntry? = null,
     navController: NavHostController,
-    onReview: ((Int) -> Unit)? = null
+    onReview: ((Int) -> Unit)? = null,
+    onProfile: ((Int) -> Unit)? = null
 ) {
-    ProfileScreen(
-        onSetting = { navController.navigate("settings") },
-        navBackStackEntry = navBackStackEntry,
-        onClose = { navController.popBackStack() },
-        onEmailLogin = {navController.navigate("emailLogin")},
-        onReview = onReview
-    )
+    val userId = navBackStackEntry?.arguments?.getString("id")?.toInt()
+    if (userId != null) {
+        ProfileScreen(
+            onSetting = { navController.navigate("settings") },
+            userId = userId,
+            onClose = { navController.popBackStack() },
+            onEmailLogin = { navController.navigate("emailLogin") },
+            onReview = onReview,
+            onProfile = onProfile
+        )
+    } else {
+        Text(text = "사용자 정보가 없습니다.")
+    }
 }
