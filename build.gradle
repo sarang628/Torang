@@ -25,7 +25,7 @@ ext {
     baseFeedVersion = '3d16f49d20'
     cardInfoVersion = "023782299b"
     feedVersion = '986d3aeb7a'
-    profileVersion = '215d18bdd0'
+    profileVersion = '679e24ea27'
     findingVersion = 'e5dbf931be'
     themeVersion = '28a1702347'
     myReviewVersion = '7788b8d9f7'
