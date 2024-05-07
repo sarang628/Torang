@@ -23,7 +23,6 @@ fun TorangScreen(
     editProfileImageScreen: @Composable () -> Unit,
     mainScreen: @Composable () -> Unit,
     emailLoginScreen: @Composable () -> Unit,
-    myFeed: @Composable (NavBackStackEntry) -> Unit,
 ) {
     NavHost(
         navController = navController, startDestination = "splash",
@@ -60,9 +59,6 @@ fun TorangScreen(
         }
         composable("emailLogin") {
             emailLoginScreen.invoke()
-        }
-        composable("myFeed/{reviewId}"){
-            myFeed.invoke(it)
         }
     }
 }

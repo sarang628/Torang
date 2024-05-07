@@ -14,6 +14,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.rememberNavController
 import com.example.myapplication.di.restaurant_detail.ProvideRestaurantScreen
 import com.google.samples.apps.sunflower.ui.TorangTheme
@@ -58,18 +59,20 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun TorangScreen() {
         val navController = rememberNavController()
-        val profileNavController = rememberNavController()
         var commentDialogShow by remember { mutableStateOf(false) }
         TorangScreen(
             navController = navController,
             mainScreen = {
                 MainScreen(
                     feedScreen = provideFeedScreen(
+                        progressTintColor = Color(0xffe6cc00),
                         navController = navController,
-                        onAddReview = { navController.navigate("addReview") }
-                    ) { commentDialogShow = true },
+                        onAddReview = { navController.navigate("addReview") },
+                        onShowComment = { commentDialogShow = true }
+                    ),
                     findingScreen = { Finding(navController = navController) },
                     myProfileScreen = {
+                        val profileNavController = rememberNavController() // 상위에 선언하면 앱 죽음
                         MyProfileScreenNavHost(
                             navController = profileNavController,
                             onSetting = { navController.navigate("settings") },
@@ -80,7 +83,7 @@ class MainActivity : ComponentActivity() {
                             },
                             onClose = { profileNavController.popBackStack() },
                             myFeed = {
-                                ProvideMyFeedScreen(
+                                ProvideMyFeedScreen(/*myProfileScreen*/
                                     navController = navController,
                                     reviewId = it.arguments?.getString("reviewId")?.toInt() ?: 0,
                                     onEdit = { navController.navigate("modReview/${it}") },
@@ -102,6 +105,7 @@ class MainActivity : ComponentActivity() {
             },
             profileScreen = {
                 Log.d("__TORANG", "move ProvideProfileScreen")
+                val profileNavController = rememberNavController() // 상위에 선언하면 앱 죽음
                 val userId = it.arguments?.getString("id")?.toInt()
                 if (userId != null) {
                     ProfileScreenNavHost(
@@ -110,7 +114,7 @@ class MainActivity : ComponentActivity() {
                         onEmailLogin = { navController.navigate("emailLogin") },
                         onReview = { profileNavController.navigate("myFeed/${it}") },
                         myFeed = {
-                            ProvideMyFeedScreen(
+                            ProvideMyFeedScreen(/*profileScreen*/
                                 navController = profileNavController,
                                 reviewId = it.arguments?.getString("reviewId")?.toInt() ?: 0,
                                 onEdit = { navController.navigate("modReview/${it}") }
@@ -167,13 +171,6 @@ class MainActivity : ComponentActivity() {
                     showTopBar = true,
                     onBack = { navController.popBackStack() },
                     showLookAround = false
-                )
-            },
-            myFeed = {
-                ProvideMyFeedScreen(
-                    navController = navController,
-                    reviewId = it.arguments?.getString("reviewId")?.toInt() ?: 0,
-                    onEdit = { navController.navigate("modReview/${it}") }
                 )
             }
         )
