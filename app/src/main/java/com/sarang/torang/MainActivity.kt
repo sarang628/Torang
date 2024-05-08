@@ -60,6 +60,7 @@ class MainActivity : ComponentActivity() {
     fun TorangScreen() {
         val navController = rememberNavController()
         var commentDialogShow by remember { mutableStateOf(false) }
+        var consumingBottomMenu by remember { mutableStateOf("") }
         TorangScreen(
             navController = navController,
             mainScreen = {
@@ -68,8 +69,14 @@ class MainActivity : ComponentActivity() {
                         progressTintColor = Color(0xffe6cc00),
                         navController = navController,
                         onAddReview = { navController.navigate("addReview") },
-                        onShowComment = { commentDialogShow = true }
+                        onShowComment = { commentDialogShow = true },
+                        onConsumeCurrentBottomMenu = { consumingBottomMenu = "" },
+                        currentBottomMenu = consumingBottomMenu
                     ),
+                    onBottomMenu = {
+                        Log.d("__MainActivity", "onBottomMenu:${it}")
+                        consumingBottomMenu = it
+                    },
                     findingScreen = { Finding(navController = navController) },
                     myProfileScreen = {
                         val profileNavController = rememberNavController() // 상위에 선언하면 앱 죽음
