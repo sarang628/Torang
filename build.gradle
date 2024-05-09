@@ -25,7 +25,7 @@ ext {
     baseFeedVersion = 'c7b0de9487'
     cardInfoVersion = "023782299b"
     feedVersion = 'fd818b4460'
-    profileVersion = 'cf4368f73f'
+    profileVersion = '68528c88b0'
     findingVersion = '140273ff81'
     themeVersion = '28a1702347'
     myReviewVersion = '7788b8d9f7'
@@ -41,6 +41,6 @@ ext {
     mainVersion = '5a8fe902a4'
     reportVersion = 'bb52e7be2e'
     mediaContentResolverVersion = '54ff69ee3a'
-    commentVersion = '1ab0cba914'
+    commentVersion = '6a5a8f0adf'
     commonImageLoaderVersion = '8230ade5ca'
 }
