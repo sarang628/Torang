@@ -25,8 +25,9 @@ import com.sarang.torang.compose.ProfileScreenNavHost
 import com.sarang.torang.compose.edit.EditProfileScreen
 import com.sarang.torang.di.bottomsheet.provideFeedMenuBottomSheetDialog
 import com.sarang.torang.di.comment_di.provideCommentBottomDialogSheet
-import com.sarang.torang.di.feed_di.provideFeedScreen
+import com.sarang.torang.di.image.provideTorangAsyncImage
 import com.sarang.torang.di.main_di.ProvideMyFeedScreen
+import com.sarang.torang.di.main_di.provideFeedScreen
 import com.sarang.torang.di.profile_di.MyProfileScreenNavHost
 import com.sarang.torang.di.report_di.provideReportModal
 import com.sarang.torang.di.torang.ProvideAddReviewScreen
@@ -126,7 +127,8 @@ class MainActivity : ComponentActivity() {
                                 reviewId = it.arguments?.getString("reviewId")?.toInt() ?: 0,
                                 onEdit = { navController.navigate("modReview/${it}") }
                             )
-                        }
+                        },
+                        image = provideTorangAsyncImage()
                     )
                 } else {
                     Text(text = "사용자 정보가 없습니다.")
@@ -153,7 +155,8 @@ class MainActivity : ComponentActivity() {
                     onEditImage = { navController.navigate("EditProfileImage") },
                     onBack = {
                         navController.popBackStack()
-                    }
+                    },
+                    image = provideTorangAsyncImage()
                 )
             },
             editProfileImageScreen = {
