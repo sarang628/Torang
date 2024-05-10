@@ -65,14 +65,36 @@ class MainActivity : ComponentActivity() {
         TorangScreen(
             navController = navController,
             mainScreen = {
+                val feedNavController = rememberNavController()
                 MainScreen(
                     feedScreen = provideFeedScreen(
                         progressTintColor = Color(0xffe6cc00),
+                        feedNavController = feedNavController,
                         navController = navController,
                         onAddReview = { navController.navigate("addReview") },
                         onShowComment = { commentDialogShow = true },
                         onConsumeCurrentBottomMenu = { consumingBottomMenu = "" },
-                        currentBottomMenu = consumingBottomMenu
+                        currentBottomMenu = consumingBottomMenu,
+                        profile = {
+                            val userId = it.arguments?.getString("id")?.toInt()
+                            ProfileScreenNavHost(
+                                id = userId,
+                                onClose = { feedNavController.popBackStack() },
+                                onEmailLogin = { navController.navigate("emailLogin") },
+                                onReview = { feedNavController.navigate("myFeed/${it}") },
+                                myFeed = {
+                                    ProvideMyFeedScreen(
+                                        navController = navController,
+                                        reviewId = it.arguments?.getString("reviewId")?.toInt() ?: 0,
+                                        onEdit = { navController.navigate("modReview/${it}") },
+                                        onProfile = { feedNavController.navigate("profile/${it}") },
+                                        onBack = { feedNavController.popBackStack() },
+                                        onRestaurant = {navController.navigate("restaurant/${it}")}
+                                    )
+                                },
+                                image = provideTorangAsyncImage()
+                            )
+                        }
                     ),
                     onBottomMenu = {
                         Log.d("__MainActivity", "onBottomMenu:${it}")
