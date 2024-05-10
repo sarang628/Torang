@@ -35,7 +35,7 @@ ext {
     torangRepositoryVersion = '4dfb5c65c6'
     settingsVersion = '06efa47b11'
     mapVersion = '28f340f717'
-    torangBottomSheetVersion = '48fd224972'
+    torangBottomSheetVersion = 'c84399fb7f'
     instaGramGalleryVersion = 'd9f9e5ee73'
     filterVersion = '30483a5119'
     mainVersion = '5a8fe902a4'
