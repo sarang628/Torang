@@ -1,10 +1,14 @@
 package com.sarang.torang
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -15,14 +19,20 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.rememberNavController
-import com.example.myapplication.di.restaurant_detail.ProvideRestaurantScreen
+import com.example.screen_map.compose.MapScreen
+import com.example.screen_map.compose.MapScreenForRestaurant
+import com.example.screen_map.data.MarkerData
+import com.google.maps.android.compose.rememberCameraPositionState
 import com.google.samples.apps.sunflower.ui.TorangTheme
 import com.sarang.instagralleryModule.GalleryNavHost
 import com.sarang.torang.compose.LoginNavHost
 import com.sarang.torang.compose.MainScreen
 import com.sarang.torang.compose.ProfileScreenNavHost
 import com.sarang.torang.compose.edit.EditProfileScreen
+import com.sarang.torang.compose.feed.Feeds
+import com.sarang.torang.compose.restaurant.RestaurantNavScreen
 import com.sarang.torang.di.bottomsheet.provideFeedMenuBottomSheetDialog
 import com.sarang.torang.di.comment_di.provideCommentBottomDialogSheet
 import com.sarang.torang.di.image.provideTorangAsyncImage
@@ -33,6 +43,7 @@ import com.sarang.torang.di.report_di.provideReportModal
 import com.sarang.torang.di.torang.ProvideAddReviewScreen
 import com.sarang.torang.di.torang.ProvideModReviewScreen
 import com.sarang.torang.di.torang.ProvideSplashScreen
+import com.sarang.torang.uistate.FeedsUiState
 import com.sryang.findinglinkmodules.di.finding_di.Finding
 import com.sryang.settings.di.settings.ProvideSettingScreen
 import com.sryang.torang.compose.AlarmScreen
@@ -85,11 +96,12 @@ class MainActivity : ComponentActivity() {
                                 myFeed = {
                                     ProvideMyFeedScreen(
                                         navController = navController,
-                                        reviewId = it.arguments?.getString("reviewId")?.toInt() ?: 0,
+                                        reviewId = it.arguments?.getString("reviewId")?.toInt()
+                                            ?: 0,
                                         onEdit = { navController.navigate("modReview/${it}") },
                                         onProfile = { feedNavController.navigate("profile/${it}") },
                                         onBack = { feedNavController.popBackStack() },
-                                        onRestaurant = {navController.navigate("restaurant/${it}")}
+                                        onRestaurant = { navController.navigate("restaurant/${it}") }
                                     )
                                 },
                                 image = provideTorangAsyncImage()
@@ -189,7 +201,50 @@ class MainActivity : ComponentActivity() {
                     navController.popBackStack()
                 })
             },
-            restaurantScreen = { ProvideRestaurantScreen(it) },
+            restaurantScreen = {
+                val restaurantId = it.arguments?.getString("restaurantId")
+                restaurantId?.let {
+                    RestaurantNavScreen(restaurantId = it.toInt(),
+                        feeds = {
+                            Box {
+                                Feeds(
+                                    feedsUiState = FeedsUiState.Success(arrayListOf()),
+                                    isRefreshing = false,
+                                    onRefresh = { },
+                                    onBottom = {},
+                                    listState = rememberLazyListState()
+                                )
+                            }
+                        },
+                        onCall = { number ->
+                            startActivity(
+                                Intent(Intent.ACTION_DIAL).apply {
+                                    setData(Uri.parse("tel:$number"))
+                                }
+                            )
+                        },
+                        onWeb = { url ->
+                            startActivity(
+                                Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                            )
+                        },
+                        map = { title, lat, lon, foodType ->
+                            Log.d("__MainActivity", "${title}, ${lat}, ${lon}, ${foodType}")
+                            val markerData = MarkerData(
+                                id = 0,
+                                lat = lat,
+                                lon = lon,
+                                title = title,
+                                foodType = foodType
+                            )
+                            MapScreenForRestaurant(
+                                cameraPositionState = rememberCameraPositionState(),
+                                selectedMarkerData = markerData
+                            )
+                        }
+                    )
+                }
+            },
             modReviewScreen = {
                 ProvideModReviewScreen(
                     navHostController = navController,
