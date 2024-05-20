@@ -1,5 +1,6 @@
 package com.sarang.torang
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
@@ -13,7 +14,7 @@ import androidx.navigation.compose.composable
 fun TorangScreen(
     navController: NavHostController,
     profileScreen: @Composable (NavBackStackEntry) -> Unit,
-    settings: @Composable () -> Unit,
+    settingsScreen: @Composable () -> Unit,
     splashScreen: @Composable () -> Unit,
     addReviewScreen: @Composable () -> Unit,
     modReviewScreen: @Composable (NavBackStackEntry) -> Unit,
@@ -23,6 +24,7 @@ fun TorangScreen(
     editProfileImageScreen: @Composable () -> Unit,
     mainScreen: @Composable () -> Unit,
     emailLoginScreen: @Composable () -> Unit,
+    imagePagerScreen: @Composable (Int, Int) -> Unit,
 ) {
     NavHost(
         navController = navController, startDestination = "splash",
@@ -46,7 +48,7 @@ fun TorangScreen(
             loginScreen.invoke()
         }
         composable("settings") {
-            settings.invoke()
+            settingsScreen.invoke()
         }
         composable("editProfile") {
             editProfileScreen.invoke()
@@ -59,6 +61,19 @@ fun TorangScreen(
         }
         composable("emailLogin") {
             emailLoginScreen.invoke()
+        }
+        composable("imagePager/{reviewId}/{position}") {
+            val reviewId = it.arguments?.getString("reviewId")?.toInt()
+            val position = it.arguments?.getString("position")?.toInt()
+            Log.d(
+                "__TorangScreen",
+                "navigate ImagePager : reviewId : $reviewId, position : $position"
+            )
+            if (reviewId != null)
+                imagePagerScreen.invoke(reviewId, position ?: 0)
+            else {
+                Log.e("__TorangScreen", "reviewId is null")
+            }
         }
     }
 }

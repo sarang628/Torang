@@ -29,12 +29,3 @@ class SettingsModule {
         }
     }
 }
-
-@Composable
-fun ProvideSettingScreen(navController: NavHostController) {
-    SettingsScreen(onLogout = {
-        navController.navigate("splash")
-    }, onBack = {
-        navController.popBackStack()
-    })
-}
