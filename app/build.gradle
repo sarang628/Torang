@@ -124,4 +124,5 @@ dependencies {
     implementation "com.github.sarang628:Report:$reportVersion"
     implementation "com.github.sarang628:Comment:$commentVersion"
     implementation "com.github.sarang628:CommonImageLoader:$commonImageLoaderVersion"
+    implementation "com.github.sarang628:ImagePager:$ImagePagerVersion"
 }
