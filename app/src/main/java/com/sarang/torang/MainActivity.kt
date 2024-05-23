@@ -285,6 +285,10 @@ private fun ProvideRestaurantNavScreen(
                     cameraPositionState = rememberCameraPositionState(),
                     selectedMarkerData = markerData
                 )
+            },
+            image = provideTorangAsyncImage(),
+            onImage = {
+
             }
         )
     }

@@ -52,6 +52,7 @@ fun RestaurantDetail.toMenus(): List<MenuData> {
 fun RestaurantDetail.toRestaurantImages(): List<RestaurantImage> {
     return this.pictures.map {
         RestaurantImage(
+            id = it.picture_id,
             url = BuildConfig.REVIEW_IMAGE_SERVER_URL + it.picture_url
         )
     }
