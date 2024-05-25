@@ -11,9 +11,13 @@ import androidx.navigation.NavBackStackEntry
 import com.example.screen_map.compose.MapScreenForRestaurant
 import com.example.screen_map.data.MarkerData
 import com.google.maps.android.compose.rememberCameraPositionState
+import com.sarang.torang.Feed
 import com.sarang.torang.RootNavController
-import com.sarang.torang.compose.feed.Feeds
+import com.sarang.torang.compose.feed.Feed
+import com.sarang.torang.compose.feed.FeedScreenByRestaurantId
+import com.sarang.torang.compose.feed.component.Feeds
 import com.sarang.torang.compose.restaurant.RestaurantNavScreen
+import com.sarang.torang.di.feed_di.review
 import com.sarang.torang.di.image.provideTorangAsyncImage
 import com.sarang.torang.uistate.FeedsUiState
 
@@ -25,19 +29,12 @@ internal fun provideRestaurantNavScreen(
     restaurantId?.let {
         RestaurantNavScreen(restaurantId = it.toInt(),
             feeds = {
-                Box {
-                    Feeds(
-                        feedsUiState = FeedsUiState.Success(arrayListOf()),
-                        isRefreshing = false,
-                        onRefresh = {
-                            Log.d("__ScreenProvider", "onRefresh")
-                        },
-                        onBottom = {
-                            Log.d("__ScreenProvider", "onBottom")
-                        },
-                        listState = rememberLazyListState()
-                    )
-                }
+                FeedScreenByRestaurantId(
+                    restaurantId = it,
+                    feed = {
+                        Feed(review = it.review(), image = provideTorangAsyncImage())
+                    }
+                )
             },
             onCall = { number ->
                 activity.startActivity(
