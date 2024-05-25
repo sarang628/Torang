@@ -1,13 +1,12 @@
 package com.sarang.torang.di.torang
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.sarang.instagralleryModule.GalleryNavHost
+import com.sarang.torang.RootNavController
 import com.sarang.torang.addreview.compose.AddReviewScreen
 
-@Composable
-fun ProvideAddReviewScreen(navHostController: NavHostController) {
+fun provideAddReviewScreen(navHostController: RootNavController): @Composable () -> Unit = {
     val navController = rememberNavController()
     AddReviewScreen(
         galleryScreen = { color, onNext, onClose ->

@@ -125,4 +125,5 @@ dependencies {
     implementation "com.github.sarang628:Comment:$commentVersion"
     implementation "com.github.sarang628:CommonImageLoader:$commonImageLoaderVersion"
     implementation "com.github.sarang628:ImagePager:$ImagePagerVersion"
+    implementation "com.github.sarang628:TorangImagePager:$TorangImagePagerVersion"
 }
