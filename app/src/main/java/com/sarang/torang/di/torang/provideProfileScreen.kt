@@ -16,7 +16,7 @@ internal fun provideProfileScreen(rootNavController: RootNavController): @Compos
             ProfileScreenNavHost(
                 navController = profileNavController,
                 id = userId,
-                onClose = { rootNavController.popBackStack() },
+                onClose = { /*rootNavController.popBackStack()*/ },
                 onEmailLogin = { rootNavController.emailLogin() },
                 onReview = { profileNavController.navigate("myFeed/${it}") },
                 myFeed = provideMyFeedScreen(
