@@ -13,8 +13,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.sarang.torang.RootNavController
 import com.sarang.torang.compose.feed.Feed
-import com.sarang.torang.compose.feed.MainFeedScreen
-import com.sarang.torang.di.feed_di.review
+import com.sarang.torang.compose.feed.FeedScreenForMain
+import com.sarang.torang.di.feed_di.toReview
 import com.sarang.torang.di.image.provideTorangAsyncImage
 
 fun provideFeedScreen(
@@ -45,23 +45,22 @@ fun provideFeedScreen(
 
         NavHost(navController = feedNavController, startDestination = "mainFeed") {
             composable("mainFeed") {
-                MainFeedScreen(
+                FeedScreenForMain(
                     onAddReview = { rootNavController.addReview() },
                     onTop = onTop,
                     consumeOnTop = { onTop = false },
                     feed = { feed ->
                         Feed(
-                            review = feed.review(
-                                onComment = {
-                                    onComment.invoke(feed.reviewId)
-                                    onShowComment.invoke()
-                                },
-                                onShare = { onShare.invoke(feed.reviewId) },
-                                onMenu = { onMenu.invoke(feed.reviewId) },
-                                onName = { feedNavController.navigate("profile/${feed.userId}") },
-                                onRestaurant = { rootNavController.restaurant(feed.restaurantId) },
-                                onProfile = { feedNavController.navigate("profile/${feed.userId}") }
-                            ),
+                            review = feed.toReview(),
+                            onComment = {
+                                onComment.invoke(feed.reviewId)
+                                onShowComment.invoke()
+                            },
+                            onShare = { onShare.invoke(feed.reviewId) },
+                            onMenu = { onMenu.invoke(feed.reviewId) },
+                            onName = { feedNavController.navigate("profile/${feed.userId}") },
+                            onRestaurant = { rootNavController.restaurant(feed.restaurantId) },
+                            onProfile = { feedNavController.navigate("profile/${feed.userId}") },
                             isZooming = { scrollEnabled = !it },
                             progressTintColor = progressTintColor,
                             image = provideTorangAsyncImage(),

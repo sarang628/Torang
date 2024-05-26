@@ -19,7 +19,6 @@ import androidx.navigation.compose.rememberNavController
 import com.google.samples.apps.sunflower.ui.TorangTheme
 import com.sarang.torang.compose.feed.Feed
 import com.sarang.torang.compose.feed.MyFeedScreen
-import com.sarang.torang.di.feed_di.review
 import com.sarang.torang.di.image.provideTorangAsyncImage
 import com.sarang.torang.di.torang.provideAddReviewScreen
 import com.sarang.torang.di.torang.provideEditProfileScreen

@@ -21,16 +21,9 @@ internal fun provideMainScreen(rootNavController: RootNavController): @Composabl
     val feedNavController = rememberNavController()
     MainScreen(
         onBottomMenu = { consumingBottomMenu = it },
-        menuDialog = provideFeedMenuBottomSheetDialog(),
-        shareDialog = provideShareBottomSheetDialog(),
-        reportDialog = provideReportModal(),
-        onEdit = rootNavController.modReview(),
         alarm = { AlarmScreen(onEmailLogin = {}) },
         findingScreen = { Finding(navController = rootNavController) },
         myProfileScreen = provideMyProfileScreenNavHost(rootNavController),
-        commentBottomSheet = provideCommentBottomDialogSheet(commentDialogShow) {
-            commentDialogShow = false
-        },
         feedScreen = provideFeedScreen(
             feedNavController = feedNavController,
             rootNavController = rootNavController,
@@ -38,6 +31,9 @@ internal fun provideMainScreen(rootNavController: RootNavController): @Composabl
             onConsumeCurrentBottomMenu = { consumingBottomMenu = "" },
             currentBottomMenu = consumingBottomMenu,
             onImage = { reviewId, position -> rootNavController.imagePager(reviewId, position) }
-        )
+        ),
+        onShare = {},
+        onMenu = {},
+        onComment = {}
     )
 }

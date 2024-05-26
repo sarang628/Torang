@@ -17,7 +17,7 @@ import com.sarang.torang.compose.feed.Feed
 import com.sarang.torang.compose.feed.FeedScreenByRestaurantId
 import com.sarang.torang.compose.feed.component.Feeds
 import com.sarang.torang.compose.restaurant.RestaurantNavScreen
-import com.sarang.torang.di.feed_di.review
+import com.sarang.torang.di.feed_di.toReview
 import com.sarang.torang.di.image.provideTorangAsyncImage
 import com.sarang.torang.uistate.FeedsUiState
 
@@ -32,7 +32,7 @@ internal fun provideRestaurantNavScreen(
                 FeedScreenByRestaurantId(
                     restaurantId = it,
                     feed = {
-                        Feed(review = it.review(), image = provideTorangAsyncImage())
+                        Feed(review = it.toReview(), image = provideTorangAsyncImage())
                     }
                 )
             },

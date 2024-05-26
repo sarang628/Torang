@@ -7,6 +7,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import com.sarang.torang.RootNavController
@@ -15,9 +16,10 @@ import com.sarang.torang.compose.feed.Feed
 import com.sarang.torang.compose.feed.MyFeedScreen
 import com.sarang.torang.di.bottomsheet.provideFeedMenuBottomSheetDialog
 import com.sarang.torang.di.comment_di.provideCommentBottomDialogSheet
-import com.sarang.torang.di.feed_di.review
+import com.sarang.torang.di.feed_di.toReview
 import com.sarang.torang.di.image.provideTorangAsyncImage
 import com.sarang.torang.di.report_di.provideReportModal
+import com.sarang.torang.viewmodels.FeedDialogsViewModel
 import com.sryang.torangbottomsheet.di.bottomsheet.provideShareBottomSheetDialog
 
 fun provideMyFeedScreen(
@@ -27,7 +29,7 @@ fun provideMyFeedScreen(
 ): @Composable (NavBackStackEntry) -> Unit = { it ->
     val reviewId = it.arguments?.getString("reviewId")?.toInt() ?: 0
     var show by remember { mutableStateOf(false) }
-
+    val viewModel: FeedDialogsViewModel = hiltViewModel()
     MainMyFeedScreen(
         myFeedScreen = provideMyFeedScreen(
             navController = rootNavController,
@@ -40,11 +42,12 @@ fun provideMyFeedScreen(
                 rootNavController.restaurant(it)
             }
         ),
-        commentBottomSheet = provideCommentBottomDialogSheet(show) { show = false },
+        commentBottomSheet = { provideCommentBottomDialogSheet().invoke(it, {}) },
         menuDialog = provideFeedMenuBottomSheetDialog(),
         shareDialog = provideShareBottomSheetDialog(),
         reportDialog = provideReportModal(),
-        onEdit = rootNavController.modReview()
+        onEdit = rootNavController.modReview(),
+        viewModel = viewModel
     )
 }
 
@@ -68,19 +71,20 @@ fun provideMyFeedScreen(
             listState = listState,
             feed = { feed ->
                 Feed(
-                    review = feed.review(onComment = {
+                    review = feed.toReview(),
+                    onComment = {
                         onComment.invoke(feed.reviewId)
                         onShowComment.invoke()
                     },
-                        onShare = { onShare.invoke(feed.reviewId) },
-                        onMenu = { onMenu.invoke(feed.reviewId) },
-                        onName = { onProfile?.invoke(feed.userId) },
-                        onRestaurant = { onRestaurant.invoke(feed.restaurantId) },
-                        onProfile = { onProfile?.invoke(feed.userId) }),
+                    onShare = { onShare.invoke(feed.reviewId) },
+                    onMenu = { onMenu.invoke(feed.reviewId) },
+                    onName = { onProfile?.invoke(feed.userId) },
+                    onRestaurant = { onRestaurant.invoke(feed.restaurantId) },
+                    onProfile = { onProfile?.invoke(feed.userId) },
                     isZooming = { scrollEnabled = !it },
                     progressTintColor = progressTintColor,
                     image = provideTorangAsyncImage(),
-                    onImage = { navController.imagePager(feed.reviewId,it)}
+                    onImage = { navController.imagePager(feed.reviewId, it) }
                 )
             }
         )
