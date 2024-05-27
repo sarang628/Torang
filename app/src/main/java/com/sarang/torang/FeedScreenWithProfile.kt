@@ -8,11 +8,10 @@ import com.sarang.torang.compose.feed.FeedScreenForMain
 import com.sarang.torang.di.torang.provideProfileScreen
 import com.sarang.torang.viewmodels.FeedDialogsViewModel
 
-@Composable
-fun FeedScreenWithProfile(
+fun feedScreenWithProfile(
     rootNavController: RootNavController,
     dialogsViewModel: FeedDialogsViewModel,
-) {
+): @Composable () -> Unit = {
     val feedNavHostController = rememberNavController()
     NavHost(navController = feedNavHostController, startDestination = "feed") {
         composable("feed") {
@@ -30,10 +29,10 @@ fun FeedScreenWithProfile(
             )
         }
         composable(
-            "profile/{id}",
+            route = "profile/{id}",
             content = provideProfileScreen(
                 rootNavController = rootNavController,
-            )
+                onClose = { feedNavHostController.popBackStack() })
         )
     }
 }

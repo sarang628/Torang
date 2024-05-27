@@ -54,7 +54,7 @@ fun provideMyFeedScreen(
 fun provideMyFeedScreen(
     navController: RootNavController,
     reviewId: Int,
-    progressTintColor: Color? = null,
+    progressTintColor: Color? = Color(0xffe6cc00),
     onImage: ((Int) -> Unit)? = null,
     onShowComment: () -> Unit,
     onRestaurant: (Int) -> Unit,

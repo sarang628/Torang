@@ -28,14 +28,7 @@ internal fun provideRestaurantNavScreen(
     val restaurantId = navBackStackEntry.arguments?.getString("restaurantId")
     restaurantId?.let {
         RestaurantNavScreen(restaurantId = it.toInt(),
-            feeds = {
-                FeedScreenByRestaurantId(
-                    restaurantId = it,
-                    feed = {
-                        Feed(review = it.toReview(), image = provideTorangAsyncImage())
-                    }
-                )
-            },
+            feeds = provideFeedScreenByRestaurantId(rootNavController),
             onCall = { number ->
                 activity.startActivity(
                     Intent(Intent.ACTION_DIAL).apply {

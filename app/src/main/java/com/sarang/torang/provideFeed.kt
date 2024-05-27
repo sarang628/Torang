@@ -14,18 +14,18 @@ fun provideFeed(
     onShare: ((Int) -> Unit),
     navController: NavHostController,
     rootNavController: RootNavController,
-): @Composable (Feed) -> Unit = {
+): @Composable (Feed) -> Unit = { feed ->
     Feed(
-        review = it.toReview(),
+        review = feed.toReview(),
         isZooming = { /*scrollEnabled = !it*/ },
-        progressTintColor = Color(0xFF000000),
+        progressTintColor = Color(0xffe6cc00),
         image = provideTorangAsyncImage(),
-        onComment = { onComment.invoke(it.reviewId) },
-        onShare = { onShare.invoke(it.reviewId) },
-        onMenu = { onMenu.invoke(it.reviewId) },
-        onName = { navController.navigate("profile/${it.userId}") },
-        onRestaurant = { rootNavController.restaurant(it.restaurantId) },
-        onImage = { },
-        onProfile = { navController.navigate("profile/${it.userId}") }
+        onComment = { onComment.invoke(feed.reviewId) },
+        onShare = { onShare.invoke(feed.reviewId) },
+        onMenu = { onMenu.invoke(feed.reviewId) },
+        onName = { navController.navigate("profile/${feed.userId}") },
+        onRestaurant = { rootNavController.restaurant(feed.restaurantId) },
+        onImage = { rootNavController.imagePager(feed.reviewId, it) },
+        onProfile = { navController.navigate("profile/${feed.userId}") }
     )
 }

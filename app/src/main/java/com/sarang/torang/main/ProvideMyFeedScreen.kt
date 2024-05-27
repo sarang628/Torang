@@ -32,7 +32,7 @@ fun ProvideMyFeedScreen(
                 Feed(
                     review = it.toReview(),
                     isZooming = { /*scrollEnabled = !it*/ },
-                    progressTintColor = Color(0xFF000000),
+                    progressTintColor = Color(0xffe6cc00),
                     image = provideTorangAsyncImage(),
                     onComment = { dialogsViewModel.onComment(it.reviewId) },
                     onShare = { dialogsViewModel.onShare(it.reviewId) },

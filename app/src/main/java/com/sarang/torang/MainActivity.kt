@@ -21,6 +21,7 @@ import com.sarang.torang.di.torang.provideRestaurantNavScreen
 import com.sarang.torang.di.torang.provideReviewImagePager
 import com.sarang.torang.di.torang.provideSettingScreen
 import com.sarang.torang.di.torang.provideSplashScreen
+import com.sarang.torang.main.provideMainScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -38,7 +39,7 @@ class MainActivity : ComponentActivity() {
                     val rootNavController = RootNavController(rememberNavController())
                     TorangScreen(
                         rootNavController = rootNavController,
-                        mainScreen = com.sarang.torang.main.provideMainScreen(rootNavController),
+                        mainScreen = provideMainScreen(rootNavController),
                         profileScreen =provideProfileScreen(rootNavController),
                         settingsScreen = provideSettingScreen(rootNavController),
                         splashScreen = provideSplashScreen(rootNavController),
