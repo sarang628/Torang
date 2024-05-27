@@ -1,6 +1,7 @@
 package com.sarang.torang
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -9,11 +10,13 @@ import com.sarang.torang.di.torang.provideProfileScreen
 import com.sarang.torang.viewmodels.FeedDialogsViewModel
 
 fun feedScreenWithProfile(
+    feedNavController: NavHostController,
     rootNavController: RootNavController,
     dialogsViewModel: FeedDialogsViewModel,
+    onTop: Boolean = false,
+    consumeOnTop: () -> Unit = {},
 ): @Composable () -> Unit = {
-    val feedNavHostController = rememberNavController()
-    NavHost(navController = feedNavHostController, startDestination = "feed") {
+    NavHost(navController = feedNavController, startDestination = "feed") {
         composable("feed") {
             FeedScreenForMain(
                 onAddReview = { rootNavController.addReview() },
@@ -21,18 +24,18 @@ fun feedScreenWithProfile(
                     { dialogsViewModel.onComment(it) },
                     { dialogsViewModel.onMenu(it) },
                     { dialogsViewModel.onShare(it) },
-                    navController = feedNavHostController,
+                    navController = feedNavController,
                     rootNavController = rootNavController
                 ),
-                consumeOnTop = {},
-                onTop = false
+                consumeOnTop = consumeOnTop,
+                onTop = onTop
             )
         }
         composable(
             route = "profile/{id}",
             content = provideProfileScreen(
                 rootNavController = rootNavController,
-                onClose = { feedNavHostController.popBackStack() })
+                onClose = { feedNavController.popBackStack() })
         )
     }
 }

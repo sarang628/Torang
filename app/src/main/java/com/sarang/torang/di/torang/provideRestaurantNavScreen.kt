@@ -7,6 +7,7 @@ import androidx.activity.ComponentActivity
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavBackStackEntry
 import com.example.screen_map.compose.MapScreenForRestaurant
 import com.example.screen_map.data.MarkerData
@@ -59,7 +60,8 @@ internal fun provideRestaurantNavScreen(
             onImage = {
                 Log.d("__ScreenProvider", "onImage id:${it}")
                 rootNavController.restaurantImagePager(it)
-            }
+            },
+            progressTintColor = Color(0xffe6cc00)
         )
     }
 }

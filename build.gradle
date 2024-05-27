@@ -29,7 +29,7 @@ ext {
     findingVersion = '47ad95d530'
     themeVersion = '28a1702347'
     myReviewVersion = '7788b8d9f7'
-    torangDetailVersion = '7ef5a19226'
+    torangDetailVersion = 'afbb778e07'
     loginVersion = '6a1f3d1198'
     splashVersion = 'ea97b19733'
     torangRepositoryVersion = 'a0f934c0e1'
