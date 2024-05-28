@@ -7,6 +7,7 @@ import androidx.navigation.compose.rememberNavController
 import com.sarang.torang.RootNavController
 import com.sarang.torang.compose.ProfileScreenNavHost
 import com.sarang.torang.di.image.provideTorangAsyncImage
+import com.sarang.torang.di.main_di.ProvideMyFeedScreen
 
 /**
  * @param onClose 메인화면 -> 피드 -> 프로필 진입 후 뒤로가기 버튼 클릭 시 RootNavController 가 아닌 다른 navController이 필요하여 추가
@@ -30,12 +31,13 @@ internal fun provideProfileScreen(
             },
             onEmailLogin = { rootNavController.emailLogin() },
             onReview = { profileNavController.navigate("myFeed/${it}") },
-            myFeed = provideMyFeedScreen(
-                /*profileScreen*/
-                rootNavController = rootNavController,
-                onProfile = { profileNavController.navigate("profile/${it}") },
-                onBack = { profileNavController.popBackStack() }
-            ),
+            myFeed = {
+                ProvideMyFeedScreen(
+                    rootNavController = rootNavController,
+                    navController = profileNavController,
+                    navBackStackEntry = it
+                )
+            },
             image = provideTorangAsyncImage()
         )
     } else {

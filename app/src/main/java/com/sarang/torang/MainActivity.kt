@@ -9,6 +9,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.google.samples.apps.sunflower.ui.TorangTheme
+import com.sarang.torang.di.main_di.provideMainScreen
 import com.sarang.torang.di.torang.provideAddReviewScreen
 import com.sarang.torang.di.torang.provideEditProfileScreen
 import com.sarang.torang.di.torang.provideEmailLoginNavHost
@@ -21,7 +22,6 @@ import com.sarang.torang.di.torang.provideRestaurantNavScreen
 import com.sarang.torang.di.torang.provideReviewImagePager
 import com.sarang.torang.di.torang.provideSettingScreen
 import com.sarang.torang.di.torang.provideSplashScreen
-import com.sarang.torang.main.provideMainScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 

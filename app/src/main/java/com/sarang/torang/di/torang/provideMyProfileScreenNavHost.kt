@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
 import com.sarang.torang.RootNavController
+import com.sarang.torang.di.main_di.ProvideMyFeedScreen
 import com.sarang.torang.di.profile_di.MyProfileScreenNavHost
 
 internal fun provideMyProfileScreenNavHost(rootNavController: RootNavController): @Composable () -> Unit =
@@ -18,11 +19,13 @@ internal fun provideMyProfileScreenNavHost(rootNavController: RootNavController)
                 profileNavController.navigate("myFeed/${it}")
             },
             onClose = { profileNavController.popBackStack() },
-            myFeed = provideMyFeedScreen(/*myProfileScreen*/
-                rootNavController = rootNavController,
-                onProfile = { profileNavController.navigate("profile/${it}") },
-                onBack = { profileNavController.popBackStack() }
-            )
+            myFeed = {
+                ProvideMyFeedScreen(
+                    rootNavController = rootNavController,
+                    navController = profileNavController,
+                    navBackStackEntry = it
+                )
+            }
 
         )
     }

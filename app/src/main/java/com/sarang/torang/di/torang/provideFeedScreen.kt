@@ -16,11 +16,12 @@ import com.sarang.torang.compose.feed.Feed
 import com.sarang.torang.compose.feed.FeedScreenForMain
 import com.sarang.torang.di.feed_di.toReview
 import com.sarang.torang.di.image.provideTorangAsyncImage
+import com.sarang.torang.di.main_di.ProvideMyFeedScreen
 
 fun provideFeedScreen(
     rootNavController: RootNavController,
     feedNavController: NavHostController,
-    progressTintColor: Color? = Color(0xffe6cc00),
+    progressTintColor: Color = Color(0xffe6cc00),
     onImage: ((Int, Int) -> Unit)? = null,
     onShowComment: () -> Unit,
     currentBottomMenu: String,
@@ -49,7 +50,7 @@ fun provideFeedScreen(
                     onAddReview = { rootNavController.addReview() },
                     onTop = onTop,
                     consumeOnTop = { onTop = false },
-                    feed = { feed ->
+                    feed = { feed, onLike, onFavorite ->
                         Feed(
                             review = feed.toReview(),
                             onComment = {
@@ -64,7 +65,9 @@ fun provideFeedScreen(
                             isZooming = { scrollEnabled = !it },
                             progressTintColor = progressTintColor,
                             image = provideTorangAsyncImage(),
-                            onImage = { onImage?.invoke(feed.reviewId, it) }
+                            onImage = { onImage?.invoke(feed.reviewId, it) },
+                            onFavorite = { onFavorite.invoke(feed.reviewId) },
+                            onLike = { onLike.invoke(feed.reviewId) }
                         )
                     }
                 )
@@ -73,10 +76,12 @@ fun provideFeedScreen(
                 "profile/{id}",
                 content = provideProfileScreenNavHost(feedNavController, rootNavController)
             )
-            composable("myFeed/{reviewId}", content = provideMyFeedScreen(/*provideFeedScreen*/
-                rootNavController = rootNavController,
-                onProfile = { feedNavController.navigate("profile/${it}") },
-                onBack = { feedNavController.popBackStack() }
-            ))
+            composable("myFeed/{reviewId}", content = {
+                ProvideMyFeedScreen(
+                    rootNavController = rootNavController,
+                    navController = feedNavController,
+                    navBackStackEntry = it
+                )
+            })
         }
     }

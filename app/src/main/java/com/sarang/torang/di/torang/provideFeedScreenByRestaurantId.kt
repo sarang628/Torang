@@ -1,6 +1,7 @@
 package com.sarang.torang.di.torang
 
 import android.provider.DocumentsContract.Root
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -17,14 +18,28 @@ fun provideFeedScreenByRestaurantId(navHostController: RootNavController): @Comp
         ProvideMainDialog(navController = navHostController, dialogsViewModel = dialogsViewModel) {
             FeedScreenByRestaurantId(
                 restaurantId = it,
-                feed = { feed ->
+                feed = { feed, onLike, onFavorite ->
                     Feed(
                         review = feed.toReview(),
                         image = provideTorangAsyncImage(),
                         onComment = { dialogsViewModel.onComment(feed.reviewId) },
                         onShare = { dialogsViewModel.onShare(feed.reviewId) },
                         onMenu = { dialogsViewModel.onMenu(feed.reviewId) },
-                        onImage = { navHostController.imagePager(feed.reviewId, it) }
+                        onImage = { navHostController.imagePager(feed.reviewId, it) },
+                        onLike = { onLike.invoke(feed.reviewId) },
+                        onFavorite = { onFavorite.invoke(feed.reviewId) },
+                        onRestaurant = {
+                            Log.w("provideFeedScreenByRestaurantId", "onRestaurant is nothing")
+                        },
+                        onName = {
+                            Log.w("provideFeedScreenByRestaurantId", "onName is nothing")
+                        },
+                        onProfile = {
+                            Log.w("provideFeedScreenByRestaurantId", "onProfile is nothing")
+                        },
+                        isZooming = {
+                            Log.w("provideFeedScreenByRestaurantId", "isZooming is nothing")
+                        }
                     )
                 }
             )

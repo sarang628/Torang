@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import com.sarang.torang.RootNavController
 import com.sarang.torang.compose.ProfileScreenNavHost
 import com.sarang.torang.di.image.provideTorangAsyncImage
+import com.sarang.torang.di.main_di.ProvideMyFeedScreen
 
 internal fun provideProfileScreenNavHost(
     feedNavController: NavHostController,
@@ -16,11 +17,13 @@ internal fun provideProfileScreenNavHost(
         onClose = { feedNavController.popBackStack() },
         onEmailLogin = { rootNavController.emailLogin() },
         onReview = { feedNavController.navigate("myFeed/${it}") },
-        myFeed = provideMyFeedScreen(
-            rootNavController = rootNavController,
-            onProfile = { feedNavController.navigate("profile/${it}") },
-            onBack = { feedNavController.popBackStack() }
-        ),
+        myFeed = {
+            ProvideMyFeedScreen(
+                rootNavController = rootNavController,
+                navController = feedNavController,
+                navBackStackEntry = it
+            )
+        },
         image = provideTorangAsyncImage()
     )
 }
