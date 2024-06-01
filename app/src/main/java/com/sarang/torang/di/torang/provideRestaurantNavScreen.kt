@@ -28,7 +28,8 @@ internal fun provideRestaurantNavScreen(
 ): @Composable (NavBackStackEntry) -> Unit = { navBackStackEntry ->
     val restaurantId = navBackStackEntry.arguments?.getString("restaurantId")
     restaurantId?.let {
-        RestaurantNavScreen(restaurantId = it.toInt(),
+        RestaurantNavScreen(
+            restaurantId = it.toInt(),
             feeds = provideFeedScreenByRestaurantId(rootNavController),
             onCall = { number ->
                 activity.startActivity(
@@ -58,8 +59,8 @@ internal fun provideRestaurantNavScreen(
             },
             image = provideTorangAsyncImage(),
             onImage = {
-                Log.d("__ScreenProvider", "onImage id:${it}")
                 rootNavController.restaurantImagePager(it)
+                Log.d("__ScreenProvider", "onImage id:${it}")
             },
             progressTintColor = Color(0xffe6cc00)
         )

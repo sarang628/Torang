@@ -83,7 +83,7 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-tooling'
     implementation 'androidx.compose.material3:material3' //JetNews Main 따라하기
     implementation "androidx.compose.material3:material3-window-size-class"
-    implementation "androidx.lifecycle:lifecycle-runtime-compose"
+    implementation "androidx.lifecycle:lifecycle-runtime-compose:2.8.1"
     implementation "androidx.navigation:navigation-compose"
 
     implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"
@@ -126,4 +126,5 @@ dependencies {
     implementation "com.github.sarang628:CommonImageLoader:$commonImageLoaderVersion"
     implementation "com.github.sarang628:ImagePager:$ImagePagerVersion"
     implementation "com.github.sarang628:TorangImagePager:$TorangImagePagerVersion"
+    implementation "com.github.sarang628:Likes:$LikesScreenVersion"
 }
