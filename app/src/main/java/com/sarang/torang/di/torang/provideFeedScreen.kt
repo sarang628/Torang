@@ -67,7 +67,8 @@ fun provideFeedScreen(
                             image = provideTorangAsyncImage(),
                             onImage = { onImage?.invoke(feed.reviewId, it) },
                             onFavorite = { onFavorite.invoke(feed.reviewId) },
-                            onLike = { onLike.invoke(feed.reviewId) }
+                            onLike = { onLike.invoke(feed.reviewId) },
+                            onLikes = { rootNavController.like(feed.reviewId) }
                         )
                     }
                 )

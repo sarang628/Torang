@@ -22,6 +22,7 @@ import com.sarang.torang.di.torang.provideAddReviewScreen
 import com.sarang.torang.di.torang.provideEditProfileScreen
 import com.sarang.torang.di.torang.provideEmailLoginNavHost
 import com.sarang.torang.di.torang.provideGalleryNavHost
+import com.sarang.torang.di.torang.provideLikeScreen
 import com.sarang.torang.di.torang.provideLoginNavHost
 import com.sarang.torang.di.torang.provideModReviewScreen
 import com.sarang.torang.di.torang.provideProfileScreen
@@ -64,9 +65,7 @@ class MainActivity : ComponentActivity() {
                             reviewId = it
                         }),
                         restaurantImagePagerScreen = provideRestaurantImagePager(rootNavController),
-                        likesScreen = { reviewId ->
-                            LikeScreen(image = provideTorangAsyncImage(), reviewId = reviewId, onImage = {}, onName = {})
-                        }
+                        likesScreen = provideLikeScreen(rootNavController)
                     )
 
                     reviewId?.let {

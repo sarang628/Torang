@@ -22,7 +22,7 @@ ext {
 
     addReviewVersion = '268f368236'
     alarmVersion = '2bf7ba7bdf'
-    baseFeedVersion = 'aedd28562e'
+    baseFeedVersion = '6c16b03797'
     cardInfoVersion = "023782299b"
     feedVersion = '14d877c0dd'
     profileVersion = '68528c88b0'
@@ -45,5 +45,5 @@ ext {
     commonImageLoaderVersion = 'd0446c327d'
     ImagePagerVersion = '062f536bde'
     TorangImagePagerVersion = '8e59cf3501'
-    LikesScreenVersion = '719b3de8a6'
+    LikesScreenVersion = 'a5d399fe30'
 }
