@@ -45,7 +45,9 @@ class TorangImagePagerModule {
                     contents = it.review.contents,
                     likeCount = it.review.likeAmount.toString(),
                     name = it.review.userName,
-                    commentCount = it.review.commentAmount.toString()
+                    commentCount = it.review.commentAmount.toString(),
+                    reviewId = it.review.reviewId,
+                    userId = it.review.userId
                 )
             }
         }

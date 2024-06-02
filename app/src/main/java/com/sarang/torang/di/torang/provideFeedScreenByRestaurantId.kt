@@ -13,7 +13,7 @@ import com.sarang.torang.viewmodels.FeedDialogsViewModel
 fun provideFeedScreenByRestaurantId(rootNavController: RootNavController): @Composable (Int) -> Unit =
     {
         val dialogsViewModel: FeedDialogsViewModel = hiltViewModel()
-        ProvideMainDialog(navController = rootNavController, dialogsViewModel = dialogsViewModel) {
+        ProvideMainDialog(rootNavController = rootNavController, dialogsViewModel = dialogsViewModel) {
             FeedScreenByRestaurantId(
                 restaurantId = it,
                 feed = { feed, onLike, onFavorite ->

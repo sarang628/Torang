@@ -14,11 +14,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.google.samples.apps.sunflower.ui.TorangTheme
-import com.sarang.library.LikeScreen
-import com.sarang.torang.di.comment_di.provideCommentBottomDialogSheet
-import com.sarang.torang.di.image.provideTorangAsyncImage
 import com.sarang.torang.di.main_di.provideMainScreen
 import com.sarang.torang.di.torang.provideAddReviewScreen
+import com.sarang.torang.di.torang.provideCommentBottomDialogSheet
 import com.sarang.torang.di.torang.provideEditProfileScreen
 import com.sarang.torang.di.torang.provideEmailLoginNavHost
 import com.sarang.torang.di.torang.provideGalleryNavHost
@@ -61,15 +59,20 @@ class MainActivity : ComponentActivity() {
                         modReviewScreen = provideModReviewScreen(rootNavController),
                         emailLoginScreen = provideEmailLoginNavHost(rootNavController),
                         imagePagerScreen = provideReviewImagePager(rootNavController, onComment = {
-                            Log.d("__provideRestaurantImagePager", "onComment is nothing")
                             reviewId = it
                         }),
-                        restaurantImagePagerScreen = provideRestaurantImagePager(rootNavController),
+                        restaurantImagePagerScreen = provideRestaurantImagePager(
+                            rootNavController,
+                            onComment = {
+                                reviewId = it
+                            }),
                         likesScreen = provideLikeScreen(rootNavController)
                     )
 
                     reviewId?.let {
-                        provideCommentBottomDialogSheet().invoke(it) { reviewId = null }
+                        provideCommentBottomDialogSheet(rootNavController).invoke(it) {
+                            reviewId = null
+                        }
                     }
                 }
             }

@@ -8,7 +8,10 @@ import androidx.compose.ui.Modifier
 import com.sarang.torang.RootNavController
 import com.sryang.imagepager.provideImagePager
 
-internal fun provideRestaurantImagePager(rootNavController: RootNavController): @Composable (Int) -> Unit =
+internal fun provideRestaurantImagePager(
+    rootNavController: RootNavController,
+    onComment: (Int) -> Unit,
+): @Composable (Int) -> Unit =
     com.sryang.library.provideRestaurantImagePager(
         imagePager = provideImagePager(),
         image = { url ->
@@ -21,18 +24,12 @@ internal fun provideRestaurantImagePager(rootNavController: RootNavController): 
                 }
             )
         },
-        onComment = {
-            Log.d("__provideRestaurantImagePager", "onComment is nothing")
-        },
-        onLike = {
-            rootNavController.like(it)
-        },
+        onComment = onComment,
+        onLike = { rootNavController.like(it) },
         onDate = {
             Log.d("__provideRestaurantImagePager", "onDate is nothing")
         },
-        onName = {
-            Log.d("__provideRestaurantImagePager", "onName is nothing")
-        },
+        onName = { rootNavController.profile(it) },
         onContents = {
             Log.d("__provideRestaurantImagePager", "onContents is nothing")
         })

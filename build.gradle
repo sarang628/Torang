@@ -41,9 +41,9 @@ ext {
     mainVersion = '04e8b58fa5'
     reportVersion = 'bb52e7be2e'
     mediaContentResolverVersion = '54ff69ee3a'
-    commentVersion = '180abb29cf'
+    commentVersion = '13a0dff4c3'
     commonImageLoaderVersion = 'd0446c327d'
     ImagePagerVersion = '062f536bde'
     TorangImagePagerVersion = '8e59cf3501'
-    LikesScreenVersion = 'a5d399fe30'
+    LikesScreenVersion = 'adb7eb7479'
 }
