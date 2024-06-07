@@ -12,9 +12,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.google.samples.apps.sunflower.ui.TorangTheme
+import com.sarang.torang.compose.feed.FeedScreenByReviewId
+import com.sarang.torang.di.main_di.provideFeed
 import com.sarang.torang.di.main_di.provideMainScreen
+import com.sarang.torang.di.torang.ProvideMainDialog
 import com.sarang.torang.di.torang.provideAddReviewScreen
 import com.sarang.torang.di.torang.provideCommentBottomDialogSheet
 import com.sarang.torang.di.torang.provideEditProfileScreen
@@ -29,6 +33,7 @@ import com.sarang.torang.di.torang.provideRestaurantNavScreen
 import com.sarang.torang.di.torang.provideReviewImagePager
 import com.sarang.torang.di.torang.provideSettingScreen
 import com.sarang.torang.di.torang.provideSplashScreen
+import com.sarang.torang.viewmodels.FeedDialogsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -66,7 +71,21 @@ class MainActivity : ComponentActivity() {
                             onComment = {
                                 reviewId = it
                             }),
-                        likesScreen = provideLikeScreen(rootNavController)
+                        likesScreen = provideLikeScreen(rootNavController),
+                        feedScreen = {
+                            val dialogsViewModel: FeedDialogsViewModel = hiltViewModel()
+                            ProvideMainDialog(rootNavController = rootNavController) {
+                                FeedScreenByReviewId(
+                                    reviewId = it, feed = provideFeed(
+                                        onComment = { dialogsViewModel.onComment(it) },
+                                        onMenu = { dialogsViewModel.onMenu(it) },
+                                        onShare = { dialogsViewModel.onShare(it) },
+                                        navController = rootNavController.navController,
+                                        rootNavController = rootNavController
+                                    )
+                                )
+                            }
+                        }
                     )
 
                     reviewId?.let {

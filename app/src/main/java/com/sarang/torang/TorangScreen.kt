@@ -28,6 +28,7 @@ fun TorangScreen(
     imagePagerScreen: @Composable (Int, Int) -> Unit,
     restaurantImagePagerScreen: @Composable (Int) -> Unit,
     likesScreen: @Composable (Int) -> Unit,
+    feedScreen: @Composable (Int) -> Unit,
 ) {
     NavHost(
         navController = rootNavController.navController, startDestination = "splash",
@@ -96,6 +97,14 @@ fun TorangScreen(
                 Log.e("__TorangScreen", "reviewId is null in likeScreen")
             } else {
                 likesScreen.invoke(reviewId)
+            }
+        }
+        composable("review/{reviewId}") {
+            val reviewId = it.arguments?.getString("reviewId")?.toInt()
+            if (reviewId == null) {
+                Log.e("__TorangScreen", "reviewId is null in feedScreen")
+            } else {
+                feedScreen.invoke(reviewId)
             }
         }
     }
@@ -169,5 +178,9 @@ class RootNavController(val navController: NavHostController) {
 
     fun like(reviewId: Int) {
         navController.navigate("like/${reviewId}")
+    }
+
+    fun review(reviewId: Int) {
+        navController.navigate("review/${reviewId}")
     }
 }
