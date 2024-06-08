@@ -76,7 +76,9 @@ fun RestaurantDetail.toReviewRowData(): List<ReviewRowData> {
             name = it.user_name,
             fullName = it.user_name,
             rating = 3.0f,
-            comment = it.comment
+            comment = it.comment,
+            reviewId = it.review_id,
+            userId = it.user_id
         )
     }
 }

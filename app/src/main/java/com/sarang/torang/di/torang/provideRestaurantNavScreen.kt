@@ -30,7 +30,9 @@ internal fun provideRestaurantNavScreen(
     restaurantId?.let {
         RestaurantNavScreen(
             restaurantId = it.toInt(),
-            feeds = provideFeedScreenByRestaurantId(rootNavController),
+            feeds = { restaurantId, modifier ->
+                provideFeedScreenByRestaurantId(rootNavController).invoke(restaurantId)
+            },
             onCall = { number ->
                 activity.startActivity(
                     Intent(Intent.ACTION_DIAL).apply {
@@ -54,7 +56,8 @@ internal fun provideRestaurantNavScreen(
                 )
                 MapScreenForRestaurant(
                     cameraPositionState = rememberCameraPositionState(),
-                    selectedMarkerData = markerData
+                    selectedMarkerData = markerData,
+                    zoom = 17f
                 )
             },
             image = provideTorangAsyncImage(),
@@ -62,7 +65,14 @@ internal fun provideRestaurantNavScreen(
                 rootNavController.restaurantImagePager(it)
                 Log.d("__ScreenProvider", "onImage id:${it}")
             },
-            progressTintColor = Color(0xffe6cc00)
+            progressTintColor = Color(0xffe6cc00),
+            onBack = { rootNavController.popBackStack() },
+            onContents = {
+                rootNavController.review(it)
+            },
+            onProfile = {
+                rootNavController.profile(it)
+            }
         )
     }
 }
