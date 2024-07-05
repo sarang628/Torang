@@ -34,6 +34,9 @@ import com.sarang.torang.di.torang.provideReviewImagePager
 import com.sarang.torang.di.torang.provideSettingScreen
 import com.sarang.torang.di.torang.provideSplashScreen
 import com.sarang.torang.viewmodels.FeedDialogsViewModel
+import com.sryang.library.JetCaster
+import com.sryang.library.ThemeProvider
+import com.sryang.library.Twitter
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -43,6 +46,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             TorangTheme {
+//            ThemeProvider.Twitter {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background

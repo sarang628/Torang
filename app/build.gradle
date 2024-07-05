@@ -127,4 +127,5 @@ dependencies {
     implementation "com.github.sarang628:ImagePager:$ImagePagerVersion"
     implementation "com.github.sarang628:TorangImagePager:$TorangImagePagerVersion"
     implementation "com.github.sarang628:Likes:$LikesScreenVersion"
+    implementation 'com.github.bingley1:Themes:bdb00d9256'
 }

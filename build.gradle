@@ -22,15 +22,15 @@ ext {
 
     addReviewVersion = '268f368236'
     alarmVersion = '34ba26f49c'
-    baseFeedVersion = '6c16b03797'
-    cardInfoVersion = "023782299b"
-    feedVersion = 'a47ae1d78f'
+    baseFeedVersion = '6307ce6df9'
+    cardInfoVersion = "0ae8d4fd77"
+    feedVersion = '491a0ea899'
     profileVersion = '68528c88b0'
     findingVersion = '47ad95d530'
     themeVersion = '28a1702347'
     myReviewVersion = '7788b8d9f7'
     torangDetailVersion = '1f7f01f3fb'
-    loginVersion = '561b3b0f92'
+    loginVersion = '459bbb44ca' // 561b3b0f92 -> 459bbb44ca
     splashVersion = 'ea97b19733'
     torangRepositoryVersion = '186804ba56'
     settingsVersion = '06efa47b11'

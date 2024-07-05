@@ -75,7 +75,7 @@ fun provideFeedScreen(
             }
             composable(
                 "profile/{id}",
-                content = provideProfileScreenNavHost(feedNavController, rootNavController)
+                content = { provideProfileScreenNavHost(feedNavController, rootNavController).invoke(it) }
             )
             composable("myFeed/{reviewId}", content = {
                 ProvideMyFeedScreen(
