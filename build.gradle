@@ -43,7 +43,7 @@ ext {
     mediaContentResolverVersion = '54ff69ee3a'
     commentVersion = '13a0dff4c3'
     commonImageLoaderVersion = 'd0446c327d'
-    ImagePagerVersion = '062f536bde'
-    TorangImagePagerVersion = '8e59cf3501'
+    ImagePagerVersion = '35b42a2392'
+    TorangImagePagerVersion = '1c6db113f1'
     LikesScreenVersion = 'adb7eb7479'
 }
