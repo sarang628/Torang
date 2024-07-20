@@ -30,7 +30,7 @@ ext {
     themeVersion = '28a1702347'
     myReviewVersion = '7788b8d9f7'
     torangDetailVersion = '1f7f01f3fb'
-    loginVersion = '817ae80b14'
+    loginVersion = '124c0d9cba'
     splashVersion = 'ea97b19733'
     torangRepositoryVersion = '186804ba56'
     settingsVersion = '06efa47b11'
