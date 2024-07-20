@@ -1,12 +1,14 @@
-package com.sryang.login.di.login
+package com.sarang.torang.di.login
 
 import android.content.Context
+import com.sarang.torang.data.dao.LoggedInUserDao
+import com.sarang.torang.repository.LoginRepository
+import com.sarang.torang.session.SessionService
+import com.sarang.torang.usecase.CheckEmailDuplicateUseCase
+import com.sarang.torang.usecase.ConfirmCodeUseCase
 import com.sarang.torang.usecase.EmailLoginUseCase
 import com.sarang.torang.usecase.IsLoginFlowUseCase
 import com.sarang.torang.usecase.LogoutUseCase
-import com.sarang.torang.usecase.SignUpUseCase
-import com.sarang.torang.repository.LoginRepository
-import com.sarang.torang.session.SessionService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,7 +23,7 @@ object LoginServiceModule {
     @Singleton
     @Provides
     fun emailLoginService(
-        loginRepository: LoginRepository
+        loginRepository: LoginRepository,
     ): EmailLoginUseCase {
         return object : EmailLoginUseCase {
             override suspend fun invoke(id: String, email: String) {
@@ -43,10 +45,14 @@ object LoginServiceModule {
 
     @Singleton
     @Provides
-    fun provideLogoutUseCase(sessionService: SessionService): LogoutUseCase {
+    fun provideLogoutUseCase(
+        sessionService: SessionService,
+        loggedInUserDao: LoggedInUserDao,
+    ): LogoutUseCase {
         return object : LogoutUseCase {
             override suspend fun invoke() {
                 sessionService.removeToken()
+                loggedInUserDao.clear()
             }
         }
     }
@@ -60,15 +66,15 @@ object LoginServiceModule {
     @Singleton
     @Provides
     fun provideSignUpUseCase(
-        loginRepository: LoginRepository
-    ): SignUpUseCase {
-        return object : SignUpUseCase {
+        loginRepository: LoginRepository,
+    ): ConfirmCodeUseCase {
+        return object : ConfirmCodeUseCase {
             override suspend fun confirmCode(
                 token: String,
                 confirmCode: String,
                 name: String,
                 email: String,
-                password: String
+                password: String,
             ): Boolean {
                 return loginRepository.encConfirmCode(
                     token = token,
@@ -78,7 +84,15 @@ object LoginServiceModule {
                     password = password
                 )
             }
+        }
+    }
 
+    @Singleton
+    @Provides
+    fun provideCheckEmailUseCase(
+        loginRepository: LoginRepository,
+    ): CheckEmailDuplicateUseCase {
+        return object : CheckEmailDuplicateUseCase {
             override suspend fun checkEmail(email: String, password: String): String {
                 return loginRepository.encCheckEmail(email, password)
             }

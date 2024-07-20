@@ -1,7 +1,7 @@
-package com.sryang.login.di.login
+package com.sarang.torang.di.login
 
 import android.util.Patterns
-import com.sarang.torang.usecase.ValidEmailUseCase
+import com.sarang.torang.usecase.VerifyEmailFormatUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,8 +11,8 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 class ValidEmailUseCaseImpl {
     @Provides
-    fun provides(): ValidEmailUseCase {
-        return object : ValidEmailUseCase {
+    fun provides(): VerifyEmailFormatUseCase {
+        return object : VerifyEmailFormatUseCase {
             override fun invoke(email: String): Boolean {
                 return Patterns.EMAIL_ADDRESS.matcher(email).matches()
             }

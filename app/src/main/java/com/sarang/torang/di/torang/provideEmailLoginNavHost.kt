@@ -2,7 +2,7 @@ package com.sarang.torang.di.torang
 
 import androidx.compose.runtime.Composable
 import com.sarang.torang.RootNavController
-import com.sarang.torang.compose.LoginNavHost
+import com.sarang.torang.compose.signinsignup.LoginNavHost
 
 internal fun provideEmailLoginNavHost(rootNavController: RootNavController): @Composable () -> Unit =
     {
