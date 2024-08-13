@@ -1,9 +1,9 @@
 package com.sryang.findinglinkmodules.di.filter
 
+import com.sarang.torang.api.ApiFilter
+import com.sarang.torang.data.remote.response.CityApiModel
 import com.sryang.screen_filter.data.City
 import com.sryang.screen_filter.usecase.GetCitiesUseCase
-import com.sarang.torang.api.ApiFilter
-import com.sarang.torang.data.remote.response.RemoteCity
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,7 +22,7 @@ class GetCitiesUseCaseImpl {
     }
 }
 
-fun RemoteCity.toCity(): City {
+fun CityApiModel.toCity(): City {
     return City(
         name = this.name,
         latitude = this.latitude,

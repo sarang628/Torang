@@ -1,5 +1,6 @@
 package com.sarang.torang.di.login
 
+import com.sarang.torang.data.LoginErrorMessage
 import com.sarang.torang.usecase.VerifyPasswordFormatUseCase
 import dagger.Module
 import dagger.Provides
@@ -12,14 +13,17 @@ class ValidPasswordUseCaseImpl {
     @Provides
     fun providesValidPasswordUseCase(): VerifyPasswordFormatUseCase {
         return object : VerifyPasswordFormatUseCase {
-            override fun invoke(password: String): Boolean {
-                if (password.length < 6) return false
+            override fun invoke(password: String): LoginErrorMessage? {
+                if (password.length < 6) return LoginErrorMessage.InvalidPassword
                 val hasUpperCase = password.any { it.isUpperCase() }
                 val hasLowerCase = password.any { it.isLowerCase() }
                 val hasDigit = password.any { it.isDigit() }
                 val hasSpecialChar = password.any { "!@#\$%^&*()_+[]{}|;':,.<>?".contains(it) }
 
-                return hasUpperCase && hasLowerCase && hasDigit && hasSpecialChar
+                return if (hasUpperCase && hasLowerCase && hasDigit && hasSpecialChar)
+                    null
+                else
+                    LoginErrorMessage.InvalidPassword
             }
         }
     }

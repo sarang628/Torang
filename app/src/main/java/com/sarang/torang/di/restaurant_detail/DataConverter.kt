@@ -9,7 +9,7 @@ import com.sarang.torang.data.restaurant.RestaurantInfo
 import com.sarang.torang.data.restaurant.ReviewRowData
 import com.sarang.torang.data.restaurant.ReviewSummaryData
 import com.sarang.torang.data.RestaurantDetail
-import com.sarang.torang.data.remote.response.RemoteFeed
+import com.sarang.torang.data.remote.response.FeedApiModel
 
 fun RestaurantDetail.toRestaurantInfoData(): RestaurantInfo {
     return RestaurantInfo(
@@ -83,7 +83,7 @@ fun RestaurantDetail.toReviewRowData(): List<ReviewRowData> {
     }
 }
 
-fun RemoteFeed.toFeedData(): Feed {
+fun FeedApiModel.toFeedData(): Feed {
     return Feed(
         reviewId = this.reviewId,
         userId = this.user.userId,

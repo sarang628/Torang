@@ -24,15 +24,15 @@ ext {
     alarmVersion = '34ba26f49c'
     baseFeedVersion = '6307ce6df9'
     cardInfoVersion = "0ae8d4fd77"
-    feedVersion = '491a0ea899'
+    feedVersion = 'd1477c5c91'
     profileVersion = '68528c88b0'
     findingVersion = '47ad95d530'
     themeVersion = '28a1702347'
     myReviewVersion = '7788b8d9f7'
     torangDetailVersion = '1f7f01f3fb'
-    loginVersion = '124c0d9cba'
+    loginVersion = 'ac5034132b'
     splashVersion = 'ea97b19733'
-    torangRepositoryVersion = '186804ba56'
+    torangRepositoryVersion = '17a6bb5115'
     settingsVersion = '06efa47b11'
     mapVersion = 'f7ff07fe0a'
     torangBottomSheetVersion = 'c84399fb7f'
@@ -46,4 +46,5 @@ ext {
     ImagePagerVersion = '35b42a2392'
     TorangImagePagerVersion = '1c6db113f1'
     LikesScreenVersion = 'adb7eb7479'
+    featureDeliveryVersion = "2.1.0"
 }

@@ -13,7 +13,7 @@ android {
         applicationId "com.sarang.torang"
         minSdk rootProject.minSdk
         targetSdk rootProject.targetSdk
-        versionCode 73
+        versionCode 75
         versionName "0.1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -155,4 +155,5 @@ dependencies {
     implementation "com.github.sarang628:TorangImagePager:$TorangImagePagerVersion"
     implementation "com.github.sarang628:Likes:$LikesScreenVersion"
     implementation 'com.github.bingley1:Themes:bdb00d9256'
+    implementation "com.google.android.play:feature-delivery:$featureDeliveryVersion"
 }
