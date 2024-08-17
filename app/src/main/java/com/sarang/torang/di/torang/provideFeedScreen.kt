@@ -64,7 +64,7 @@ fun provideFeedScreen(
                             onProfile = { feedNavController.navigate("profile/${feed.userId}") },
                             isZooming = { scrollEnabled = !it },
                             progressTintColor = progressTintColor,
-                            image = provideTorangAsyncImage(),
+                            imageLoadCompose = provideTorangAsyncImage(),
                             onImage = { onImage?.invoke(feed.reviewId, it) },
                             onFavorite = { onFavorite.invoke(feed.reviewId) },
                             onLike = { onLike.invoke(feed.reviewId) },

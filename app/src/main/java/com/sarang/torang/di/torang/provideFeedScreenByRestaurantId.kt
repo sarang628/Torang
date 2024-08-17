@@ -19,7 +19,7 @@ fun provideFeedScreenByRestaurantId(rootNavController: RootNavController): @Comp
                 feed = { feed, onLike, onFavorite ->
                     Feed(
                         review = feed.toReview(),
-                        image = provideTorangAsyncImage(),
+                        imageLoadCompose = provideTorangAsyncImage(),
                         onComment = { dialogsViewModel.onComment(feed.reviewId) },
                         onShare = { dialogsViewModel.onShare(feed.reviewId) },
                         onMenu = { dialogsViewModel.onMenu(feed.reviewId) },
