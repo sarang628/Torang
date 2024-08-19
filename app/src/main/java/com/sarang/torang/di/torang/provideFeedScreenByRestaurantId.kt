@@ -6,6 +6,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.sarang.torang.RootNavController
 import com.sarang.torang.compose.feed.Feed
 import com.sarang.torang.compose.feed.FeedScreenByRestaurantId
+import com.sarang.torang.di.feed_di.shimmerBrush
 import com.sarang.torang.di.feed_di.toReview
 import com.sarang.torang.di.image.provideTorangAsyncImage
 import com.sarang.torang.viewmodels.FeedDialogsViewModel
@@ -16,6 +17,7 @@ fun provideFeedScreenByRestaurantId(rootNavController: RootNavController): @Comp
         ProvideMainDialog(rootNavController = rootNavController, dialogsViewModel = dialogsViewModel) {
             FeedScreenByRestaurantId(
                 restaurantId = it,
+                shimmerBrush = { it -> shimmerBrush(it) },
                 feed = { feed, onLike, onFavorite ->
                     Feed(
                         review = feed.toReview(),

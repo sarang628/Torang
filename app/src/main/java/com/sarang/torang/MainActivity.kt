@@ -16,6 +16,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.google.samples.apps.sunflower.ui.TorangTheme
 import com.sarang.torang.compose.feed.FeedScreenByReviewId
+import com.sarang.torang.di.feed_di.shimmerBrush
 import com.sarang.torang.di.main_di.provideFeed
 import com.sarang.torang.di.main_di.provideMainScreen
 import com.sarang.torang.di.torang.ProvideMainDialog
@@ -80,7 +81,9 @@ class MainActivity : ComponentActivity() {
                             val dialogsViewModel: FeedDialogsViewModel = hiltViewModel()
                             ProvideMainDialog(rootNavController = rootNavController) {
                                 FeedScreenByReviewId(
-                                    reviewId = it, feed = provideFeed(
+                                    reviewId = it,
+                                    shimmerBrush = { it -> shimmerBrush(it) },
+                                    feed = provideFeed(
                                         onComment = { dialogsViewModel.onComment(it) },
                                         onMenu = { dialogsViewModel.onMenu(it) },
                                         onShare = { dialogsViewModel.onShare(it) },

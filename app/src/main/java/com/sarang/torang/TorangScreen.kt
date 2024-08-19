@@ -31,7 +31,7 @@ fun TorangScreen(
     feedScreen: @Composable (Int) -> Unit,
 ) {
     NavHost(
-        navController = rootNavController.navController, startDestination = "splash",
+        navController = rootNavController.navController, startDestination = "main",
     ) {
         composable("main") {
             mainScreen.invoke()
