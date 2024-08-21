@@ -28,6 +28,7 @@ fun CityApiModel.toCity(): City {
         latitude = this.latitude,
         longitude = this.longitude,
         url = "http://sarang628.iptime.org:89/"+this.url,
-        zoom = this.zoom
+        zoom = this.zoom,
+        nation = this.nation
     )
 }
