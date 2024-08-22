@@ -18,6 +18,9 @@ import com.sarang.torang.di.feed_di.shimmerBrush
 import com.sarang.torang.di.feed_di.toReview
 import com.sarang.torang.di.image.provideTorangAsyncImage
 import com.sarang.torang.di.main_di.ProvideMyFeedScreen
+import com.sryang.library.pullrefresh.PullToRefreshLayout
+import com.sryang.library.pullrefresh.RefreshIndicatorState
+import com.sryang.library.pullrefresh.rememberPullToRefreshState
 
 fun provideFeedScreen(
     rootNavController: RootNavController,
@@ -31,6 +34,7 @@ fun provideFeedScreen(
     { onComment, onMenu, onShare, navBackStackEntry ->
         var scrollEnabled by remember { mutableStateOf(true) }
         var onTop by remember { mutableStateOf(false) }
+        val state = rememberPullToRefreshState()
 
         LaunchedEffect(key1 = currentBottomMenu) {
             if (currentBottomMenu == "feed") {
@@ -72,6 +76,22 @@ fun provideFeedScreen(
                             onLike = { onLike.invoke(feed.reviewId) },
                             onLikes = { rootNavController.like(feed.reviewId) }
                         )
+                    },
+                    pullToRefreshLayout = { isRefreshing, onRefresh, contents ->
+
+                        if (isRefreshing) {
+                            state.updateState(RefreshIndicatorState.Refreshing)
+                        } else {
+                            state.updateState(RefreshIndicatorState.Default)
+                        }
+
+                        PullToRefreshLayout(
+                            pullRefreshLayoutState = state,
+                            refreshThreshold = 80,
+                            onRefresh = onRefresh
+                        ) {
+                            contents.invoke()
+                        }
                     }
                 )
             }

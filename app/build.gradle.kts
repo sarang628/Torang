@@ -161,5 +161,6 @@ dependencies {
     implementation(libs.torangImagePager)
     implementation(libs.likes)
     implementation(libs.themes)
+    implementation(libs.mui3scrolltorefresh)
     implementation(libs.feature.delivery)
 }

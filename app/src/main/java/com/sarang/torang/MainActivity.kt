@@ -38,6 +38,9 @@ import com.sarang.torang.viewmodels.FeedDialogsViewModel
 import com.sryang.library.JetCaster
 import com.sryang.library.ThemeProvider
 import com.sryang.library.Twitter
+import com.sryang.library.pullrefresh.PullToRefreshLayout
+import com.sryang.library.pullrefresh.RefreshIndicatorState
+import com.sryang.library.pullrefresh.rememberPullToRefreshState
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -46,6 +49,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val state = rememberPullToRefreshState()
+
             TorangTheme {
 //            ThemeProvider.Twitter {
                 Surface(
@@ -89,7 +94,23 @@ class MainActivity : ComponentActivity() {
                                         onShare = { dialogsViewModel.onShare(it) },
                                         navController = rootNavController.navController,
                                         rootNavController = rootNavController
-                                    )
+                                    ),
+                                    pullToRefreshLayout = { isRefreshing, onRefresh, contents ->
+
+                                        if (isRefreshing) {
+                                            state.updateState(RefreshIndicatorState.Refreshing)
+                                        } else {
+                                            state.updateState(RefreshIndicatorState.Default)
+                                        }
+
+                                        PullToRefreshLayout(
+                                            pullRefreshLayoutState = state,
+                                            refreshThreshold = 80,
+                                            onRefresh = onRefresh
+                                        ) {
+                                            contents.invoke()
+                                        }
+                                    }
                                 )
                             }
                         }
