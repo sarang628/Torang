@@ -8,7 +8,7 @@ import com.sarang.torang.RootNavController
 import com.sarang.torang.compose.MainDialogs
 import com.sarang.torang.di.bottomsheet.provideFeedMenuBottomSheetDialog
 import com.sarang.torang.di.report_di.provideReportModal
-import com.sarang.torang.di.torang.provideCommentBottomDialogSheet
+import com.sarang.torang.di.main_di.provideCommentBottomDialogSheet
 import com.sarang.torang.viewmodels.FeedDialogsViewModel
 import com.sryang.torangbottomsheet.di.bottomsheet.provideShareBottomSheetDialog
 

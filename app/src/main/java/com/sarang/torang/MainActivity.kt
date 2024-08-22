@@ -21,7 +21,7 @@ import com.sarang.torang.di.main_di.provideFeed
 import com.sarang.torang.di.main_di.provideMainScreen
 import com.sarang.torang.di.torang.ProvideMainDialog
 import com.sarang.torang.di.torang.provideAddReviewScreen
-import com.sarang.torang.di.torang.provideCommentBottomDialogSheet
+import com.sarang.torang.di.main_di.provideCommentBottomDialogSheet
 import com.sarang.torang.di.torang.provideEditProfileScreen
 import com.sarang.torang.di.torang.provideEmailLoginNavHost
 import com.sarang.torang.di.torang.provideGalleryNavHost
@@ -35,9 +35,6 @@ import com.sarang.torang.di.torang.provideReviewImagePager
 import com.sarang.torang.di.torang.provideSettingScreen
 import com.sarang.torang.di.torang.provideSplashScreen
 import com.sarang.torang.viewmodels.FeedDialogsViewModel
-import com.sryang.library.JetCaster
-import com.sryang.library.ThemeProvider
-import com.sryang.library.Twitter
 import com.sryang.library.pullrefresh.PullToRefreshLayout
 import com.sryang.library.pullrefresh.RefreshIndicatorState
 import com.sryang.library.pullrefresh.rememberPullToRefreshState
@@ -84,12 +81,18 @@ class MainActivity : ComponentActivity() {
                         likesScreen = provideLikeScreen(rootNavController),
                         feedScreen = {
                             val dialogsViewModel: FeedDialogsViewModel = hiltViewModel()
-                            ProvideMainDialog(rootNavController = rootNavController) {
+                            ProvideMainDialog(
+                                dialogsViewModel = dialogsViewModel,
+                                rootNavController = rootNavController
+                            ) {
                                 FeedScreenByReviewId(
                                     reviewId = it,
                                     shimmerBrush = { it -> shimmerBrush(it) },
                                     feed = provideFeed(
-                                        onComment = { dialogsViewModel.onComment(it) },
+                                        onComment = {
+                                            Log.d("__MainActivity", "onComment : $it")
+                                            dialogsViewModel.onComment(it)
+                                        },
                                         onMenu = { dialogsViewModel.onMenu(it) },
                                         onShare = { dialogsViewModel.onShare(it) },
                                         navController = rootNavController.navController,
