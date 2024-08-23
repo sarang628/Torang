@@ -44,7 +44,8 @@ fun provideFeedScreenByRestaurantId(rootNavController: RootNavController): @Comp
                         isZooming = {
                             Log.w("provideFeedScreenByRestaurantId", "isZooming is nothing")
                         },
-                        onLikes = { rootNavController.like(feed.reviewId) }
+                        onLikes = { rootNavController.like(feed.reviewId) },
+                        expandableText = provideExpandableText()
                     )
                 },
                 pullToRefreshLayout = { isRefreshing, onRefresh, contents ->

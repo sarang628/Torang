@@ -74,7 +74,8 @@ fun provideFeedScreen(
                             onImage = { onImage?.invoke(feed.reviewId, it) },
                             onFavorite = { onFavorite.invoke(feed.reviewId) },
                             onLike = { onLike.invoke(feed.reviewId) },
-                            onLikes = { rootNavController.like(feed.reviewId) }
+                            onLikes = { rootNavController.like(feed.reviewId) },
+                            expandableText = provideExpandableText()
                         )
                     },
                     pullToRefreshLayout = { isRefreshing, onRefresh, contents ->

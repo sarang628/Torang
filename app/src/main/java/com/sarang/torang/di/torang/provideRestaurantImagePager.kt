@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.sarang.torang.RootNavController
 import com.sryang.imagepager.provideImagePager
+import com.sryang.library.ExpandableText
 
 internal fun provideRestaurantImagePager(
     rootNavController: RootNavController,
@@ -32,4 +33,13 @@ internal fun provideRestaurantImagePager(
         onName = { rootNavController.profile(it) },
         onContents = {
             Log.d("__provideRestaurantImagePager", "onContents is nothing")
-        })
+        },
+        expandableText = { modifier, text, expandableTextColor, onClickNickName ->
+            ExpandableText(
+                modifier = modifier,
+                text = text,
+                onClickNickName = onClickNickName,
+                expandableTextColor = expandableTextColor
+            )
+        }
+    )

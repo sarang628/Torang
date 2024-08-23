@@ -8,8 +8,12 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.navOptions
 import com.sarang.torang.RootNavController
 import com.sryang.imagepager.provideImagePager
+import com.sryang.library.ExpandableText
 
-internal fun provideReviewImagePager(rootNavController: RootNavController, onComment: (Int) -> Unit): @Composable (Int, Int) -> Unit =
+internal fun provideReviewImagePager(
+    rootNavController: RootNavController,
+    onComment: (Int) -> Unit,
+): @Composable (Int, Int) -> Unit =
     com.sryang.library.provideReviewImagePager(imagePager = provideImagePager(), image = { url ->
         ZoomableTorangAsyncImage(
             model = url,
@@ -32,5 +36,13 @@ internal fun provideReviewImagePager(rootNavController: RootNavController, onCom
         onContents = {
             Log.d("__provideReviewImagePager", "onContents is nothing")
         },
-        onPage = { Log.d("__provideReviewImagePager", "onPage is nothing") }
+        onPage = { Log.d("__provideReviewImagePager", "onPage is nothing") },
+        expandableText = { modifier, text, expandableTextColor, onClickNickName ->
+            ExpandableText(
+                modifier = modifier,
+                text = text,
+                onClickNickName = onClickNickName,
+                expandableTextColor = expandableTextColor
+            )
+        }
     )

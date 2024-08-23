@@ -133,6 +133,7 @@ dependencies {
     /** Navigation end */
 
 
+    implementation(libs.feature.delivery)
     implementation(libs.feed)
     implementation(libs.alarm)
     implementation(libs.theme)
@@ -162,5 +163,5 @@ dependencies {
     implementation(libs.likes)
     implementation(libs.themes)
     implementation(libs.mui3scrolltorefresh)
-    implementation(libs.feature.delivery)
+    implementation("com.github.sarang628:ExpandableText:547e79fc42")
 }
