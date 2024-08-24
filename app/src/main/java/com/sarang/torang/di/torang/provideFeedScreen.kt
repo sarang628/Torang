@@ -1,5 +1,6 @@
 package com.sarang.torang.di.torang
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -56,14 +57,14 @@ fun provideFeedScreen(
                     onTop = onTop,
                     consumeOnTop = { onTop = false },
                     shimmerBrush = { it -> shimmerBrush(it) },
-                    feed = { feed, onLike, onFavorite ->
+                    feed = { feed, onLike, onFavorite, isLogin ->
                         Feed(
                             review = feed.toReview(),
                             onComment = {
                                 onComment.invoke(feed.reviewId)
                                 onShowComment.invoke()
                             },
-                            onShare = { onShare.invoke(feed.reviewId) },
+                            onShare = { if (isLogin) onShare.invoke(feed.reviewId) },
                             onMenu = { onMenu.invoke(feed.reviewId) },
                             onName = { feedNavController.navigate("profile/${feed.userId}") },
                             onRestaurant = { rootNavController.restaurant(feed.restaurantId) },
@@ -75,7 +76,8 @@ fun provideFeedScreen(
                             onFavorite = { onFavorite.invoke(feed.reviewId) },
                             onLike = { onLike.invoke(feed.reviewId) },
                             onLikes = { rootNavController.like(feed.reviewId) },
-                            expandableText = provideExpandableText()
+                            expandableText = provideExpandableText(),
+                            isLogin = isLogin
                         )
                     },
                     pullToRefreshLayout = { isRefreshing, onRefresh, contents ->
@@ -98,7 +100,12 @@ fun provideFeedScreen(
             }
             composable(
                 "profile/{id}",
-                content = { provideProfileScreenNavHost(feedNavController, rootNavController).invoke(it) }
+                content = {
+                    provideProfileScreenNavHost(
+                        feedNavController,
+                        rootNavController
+                    ).invoke(it)
+                }
             )
             composable("myFeed/{reviewId}", content = {
                 ProvideMyFeedScreen(

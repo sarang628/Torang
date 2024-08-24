@@ -22,7 +22,7 @@ fun provideFeedScreenByRestaurantId(rootNavController: RootNavController): @Comp
             FeedScreenByRestaurantId(
                 restaurantId = it,
                 shimmerBrush = { it -> shimmerBrush(it) },
-                feed = { feed, onLike, onFavorite ->
+                feed = { feed, onLike, onFavorite, isLogin ->
                     Feed(
                         review = feed.toReview(),
                         imageLoadCompose = provideTorangAsyncImage(),

@@ -163,5 +163,5 @@ dependencies {
     implementation(libs.likes)
     implementation(libs.themes)
     implementation(libs.mui3scrolltorefresh)
-    implementation("com.github.sarang628:ExpandableText:547e79fc42")
+    implementation(libs.expandableText)
 }
