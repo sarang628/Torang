@@ -15,7 +15,7 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@drawable/torang_splash_no_bg"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MaterialComponents.NoActionBar"
+        android:theme="@style/Theme.Material3.Light.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"
