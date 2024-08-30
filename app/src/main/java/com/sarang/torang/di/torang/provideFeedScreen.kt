@@ -77,7 +77,8 @@ fun provideFeedScreen(
                             onLike = { onLike.invoke(feed.reviewId) },
                             onLikes = { rootNavController.like(feed.reviewId) },
                             expandableText = provideExpandableText(),
-                            isLogin = isLogin
+                            isLogin = isLogin,
+                            videoPlayer = { VideoPlayerScreen(videoUrl = it) }
                         )
                     },
                     pullToRefreshLayout = { isRefreshing, onRefresh, contents ->

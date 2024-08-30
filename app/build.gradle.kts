@@ -15,7 +15,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunner = "com.sarang.torang.CustomTestRunner"
 
-        versionCode = 81
+        versionCode = 82
         versionName = "0.1.0"
     }
 
@@ -164,4 +164,9 @@ dependencies {
     implementation(libs.themes)
     implementation(libs.mui3scrolltorefresh)
     implementation(libs.expandableText)
+
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.androidx.media3.ui)
+    implementation("androidx.media3:media3-session:1.4.0")
+    implementation("androidx.media3:media3-exoplayer-hls:1.4.0")
 }

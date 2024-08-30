@@ -18,7 +18,10 @@ fun provideFeedScreenByRestaurantId(rootNavController: RootNavController): @Comp
     {
         val dialogsViewModel: FeedDialogsViewModel = hiltViewModel()
         val state = rememberPullToRefreshState()
-        ProvideMainDialog(rootNavController = rootNavController, dialogsViewModel = dialogsViewModel) {
+        ProvideMainDialog(
+            rootNavController = rootNavController,
+            dialogsViewModel = dialogsViewModel
+        ) {
             FeedScreenByRestaurantId(
                 restaurantId = it,
                 shimmerBrush = { it -> shimmerBrush(it) },
@@ -45,7 +48,8 @@ fun provideFeedScreenByRestaurantId(rootNavController: RootNavController): @Comp
                             Log.w("provideFeedScreenByRestaurantId", "isZooming is nothing")
                         },
                         onLikes = { rootNavController.like(feed.reviewId) },
-                        expandableText = provideExpandableText()
+                        expandableText = provideExpandableText(),
+                        videoPlayer = { VideoPlayerScreen(videoUrl = it) }
                     )
                 },
                 pullToRefreshLayout = { isRefreshing, onRefresh, contents ->
