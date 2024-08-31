@@ -25,7 +25,7 @@ fun provideFeedScreenByRestaurantId(rootNavController: RootNavController): @Comp
             FeedScreenByRestaurantId(
                 restaurantId = it,
                 shimmerBrush = { it -> shimmerBrush(it) },
-                feed = { feed, onLike, onFavorite, isLogin ->
+                feed = { feed, onLike, onFavorite, isLogin, onVideoClick ->
                     Feed(
                         review = feed.toReview(),
                         imageLoadCompose = provideTorangAsyncImage(),
@@ -49,7 +49,7 @@ fun provideFeedScreenByRestaurantId(rootNavController: RootNavController): @Comp
                         },
                         onLikes = { rootNavController.like(feed.reviewId) },
                         expandableText = provideExpandableText(),
-                        videoPlayer = { VideoPlayerScreen(videoUrl = it) }
+                        videoPlayer = { VideoPlayerScreen(videoUrl = it, feed.isPlaying, onClick = onVideoClick, onPlay = {}) }
                     )
                 },
                 pullToRefreshLayout = { isRefreshing, onRefresh, contents ->

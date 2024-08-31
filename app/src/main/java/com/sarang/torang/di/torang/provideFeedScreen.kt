@@ -57,7 +57,7 @@ fun provideFeedScreen(
                     onTop = onTop,
                     consumeOnTop = { onTop = false },
                     shimmerBrush = { it -> shimmerBrush(it) },
-                    feed = { feed, onLike, onFavorite, isLogin ->
+                    feed = { feed, onLike, onFavorite, isLogin, onVideoClick ->
                         Feed(
                             review = feed.toReview(),
                             onComment = {
@@ -78,7 +78,7 @@ fun provideFeedScreen(
                             onLikes = { rootNavController.like(feed.reviewId) },
                             expandableText = provideExpandableText(),
                             isLogin = isLogin,
-                            videoPlayer = { VideoPlayerScreen(videoUrl = it) }
+                            videoPlayer = { VideoPlayerScreen(videoUrl = it, feed.isPlaying, onClick = onVideoClick, onPlay = {}) }
                         )
                     },
                     pullToRefreshLayout = { isRefreshing, onRefresh, contents ->

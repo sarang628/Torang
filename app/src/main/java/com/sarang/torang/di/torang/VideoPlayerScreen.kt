@@ -2,6 +2,7 @@ package com.sarang.torang.di.torang
 
 import android.net.Uri
 import android.util.Log
+import android.widget.TextView
 import androidx.annotation.OptIn
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -17,8 +18,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -40,25 +43,31 @@ import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.media3.ui.PlayerView
 
+private val TAG = "__VideoPlayerScreen"
+
 @OptIn(UnstableApi::class)
 @Composable
-fun VideoPlayerScreen(videoUrl: String) {
-    var isPlaying by remember { mutableStateOf(true) }
+fun VideoPlayerScreen(
+    videoUrl: String,
+    isPlaying: Boolean,
+    onClick: () -> Unit,
+    onPlay: (Boolean) -> Unit,
+) {
     val context = LocalContext.current
-    val exoPlayer = remember {
+    val exoPlayer = remember(videoUrl) {
         ExoPlayer.Builder(context)
             .build().apply {
                 val mediaItem = MediaItem.fromUri(Uri.parse(videoUrl))
                 setMediaItem(mediaItem)
                 prepare()
-                playWhenReady = true
+                playWhenReady = isPlaying
                 addListener(object : Player.Listener {
                     override fun onPlayWhenReadyChanged(playWhenReady: Boolean, reason: Int) {
                         Log.d(
-                            "__VideoPlayerScreen",
+                            TAG,
                             "onPlayWhenReadyChanged: playWhenReady: $playWhenReady, reason: $reason"
                         )
-                        isPlaying = playWhenReady
+                        onPlay.invoke(playWhenReady)
                         super.onPlayWhenReadyChanged(playWhenReady, reason)
                     }
                 })
@@ -71,51 +80,27 @@ fun VideoPlayerScreen(videoUrl: String) {
             .background(Color.Black)
     ) {
         AndroidView(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Black),
             factory = {
                 PlayerView(context).apply {
                     player = exoPlayer
                     useController = false
                     resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FILL
-                    setOnClickListener {
-                        Log.d("__VideoPlayerScreen", "setOnClickListener")
-                        if (exoPlayer.isPlaying) {
-                            exoPlayer.pause()
-                        } else {
-                            exoPlayer.play()
-                        }
-                    }
-                }
-            },
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color.Black)
-        )
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Row(
-            horizontalArrangement = Arrangement.Center,
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.Center)
-        ) {
-            if (!isPlaying) {
-                IconButton(
-                    modifier = Modifier.border(
-                        2.dp,
-                        Color.Black,
-                        shape = CircleShape
-                    ),
-                    onClick = {
-                        if (exoPlayer.isPlaying) {
-                            exoPlayer.pause()
-                        } else {
-                            exoPlayer.play()
-                        }
-                    }) {
-                    Icon(imageVector = Icons.Default.PlayArrow, contentDescription = "")
+                    setOnClickListener { onClick.invoke() }
                 }
             }
+        )
+        if (!isPlaying) {
+            AndroidView(
+                modifier = Modifier.align(Alignment.Center),
+                factory = {
+                    TextView(context).apply {
+                        text = "pause"
+                    }
+                }
+            )
         }
     }
 
