@@ -2,6 +2,7 @@ package com.sarang.torang.di.torang
 
 import android.util.Log
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.sarang.torang.RootNavController
 import com.sarang.torang.compose.feed.Feed
@@ -25,7 +26,7 @@ fun provideFeedScreenByRestaurantId(rootNavController: RootNavController): @Comp
             FeedScreenByRestaurantId(
                 restaurantId = it,
                 shimmerBrush = { it -> shimmerBrush(it) },
-                feed = { feed, onLike, onFavorite, isLogin, onVideoClick ->
+                feed = { feed, onLike, onFavorite, isLogin, onVideoClick, imageHeight ->
                     Feed(
                         review = feed.toReview(),
                         imageLoadCompose = provideTorangAsyncImage(),
@@ -49,7 +50,8 @@ fun provideFeedScreenByRestaurantId(rootNavController: RootNavController): @Comp
                         },
                         onLikes = { rootNavController.like(feed.reviewId) },
                         expandableText = provideExpandableText(),
-                        videoPlayer = { VideoPlayerScreen(videoUrl = it, feed.isPlaying, onClick = onVideoClick, onPlay = {}) }
+                        videoPlayer = { VideoPlayerScreen(videoUrl = it, feed.isPlaying, onClick = onVideoClick, onPlay = {}) },
+                        imageHeight = if (imageHeight > 0) imageHeight.dp else 600.dp
                     )
                 },
                 pullToRefreshLayout = { isRefreshing, onRefresh, contents ->

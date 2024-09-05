@@ -7,7 +7,7 @@ import com.sarang.torang.RootNavController
 import com.sarang.torang.di.main_di.ProvideMyFeedScreen
 import com.sarang.torang.di.profile_di.MyProfileScreenNavHost
 
-internal fun provideMyProfileScreenNavHost(rootNavController: RootNavController): @Composable () -> Unit =
+internal fun provideMyProfileScreenNavHost(rootNavController: RootNavController, videoPlayer: @Composable (url: String, isPlaying: Boolean, onVideoClick: () -> Unit) -> Unit,): @Composable () -> Unit =
     {
         val profileNavController = rememberNavController() // 상위에 선언하면 앱 죽음
         MyProfileScreenNavHost(
@@ -23,7 +23,8 @@ internal fun provideMyProfileScreenNavHost(rootNavController: RootNavController)
                 ProvideMyFeedScreen(
                     rootNavController = rootNavController,
                     navController = profileNavController,
-                    navBackStackEntry = it
+                    navBackStackEntry = it,
+                    videoPlayer = videoPlayer
                 )
             }
 

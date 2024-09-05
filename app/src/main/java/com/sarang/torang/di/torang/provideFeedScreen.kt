@@ -1,6 +1,5 @@
 package com.sarang.torang.di.torang
 
-import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -8,6 +7,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -31,6 +31,7 @@ fun provideFeedScreen(
     onShowComment: () -> Unit,
     currentBottomMenu: String,
     onConsumeCurrentBottomMenu: () -> Unit,
+    videoPlayer: @Composable (url: String, isPlaying: Boolean, onVideoClick: () -> Unit) -> Unit,
 ): @Composable (onComment: ((Int) -> Unit), onMenu: ((Int) -> Unit), onShare: ((Int) -> Unit), navBackStackEntry: NavBackStackEntry) -> Unit =
     { onComment, onMenu, onShare, navBackStackEntry ->
         var scrollEnabled by remember { mutableStateOf(true) }
@@ -57,7 +58,7 @@ fun provideFeedScreen(
                     onTop = onTop,
                     consumeOnTop = { onTop = false },
                     shimmerBrush = { it -> shimmerBrush(it) },
-                    feed = { feed, onLike, onFavorite, isLogin, onVideoClick ->
+                    feed = { feed, onLike, onFavorite, isLogin, onVideoClick, imageHeight ->
                         Feed(
                             review = feed.toReview(),
                             onComment = {
@@ -78,7 +79,8 @@ fun provideFeedScreen(
                             onLikes = { rootNavController.like(feed.reviewId) },
                             expandableText = provideExpandableText(),
                             isLogin = isLogin,
-                            videoPlayer = { VideoPlayerScreen(videoUrl = it, feed.isPlaying, onClick = onVideoClick, onPlay = {}) }
+                            videoPlayer = { videoPlayer.invoke(it, feed.isPlaying, onVideoClick) },
+                            imageHeight = if (imageHeight > 0) imageHeight.dp else 600.dp
                         )
                     },
                     pullToRefreshLayout = { isRefreshing, onRefresh, contents ->
@@ -104,7 +106,8 @@ fun provideFeedScreen(
                 content = {
                     provideProfileScreenNavHost(
                         feedNavController,
-                        rootNavController
+                        rootNavController,
+                        videoPlayer
                     ).invoke(it)
                 }
             )
@@ -112,7 +115,8 @@ fun provideFeedScreen(
                 ProvideMyFeedScreen(
                     rootNavController = rootNavController,
                     navController = feedNavController,
-                    navBackStackEntry = it
+                    navBackStackEntry = it,
+                    videoPlayer = videoPlayer
                 )
             })
         }

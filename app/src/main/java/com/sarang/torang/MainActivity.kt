@@ -23,6 +23,7 @@ import com.sarang.torang.di.main_di.provideMainScreen
 import com.sarang.torang.di.torang.ProvideMainDialog
 import com.sarang.torang.di.torang.provideAddReviewScreen
 import com.sarang.torang.di.main_di.provideCommentBottomDialogSheet
+import com.sarang.torang.di.torang.VideoPlayerScreen
 import com.sarang.torang.di.torang.provideEditProfileScreen
 import com.sarang.torang.di.torang.provideEmailLoginNavHost
 import com.sarang.torang.di.torang.provideGalleryNavHost
@@ -61,8 +62,22 @@ class MainActivity : ComponentActivity() {
                     var reviewId: Int? by remember { mutableStateOf(null) }
                     TorangScreen(
                         rootNavController = rootNavController,
-                        mainScreen = provideMainScreen(rootNavController),
-                        profileScreen = provideProfileScreen(rootNavController),
+                        mainScreen = provideMainScreen(
+                            rootNavController,
+                            videoPlayer = { url, isPlaying, onVideoClick ->
+                                VideoPlayerScreen(
+                                    videoUrl = url,
+                                    isPlaying = isPlaying,
+                                    onClick = onVideoClick,
+                                    onPlay = {})
+                            }),
+                        profileScreen = provideProfileScreen(rootNavController, videoPlayer = { url, isPlaying, onVideoClick ->
+                            VideoPlayerScreen(
+                                videoUrl = url,
+                                isPlaying = isPlaying,
+                                onClick = onVideoClick,
+                                onPlay = {})
+                        }),
                         settingsScreen = provideSettingScreen(rootNavController),
                         splashScreen = provideSplashScreen(rootNavController),
                         addReviewScreen = provideAddReviewScreen(rootNavController),
@@ -98,7 +113,14 @@ class MainActivity : ComponentActivity() {
                                         onMenu = { dialogsViewModel.onMenu(it) },
                                         onShare = { dialogsViewModel.onShare(it) },
                                         navController = rootNavController.navController,
-                                        rootNavController = rootNavController
+                                        rootNavController = rootNavController,
+                                        videoPlayer = { url, isPlaying, onVideoClick ->
+                                            VideoPlayerScreen(
+                                                videoUrl = url,
+                                                isPlaying = isPlaying,
+                                                onClick = onVideoClick,
+                                                onPlay = {})
+                                        }
                                     ),
                                     pullToRefreshLayout = { isRefreshing, onRefresh, contents ->
 
