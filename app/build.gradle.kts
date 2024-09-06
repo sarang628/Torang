@@ -164,6 +164,7 @@ dependencies {
     implementation(libs.themes)
     implementation(libs.mui3scrolltorefresh)
     implementation(libs.expandableText)
+    implementation(libs.chat)
 
     implementation(libs.androidx.media3.exoplayer)
     implementation(libs.androidx.media3.ui)

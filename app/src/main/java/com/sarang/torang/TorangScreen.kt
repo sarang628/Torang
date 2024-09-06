@@ -17,7 +17,7 @@ fun TorangScreen(
     profileScreen: @Composable (NavBackStackEntry) -> Unit,
     settingsScreen: @Composable () -> Unit,
     splashScreen: @Composable () -> Unit,
-    addReviewScreen: @Composable () -> Unit,
+    addReviewScreen: @Composable (onClose: () -> Unit) -> Unit,
     modReviewScreen: @Composable (NavBackStackEntry) -> Unit,
     loginScreen: @Composable () -> Unit,
     restaurantScreen: @Composable (NavBackStackEntry) -> Unit,
@@ -37,7 +37,7 @@ fun TorangScreen(
             mainScreen.invoke()
         }
         composable("addReview") {
-            addReviewScreen.invoke()
+            addReviewScreen.invoke({})
         }
         composable("${RootScreen.restaurants}/{restaurantId}") { backStackEntry ->
             restaurantScreen.invoke(backStackEntry)

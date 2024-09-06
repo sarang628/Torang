@@ -55,8 +55,8 @@ fun provideFeedScreen(
             composable("mainFeed") {
                 FeedScreenForMain(
                     onAddReview = { rootNavController.addReview() },
-                    onTop = onTop,
-                    consumeOnTop = { onTop = false },
+                    scrollToTop = onTop,
+                    onScrollToTop = { onTop = false },
                     shimmerBrush = { it -> shimmerBrush(it) },
                     feed = { feed, onLike, onFavorite, isLogin, onVideoClick, imageHeight ->
                         Feed(

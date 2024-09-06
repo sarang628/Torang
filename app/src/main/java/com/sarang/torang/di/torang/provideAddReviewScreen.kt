@@ -6,17 +6,18 @@ import com.sarang.instagralleryModule.GalleryNavHost
 import com.sarang.torang.RootNavController
 import com.sarang.torang.addreview.compose.AddReviewScreen
 
-fun provideAddReviewScreen(navHostController: RootNavController): @Composable () -> Unit = {
-    val navController = rememberNavController()
-    AddReviewScreen(
-        galleryScreen = { color, onNext, onClose ->
-            GalleryNavHost(onNext = onNext, onClose = { onClose.invoke(null) })
-        },
-        navController = navController,
-        onRestaurant = { navController.navigate("addReview") },
-        onShared = { navHostController.popBackStack() },
-        onNext = { navController.navigate("selectRestaurant") },
-        onClose = { navHostController.popBackStack() },
-        onNotSelected = { navController.navigate("addReview") }
-    )
-}
+fun provideAddReviewScreen(navHostController: RootNavController): @Composable (onClose: () -> Unit) -> Unit =
+    { onCloseReview ->
+        val navController = rememberNavController()
+        AddReviewScreen(
+            galleryScreen = { color, onNext, onClose ->
+                GalleryNavHost(onNext = onNext, onClose = { onClose.invoke(null) })
+            },
+            navController = navController,
+            onRestaurant = { navController.navigate("addReview") },
+            onShared = { navHostController.popBackStack() },
+            onNext = { navController.navigate("selectRestaurant") },
+            onClose = { onCloseReview.invoke() },
+            onNotSelected = { navController.navigate("addReview") }
+        )
+    }

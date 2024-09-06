@@ -70,14 +70,24 @@ class MainActivity : ComponentActivity() {
                                     isPlaying = isPlaying,
                                     onClick = onVideoClick,
                                     onPlay = {})
+                            },
+                            addReviewScreen = provideAddReviewScreen(rootNavController),
+                            chat = { ChatScreen(nick = "Torang") {
+
+                            }},
+                            onCloseReview = {
+
+                            }
+                        ),
+                        profileScreen = provideProfileScreen(
+                            rootNavController,
+                            videoPlayer = { url, isPlaying, onVideoClick ->
+                                VideoPlayerScreen(
+                                    videoUrl = url,
+                                    isPlaying = isPlaying,
+                                    onClick = onVideoClick,
+                                    onPlay = {})
                             }),
-                        profileScreen = provideProfileScreen(rootNavController, videoPlayer = { url, isPlaying, onVideoClick ->
-                            VideoPlayerScreen(
-                                videoUrl = url,
-                                isPlaying = isPlaying,
-                                onClick = onVideoClick,
-                                onPlay = {})
-                        }),
                         settingsScreen = provideSettingScreen(rootNavController),
                         splashScreen = provideSplashScreen(rootNavController),
                         addReviewScreen = provideAddReviewScreen(rootNavController),

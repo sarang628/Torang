@@ -22,7 +22,7 @@ addReviewVersion = '268f368236'
 alarmVersion = 'a48ab79e8f'
 baseFeedVersion = 'f81f7f0265'
 cardInfoVersion = "0ae8d4fd77"
-feedVersion = '83377a61ac'
+feedVersion = 'b630a9fe6c'
 profileVersion = 'e6c6dada54'
 findingVersion = '47ad95d530'
 themeVersion = '8fb60b535f'
@@ -37,7 +37,7 @@ mapVersion = '7507c8c152'
 torangBottomSheetVersion = 'c84399fb7f'
 instaGramGalleryVersion = 'b506724857'
 filterVersion = '7e8fc56f8a'
-mainVersion = '064f5b255f'
+mainVersion = '78333dd336'
 reportVersion = 'bb52e7be2e'
 mediaContentResolverVersion = '54ff69ee3a'
 commentVersion = '58b14bce0c'
@@ -47,6 +47,7 @@ torangImagePagerVersion = '7667c10f6d'
 likesScreenVersion = 'adb7eb7479'
 mUI3ScrollToRefreshVersion = '6daacb7290'
 bottomDetectLazyColunmVersion = '2486834b10'
+chatVersion = 'c2c85e3a0c'
 expandableTextVersion = '547e79fc42'
 featureDeliveryVersion = "2.1.0"
 serialization = "1.7.10"
@@ -132,6 +133,7 @@ likes                           = { group = "com.github.sarang628", name = "Like
 mui3scrolltorefresh             = { group = "com.github.sarang628", name = "MUI3ScrollToRefresh",   version.ref = "mUI3ScrollToRefreshVersion" }
 expandableText                  = { group = "com.github.sarang628", name = "ExpandableText",        version.ref = "expandableTextVersion" }
 bottomdetectlazycolunm          = { group = "com.github.sarang628", name = "BottomDetectLazyColunm",version.ref = "bottomDetectLazyColunmVersion" }
+chat                            = { group = "com.github.sarang628", name = "Chat",                  version.ref = "chatVersion" }
 themes                          = { group = "com.github.bingley1",  name = "Themes",                version.ref = "themesVersion" }
 feature-delivery                = { group = "com.google.android.play", name = "feature-delivery",   version.ref = "featureDeliveryVersion"}
 # @formatter:on
