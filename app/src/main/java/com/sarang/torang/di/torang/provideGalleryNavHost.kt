@@ -10,5 +10,7 @@ internal fun provideGalleryNavHost(rootNavController: RootNavController): @Compo
         rootNavController.popBackStack()
     }, onClose = {
         rootNavController.popBackStack()
+    }, onBack = {
+        rootNavController.popBackStack()
     })
 }

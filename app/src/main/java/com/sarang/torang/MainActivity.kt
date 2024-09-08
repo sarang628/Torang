@@ -1,21 +1,26 @@
 package com.sarang.torang
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.google.samples.apps.sunflower.ui.TorangTheme
+import com.sarang.torang.compose.ChatScreen
 import com.sarang.torang.compose.feed.FeedScreenByReviewId
 import com.sarang.torang.di.feed_di.shimmerBrush
 import com.sarang.torang.di.main_di.provideFeed
@@ -41,10 +46,12 @@ import com.sryang.library.pullrefresh.PullToRefreshLayout
 import com.sryang.library.pullrefresh.RefreshIndicatorState
 import com.sryang.library.pullrefresh.rememberPullToRefreshState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -60,6 +67,9 @@ class MainActivity : ComponentActivity() {
                 {
                     val rootNavController = RootNavController(rememberNavController())
                     var reviewId: Int? by remember { mutableStateOf(null) }
+                    val coroutine = rememberCoroutineScope()
+                    val dispatcher =
+                        LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
                     TorangScreen(
                         rootNavController = rootNavController,
                         mainScreen = provideMainScreen(
@@ -72,9 +82,34 @@ class MainActivity : ComponentActivity() {
                                     onPlay = {})
                             },
                             addReviewScreen = provideAddReviewScreen(rootNavController),
-                            chat = { ChatScreen(nick = "Torang") {
+                            chat = {
+                                ChatScreen(
+                                    onChat = {},
+                                    onRefresh = {
+                                        coroutine.launch {
+                                            state.updateState(RefreshIndicatorState.Default)
+                                        }
+                                    },
+                                    onSearch = {},
+                                    onClose = { dispatcher?.onBackPressed() },
+                                    pullToRefreshLayout = { isRefreshing, onRefresh, contents ->
 
-                            }},
+                                        if (isRefreshing) {
+                                            state.updateState(RefreshIndicatorState.Refreshing)
+                                        } else {
+                                            state.updateState(RefreshIndicatorState.Default)
+                                        }
+
+                                        PullToRefreshLayout(
+                                            pullRefreshLayoutState = state,
+                                            refreshThreshold = 80,
+                                            onRefresh = onRefresh
+                                        ) {
+                                            contents.invoke()
+                                        }
+                                    }
+                                )
+                            },
                             onCloseReview = {
 
                             }
