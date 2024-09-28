@@ -31,6 +31,7 @@ fun provideFeedScreen(
     onShowComment: () -> Unit,
     currentBottomMenu: String,
     onConsumeCurrentBottomMenu: () -> Unit,
+    onMessage: (Int) -> Unit,
     videoPlayer: @Composable (url: String, isPlaying: Boolean, onVideoClick: () -> Unit) -> Unit,
 ): @Composable (onComment: ((Int) -> Unit), onMenu: ((Int) -> Unit), onShare: ((Int) -> Unit), navBackStackEntry: NavBackStackEntry) -> Unit =
     { onComment, onMenu, onShare, navBackStackEntry ->
@@ -107,6 +108,7 @@ fun provideFeedScreen(
                     provideProfileScreenNavHost(
                         feedNavController,
                         rootNavController,
+                        onMessage,
                         videoPlayer
                     ).invoke(it)
                 }

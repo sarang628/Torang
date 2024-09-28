@@ -15,6 +15,7 @@ import com.sarang.torang.di.main_di.ProvideMyFeedScreen
 internal fun provideProfileScreen(
     rootNavController: RootNavController,
     onClose: (() -> Unit)? = null,
+    onMessage: (Int) -> Unit,
     videoPlayer: @Composable (url: String, isPlaying: Boolean, onVideoClick: () -> Unit) -> Unit,
 ): @Composable (NavBackStackEntry) -> Unit = {
     val profileNavController = rememberNavController() // 상위에 선언하면 앱 죽음
@@ -40,7 +41,8 @@ internal fun provideProfileScreen(
                     videoPlayer = videoPlayer
                 )
             },
-            image = provideTorangAsyncImage()
+            image = provideTorangAsyncImage(),
+            onMessage = onMessage
         )
     } else {
         Text(text = "사용자 정보가 없습니다.")

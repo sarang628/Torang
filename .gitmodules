@@ -34,3 +34,6 @@
 [submodule "gradle/TorangToml"]
 	path = gradle/TorangToml
 	url = https://github.com/sarang628/TorangToml.git
+[submodule "app/src/main/java/com/sarang/torang/di/chat_di"]
+	path = app/src/main/java/com/sarang/torang/di/chat_di
+	url = https://github.com/sarang628/chat_di.git

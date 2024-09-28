@@ -1,13 +1,16 @@
 package com.sarang.torang.di.torang
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
 import com.sarang.torang.RootNavController
 import com.sarang.torang.di.main_di.ProvideMyFeedScreen
 import com.sarang.torang.di.profile_di.MyProfileScreenNavHost
 
-internal fun provideMyProfileScreenNavHost(rootNavController: RootNavController, videoPlayer: @Composable (url: String, isPlaying: Boolean, onVideoClick: () -> Unit) -> Unit,): @Composable () -> Unit =
+@RequiresApi(Build.VERSION_CODES.TIRAMISU)
+internal fun provideMyProfileScreenNavHost(rootNavController: RootNavController, videoPlayer: @Composable (url: String, isPlaying: Boolean, onVideoClick: () -> Unit) -> Unit, onMessage: (Int) -> Unit): @Composable () -> Unit =
     {
         val profileNavController = rememberNavController() // 상위에 선언하면 앱 죽음
         MyProfileScreenNavHost(
@@ -26,7 +29,8 @@ internal fun provideMyProfileScreenNavHost(rootNavController: RootNavController,
                     navBackStackEntry = it,
                     videoPlayer = videoPlayer
                 )
-            }
+            },
+            onMessage = onMessage
 
         )
     }

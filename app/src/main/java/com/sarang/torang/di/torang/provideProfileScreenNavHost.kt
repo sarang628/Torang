@@ -11,6 +11,7 @@ import com.sarang.torang.di.main_di.ProvideMyFeedScreen
 internal fun provideProfileScreenNavHost(
     feedNavController: NavHostController,
     rootNavController: RootNavController,
+    onMessage: (Int) -> Unit,
     videoPlayer: @Composable (url: String, isPlaying: Boolean, onVideoClick: () -> Unit) -> Unit,
 ): @Composable (NavBackStackEntry) -> Unit = { navBackStackEntry ->
     ProfileScreenNavHost(
@@ -26,6 +27,7 @@ internal fun provideProfileScreenNavHost(
                 videoPlayer = videoPlayer
             )
         },
-        image = provideTorangAsyncImage()
+        image = provideTorangAsyncImage(),
+        onMessage = onMessage
     )
 }
