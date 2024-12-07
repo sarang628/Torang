@@ -1,7 +1,7 @@
 package com.sarang.torang.di.torang
 
 import androidx.compose.runtime.Composable
-import com.sarang.instagralleryModule.GalleryNavHost
+import com.sarang.instagralleryModule.compose.GalleryNavHost
 import com.sarang.torang.RootNavController
 
 internal fun provideGalleryNavHost(rootNavController: RootNavController): @Composable () -> Unit = {

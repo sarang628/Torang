@@ -5,7 +5,7 @@ import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.compose.rememberNavController
-import com.sarang.instagralleryModule.GalleryNavHost
+import com.sarang.instagralleryModule.compose.GalleryNavHost
 import com.sarang.torang.RootNavController
 import com.sarang.torang.addreview.compose.ModReviewScreen
 
