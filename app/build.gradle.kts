@@ -15,7 +15,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunner = "com.sarang.torang.CustomTestRunner"
 
-        versionCode = 86
+        versionCode = 87
         versionName = "0.1.0"
     }
 
@@ -165,6 +165,8 @@ dependencies {
     implementation(libs.mui3scrolltorefresh)
     implementation(libs.expandableText)
     implementation(libs.chat)
+    implementation(libs.torangGrid)
+    implementation(libs.bottomdetectlazycolunm)
 
     implementation(libs.androidx.media3.exoplayer)
     implementation(libs.androidx.media3.ui)

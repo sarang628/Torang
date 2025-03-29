@@ -25,14 +25,15 @@ import com.google.samples.apps.sunflower.ui.TorangTheme
 import com.sarang.torang.compose.chatroom.ChatScreen
 import com.sarang.torang.compose.feed.FeedScreenByReviewId
 import com.sarang.torang.di.chat_di.ChatActivity
+import com.sarang.torang.di.feed_di.provideBottonDetectingLazyColumn
 import com.sarang.torang.di.feed_di.shimmerBrush
 import com.sarang.torang.di.image.provideTorangAsyncImage
+import com.sarang.torang.di.main_di.provideCommentBottomDialogSheet
 import com.sarang.torang.di.main_di.provideFeed
 import com.sarang.torang.di.main_di.provideMainScreen
 import com.sarang.torang.di.torang.ProvideMainDialog
-import com.sarang.torang.di.torang.provideAddReviewScreen
-import com.sarang.torang.di.main_di.provideCommentBottomDialogSheet
 import com.sarang.torang.di.torang.VideoPlayerScreen
+import com.sarang.torang.di.torang.provideAddReviewScreen
 import com.sarang.torang.di.torang.provideEditProfileScreen
 import com.sarang.torang.di.torang.provideEmailLoginNavHost
 import com.sarang.torang.di.torang.provideGalleryNavHost
@@ -220,7 +221,8 @@ class MainActivity : ComponentActivity() {
                                         ) {
                                             contents.invoke()
                                         }
-                                    }
+                                    },
+                                    bottomDetectingLazyColumn = provideBottonDetectingLazyColumn()
                                 )
                             }
                         }
