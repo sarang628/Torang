@@ -5,7 +5,6 @@ import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.compose.rememberNavController
-import com.sarang.instagralleryModule.compose.GalleryNavHost
 import com.sarang.torang.RootNavController
 import com.sarang.torang.addreview.compose.ModReviewScreen
 
@@ -15,9 +14,9 @@ internal fun provideModReviewScreen(
 ): @Composable (NavBackStackEntry) -> Unit = { navBackStackEntry ->
     val navController = rememberNavController()
     ModReviewScreen(
-        reviewId = navBackStackEntry?.arguments?.getString("reviewId")?.toInt() ?: 0,
+        reviewId = navBackStackEntry.arguments?.getString("reviewId")?.toInt() ?: 0,
         galleryScreen = { color, onNext, onClose ->
-            GalleryNavHost(onNext = {
+            /*GalleryNavHost(onNext = {
                 onNext.invoke(it)
                 navController.popBackStack()
             }, onClose = {
@@ -25,7 +24,7 @@ internal fun provideModReviewScreen(
                 navController.popBackStack()
             }, onBack = {
                 navController.popBackStack()
-            })
+            })*/
         },
         navController = navController,
         onRestaurant = { navController.popBackStack() },

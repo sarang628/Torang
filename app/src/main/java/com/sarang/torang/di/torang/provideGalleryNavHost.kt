@@ -1,16 +1,14 @@
 package com.sarang.torang.di.torang
 
 import androidx.compose.runtime.Composable
-import com.sarang.instagralleryModule.compose.GalleryNavHost
 import com.sarang.torang.RootNavController
 
 internal fun provideGalleryNavHost(rootNavController: RootNavController): @Composable () -> Unit = {
-    GalleryNavHost(onNext = {
-        //profileViewModel.updateProfileImage(it[0]) // TODO:: profileViewModel 없이 이미지 업로드 방법 찾기
+    /*GalleryNavHost(onNext = {
         rootNavController.popBackStack()
     }, onClose = {
         rootNavController.popBackStack()
     }, onBack = {
         rootNavController.popBackStack()
-    })
+    })*/
 }

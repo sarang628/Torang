@@ -15,7 +15,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunner = "com.sarang.torang.CustomTestRunner"
 
-        versionCode = 87
+        versionCode = 91
         versionName = "0.1.0"
     }
 
@@ -150,12 +150,11 @@ dependencies {
     implementation(libs.cardInfo)
     implementation(libs.map)
     implementation(libs.torangBottomSheet)
-    implementation(libs.instagramGallery)
+    //implementation(libs.instagramGallery)
     implementation(libs.filter)
     implementation(libs.main)
     implementation(libs.report)
-    implementation(libs.mediaContentResolver)
-    implementation(libs.report)
+    //implementation(libs.mediaContentResolver)
     implementation(libs.comment)
     implementation(libs.commonImageLoader)
     implementation(libs.imagePager)

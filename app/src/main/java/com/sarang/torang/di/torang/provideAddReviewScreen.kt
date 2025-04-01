@@ -5,7 +5,6 @@ import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
-import com.sarang.instagralleryModule.compose.GalleryNavHost
 import com.sarang.torang.RootNavController
 import com.sarang.torang.addreview.compose.AddReviewScreen
 
@@ -16,7 +15,7 @@ fun provideAddReviewScreen(navHostController: RootNavController): @Composable (o
         val dispatch = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
         AddReviewScreen(
             galleryScreen = { color, onNext, onClose ->
-                GalleryNavHost(onNext = onNext, onClose = { onClose.invoke(null) }, onBack = { onClose.invoke(null) })
+                /*GalleryNavHost(onNext = onNext, onClose = { onClose.invoke(null) }, onBack = { onClose.invoke(null) })*/
             },
             navController = navController,
             onRestaurant = { navController.navigate("addReview") },
