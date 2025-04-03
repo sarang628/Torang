@@ -20,6 +20,7 @@ import com.sarang.torang.di.feed_di.shimmerBrush
 import com.sarang.torang.di.feed_di.toReview
 import com.sarang.torang.di.image.provideTorangAsyncImage
 import com.sarang.torang.di.main_di.ProvideMyFeedScreen
+import com.sarang.torang.di.main_di.provideCommentBottomDialogSheet
 import com.sryang.library.pullrefresh.PullToRefreshLayout
 import com.sryang.library.pullrefresh.RefreshIndicatorState
 import com.sryang.library.pullrefresh.rememberPullToRefreshState
@@ -120,7 +121,8 @@ fun provideFeedScreen(
                     rootNavController = rootNavController,
                     navController = feedNavController,
                     navBackStackEntry = it,
-                    videoPlayer = videoPlayer
+                    videoPlayer = videoPlayer,
+                    commentBottomSheet = provideCommentBottomDialogSheet(rootNavController)
                 )
             })
         }

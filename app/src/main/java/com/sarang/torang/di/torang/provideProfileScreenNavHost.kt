@@ -7,6 +7,7 @@ import com.sarang.torang.RootNavController
 import com.sarang.torang.compose.ProfileScreenNavHost
 import com.sarang.torang.di.image.provideTorangAsyncImage
 import com.sarang.torang.di.main_di.ProvideMyFeedScreen
+import com.sarang.torang.di.main_di.provideCommentBottomDialogSheet
 
 internal fun provideProfileScreenNavHost(
     feedNavController: NavHostController,
@@ -24,7 +25,8 @@ internal fun provideProfileScreenNavHost(
                 rootNavController = rootNavController,
                 navController = feedNavController,
                 navBackStackEntry = it,
-                videoPlayer = videoPlayer
+                videoPlayer = videoPlayer,
+                commentBottomSheet = provideCommentBottomDialogSheet(rootNavController)
             )
         },
         image = provideTorangAsyncImage(),

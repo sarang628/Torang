@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.rememberNavController
 import com.sarang.torang.RootNavController
 import com.sarang.torang.di.main_di.ProvideMyFeedScreen
+import com.sarang.torang.di.main_di.provideCommentBottomDialogSheet
 import com.sarang.torang.di.profile_di.MyProfileScreenNavHost
 
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -27,7 +28,8 @@ internal fun provideMyProfileScreenNavHost(rootNavController: RootNavController,
                     rootNavController = rootNavController,
                     navController = profileNavController,
                     navBackStackEntry = it,
-                    videoPlayer = videoPlayer
+                    videoPlayer = videoPlayer,
+                    commentBottomSheet = provideCommentBottomDialogSheet(rootNavController)
                 )
             },
             onMessage = onMessage
