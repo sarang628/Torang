@@ -11,6 +11,7 @@ import com.sarang.torang.di.feed_di.provideBottonDetectingLazyColumn
 import com.sarang.torang.di.feed_di.shimmerBrush
 import com.sarang.torang.di.feed_di.toReview
 import com.sarang.torang.di.image.provideTorangAsyncImage
+import com.sarang.torang.di.main_di.provideCommentBottomDialogSheet
 import com.sarang.torang.viewmodels.FeedDialogsViewModel
 import com.sryang.library.pullrefresh.PullToRefreshLayout
 import com.sryang.library.pullrefresh.RefreshIndicatorState
@@ -22,10 +23,11 @@ fun provideFeedScreenByRestaurantId(rootNavController: RootNavController): @Comp
         val state = rememberPullToRefreshState()
         ProvideMainDialog(
             rootNavController = rootNavController,
-            dialogsViewModel = dialogsViewModel
+            dialogsViewModel = dialogsViewModel,
+            commentBottomSheet = provideCommentBottomDialogSheet(rootNavController)
         ) {
             FeedScreenByRestaurantId(
-                restaurantId = it,
+                restaurantId = 200,
                 shimmerBrush = { it -> shimmerBrush(it) },
                 feed = { feed, onLike, onFavorite, isLogin, onVideoClick, imageHeight ->
                     Feed(

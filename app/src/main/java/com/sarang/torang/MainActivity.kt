@@ -184,11 +184,12 @@ class MainActivity : ComponentActivity() {
                             val dialogsViewModel: FeedDialogsViewModel = hiltViewModel()
                             ProvideMainDialog(
                                 dialogsViewModel = dialogsViewModel,
-                                rootNavController = rootNavController
+                                rootNavController = rootNavController,
+                                commentBottomSheet = provideCommentBottomDialogSheet(rootNavController)
                             ) {
                                 FeedScreenByReviewId(
-                                    reviewId = it,
-                                    shimmerBrush = { it -> shimmerBrush(it) },
+                                    reviewId = 200,
+                                    shimmerBrush = { shimmerBrush(it) },
                                     feed = provideFeed(
                                         onComment = {
                                             Log.d("__MainActivity", "onComment : $it")
@@ -227,12 +228,6 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                     )
-
-                    reviewId?.let {
-                        provideCommentBottomDialogSheet(rootNavController).invoke(it) {
-                            reviewId = null
-                        }
-                    }
                 }
             }
         }
