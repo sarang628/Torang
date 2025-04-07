@@ -21,7 +21,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
-import com.google.samples.apps.sunflower.ui.TorangTheme
 import com.sarang.torang.compose.chatroom.ChatScreen
 import com.sarang.torang.compose.feed.FeedScreenByReviewId
 import com.sarang.torang.di.chat_di.ChatActivity
@@ -51,6 +50,7 @@ import com.sarang.torang.viewmodels.FeedDialogsViewModel
 import com.sryang.library.pullrefresh.PullToRefreshLayout
 import com.sryang.library.pullrefresh.RefreshIndicatorState
 import com.sryang.library.pullrefresh.rememberPullToRefreshState
+import com.sryang.torang.ui.TorangTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -128,9 +128,6 @@ class MainActivity : ComponentActivity() {
                                     },
                                     image = provideTorangAsyncImage()
                                 )
-                            },
-                            onCloseReview = {
-
                             },
                             onMessage = {
                                 Log.d("__MainActivity", "onMessage : $it")
