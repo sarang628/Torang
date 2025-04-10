@@ -1,5 +1,6 @@
 package com.sarang.torang.di.torang
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.util.Log
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavBackStackEntry
 import com.example.screen_map.compose.MapScreenForRestaurant
 import com.example.screen_map.data.MarkerData
@@ -23,10 +25,10 @@ import com.sarang.torang.di.image.provideTorangAsyncImage
 import com.sarang.torang.uistate.FeedsUiState
 
 internal fun provideRestaurantNavScreen(
-    activity: ComponentActivity,
     rootNavController: RootNavController,
 ): @Composable (NavBackStackEntry) -> Unit = { navBackStackEntry ->
     val restaurantId = navBackStackEntry.arguments?.getString("restaurantId")
+    val context = LocalContext.current
     restaurantId?.let {
         RestaurantNavScreen(
             restaurantId = it.toInt(),
@@ -34,14 +36,14 @@ internal fun provideRestaurantNavScreen(
                 provideFeedScreenByRestaurantId(rootNavController).invoke(restaurantId)
             },
             onCall = { number ->
-                activity.startActivity(
+                context.startActivity(
                     Intent(Intent.ACTION_DIAL).apply {
                         setData(Uri.parse("tel:$number"))
                     }
                 )
             },
             onWeb = { url ->
-                activity.startActivity(
+                context.startActivity(
                     Intent(Intent.ACTION_VIEW, Uri.parse(url))
                 )
             },

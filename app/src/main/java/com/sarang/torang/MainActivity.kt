@@ -31,6 +31,8 @@ import com.sarang.torang.di.main_di.provideCommentBottomDialogSheet
 import com.sarang.torang.di.main_di.provideFeed
 import com.sarang.torang.di.main_di.provideMainScreen
 import com.sarang.torang.di.torang.ProvideMainDialog
+import com.sarang.torang.di.torang.ProvideTheme
+import com.sarang.torang.di.torang.ProvideTorangScreen
 import com.sarang.torang.di.torang.VideoPlayerScreen
 import com.sarang.torang.di.torang.provideAddReviewScreen
 import com.sarang.torang.di.torang.provideEditProfileScreen
@@ -67,165 +69,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val state = rememberPullToRefreshState()
-
-            TorangTheme {
-//            ThemeProvider.Twitter {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                )
-                {
-                    val rootNavController = RootNavController(rememberNavController())
-                    var reviewId: Int? by remember { mutableStateOf(null) }
-                    val coroutine = rememberCoroutineScope()
-                    val dispatcher =
-                        LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
-                    val context = LocalContext.current
-                    TorangScreen(
-                        rootNavController = rootNavController,
-                        mainScreen = provideMainScreen(
-                            rootNavController,
-                            videoPlayer = { url, isPlaying, onVideoClick ->
-                                VideoPlayerScreen(
-                                    videoUrl = url,
-                                    isPlaying = isPlaying,
-                                    onClick = onVideoClick,
-                                    onPlay = {})
-                            },
-                            addReviewScreen = provideAddReviewScreen(rootNavController),
-                            chat = {
-                                ChatScreen(
-                                    onChat = {
-                                        startActivity(
-                                            Intent(this, ChatActivity::class.java).apply {
-                                                putExtra("roomId", it)
-                                            }
-                                        )
-                                    },
-                                    onRefresh = {
-                                        coroutine.launch {
-                                            state.updateState(RefreshIndicatorState.Default)
-                                        }
-                                    },
-                                    onSearch = {},
-                                    onClose = { dispatcher?.onBackPressed() },
-                                    pullToRefreshLayout = { isRefreshing, onRefresh, contents ->
-
-                                        if (isRefreshing) {
-                                            state.updateState(RefreshIndicatorState.Refreshing)
-                                        } else {
-                                            state.updateState(RefreshIndicatorState.Default)
-                                        }
-
-                                        PullToRefreshLayout(
-                                            pullRefreshLayoutState = state,
-                                            refreshThreshold = 80,
-                                            onRefresh = onRefresh
-                                        ) {
-                                            contents.invoke()
-                                        }
-                                    },
-                                    image = provideTorangAsyncImage()
-                                )
-                            },
-                            onMessage = {
-                                Log.d("__MainActivity", "onMessage : $it")
-                                coroutine.launch {
-                                    val result = chatRepository.getUserOrCreateRoomByUserId(it)
-                                    Log.d("__MainActivity", "result : $result")
-                                    startActivity(Intent(context, ChatActivity::class.java).apply {
-                                        putExtra("roomId", result.chatRoomEntity.roomId)
-                                    })
-                                }
-                            }
-                        ),
-                        profileScreen = provideProfileScreen(
-                            rootNavController,
-                            videoPlayer = { url, isPlaying, onVideoClick ->
-                                VideoPlayerScreen(
-                                    videoUrl = url,
-                                    isPlaying = isPlaying,
-                                    onClick = onVideoClick,
-                                    onPlay = {})
-                            }, onMessage = {
-                                Log.d("__MainActivity", "onMessage : $it")
-                                coroutine.launch {
-                                    val result = chatRepository.getUserOrCreateRoomByUserId(it)
-                                    Log.d("__MainActivity", "result : $result")
-                                    startActivity(Intent(context, ChatActivity::class.java).apply {
-                                        putExtra("roomId", result.chatRoomEntity.roomId)
-                                    })
-                                }
-                            }
-                        ),
-                        settingsScreen = provideSettingScreen(rootNavController),
-                        splashScreen = provideSplashScreen(rootNavController),
-                        addReviewScreen = provideAddReviewScreen(rootNavController),
-                        loginScreen = provideLoginNavHost(rootNavController),
-                        editProfileScreen = provideEditProfileScreen(rootNavController),
-                        editProfileImageScreen = provideGalleryNavHost(rootNavController),
-                        restaurantScreen = provideRestaurantNavScreen(this, rootNavController),
-                        modReviewScreen = provideModReviewScreen(rootNavController),
-                        emailLoginScreen = provideEmailLoginNavHost(rootNavController),
-                        imagePagerScreen = provideReviewImagePager(rootNavController, onComment = {
-                            reviewId = it
-                        }),
-                        restaurantImagePagerScreen = provideRestaurantImagePager(
-                            rootNavController,
-                            onComment = {
-                                reviewId = it
-                            }),
-                        likesScreen = provideLikeScreen(rootNavController),
-                        feedScreen = {
-                            val dialogsViewModel: FeedDialogsViewModel = hiltViewModel()
-                            ProvideMainDialog(
-                                dialogsViewModel = dialogsViewModel,
-                                rootNavController = rootNavController,
-                                commentBottomSheet = provideCommentBottomDialogSheet(rootNavController)
-                            ) {
-                                FeedScreenByReviewId(
-                                    reviewId = 1,
-                                    shimmerBrush = { it -> shimmerBrush(it) },
-                                    feed = provideFeed(
-                                        onComment = {
-                                            Log.d("__MainActivity", "onComment : $it")
-                                            dialogsViewModel.onComment(it)
-                                        },
-                                        onMenu = { dialogsViewModel.onMenu(it) },
-                                        onShare = { dialogsViewModel.onShare(it) },
-                                        navController = rootNavController.navController,
-                                        rootNavController = rootNavController,
-                                        videoPlayer = { url, isPlaying, onVideoClick ->
-                                            VideoPlayerScreen(
-                                                videoUrl = url,
-                                                isPlaying = isPlaying,
-                                                onClick = onVideoClick,
-                                                onPlay = {})
-                                        }
-                                    ),
-                                    pullToRefreshLayout = { isRefreshing, onRefresh, contents ->
-
-                                        if (isRefreshing) {
-                                            state.updateState(RefreshIndicatorState.Refreshing)
-                                        } else {
-                                            state.updateState(RefreshIndicatorState.Default)
-                                        }
-
-                                        PullToRefreshLayout(
-                                            pullRefreshLayoutState = state,
-                                            refreshThreshold = 80,
-                                            onRefresh = onRefresh
-                                        ) {
-                                            contents.invoke()
-                                        }
-                                    },
-                                    bottomDetectingLazyColumn = provideBottonDetectingLazyColumn()
-                                )
-                            }
-                        }
-                    )
-                }
+            ProvideTheme {
+                ProvideTorangScreen(chatRepository)
             }
         }
     }

@@ -1,26 +1,34 @@
 package com.sarang.torang.di.torang
 
+import android.content.Intent
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.compose.rememberNavController
 import com.sarang.torang.RootNavController
 import com.sarang.torang.compose.ProfileScreenNavHost
+import com.sarang.torang.di.chat_di.ChatActivity
 import com.sarang.torang.di.image.provideTorangAsyncImage
 import com.sarang.torang.di.main_di.ProvideMyFeedScreen
 import com.sarang.torang.di.main_di.provideCommentBottomDialogSheet
+import com.sarang.torang.repository.ChatRepository
+import kotlinx.coroutines.launch
 
 /**
  * @param onClose 메인화면 -> 피드 -> 프로필 진입 후 뒤로가기 버튼 클릭 시 RootNavController 가 아닌 다른 navController이 필요하여 추가
  */
 internal fun provideProfileScreen(
     rootNavController: RootNavController,
+    chatRepository: ChatRepository,
     onClose: (() -> Unit)? = null,
-    onMessage: (Int) -> Unit,
-    videoPlayer: @Composable (url: String, isPlaying: Boolean, onVideoClick: () -> Unit) -> Unit,
+    videoPlayer: @Composable (url: String, isPlaying: Boolean, onVideoClick: () -> Unit) -> Unit = provideVideoPlayer(),
 ): @Composable (NavBackStackEntry) -> Unit = {
     val profileNavController = rememberNavController() // 상위에 선언하면 앱 죽음
     val userId = it.arguments?.getString("id")?.toInt()
+    val coroutine = rememberCoroutineScope()
+    val context = LocalContext.current
     if (userId != null) {
         ProfileScreenNavHost(
             navController = profileNavController,
@@ -44,7 +52,14 @@ internal fun provideProfileScreen(
                 )
             },
             image = provideTorangAsyncImage(),
-            onMessage = onMessage
+            onMessage = {
+                coroutine.launch {
+                    val result = chatRepository.getUserOrCreateRoomByUserId(it)
+                    context.startActivity(Intent(context, ChatActivity::class.java).apply {
+                        putExtra("roomId", result.chatRoomEntity.roomId)
+                    })
+                }
+            }
         )
     } else {
         Text(text = "사용자 정보가 없습니다.")
