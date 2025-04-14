@@ -1,4 +1,4 @@
-package com.sarang.torang.di.torang
+package com.sarang.torang.di.likes
 
 import androidx.compose.runtime.Composable
 import com.sarang.library.LikeScreen
@@ -10,15 +10,9 @@ fun provideLikeScreen(rootNavController: RootNavController): @Composable (Int) -
         LikeScreen(
             image = provideTorangAsyncImage(),
             reviewId = reviewId,
-            onImage = {
-                rootNavController.profile(it)
-            },
-            onName = {
-                rootNavController.profile(it)
-            },
-            onBack = {
-                rootNavController.popBackStack()
-            }
+            onImage = rootNavController::profile,
+            onName = rootNavController::profile,
+            onBack = rootNavController::popBackStack
         )
 
     }

@@ -28,7 +28,7 @@ fun TorangScreen(
     imagePagerScreen: @Composable (Int, Int) -> Unit,
     restaurantImagePagerScreen: @Composable (Int) -> Unit,
     likesScreen: @Composable (Int) -> Unit,
-    feedScreen: @Composable (Int) -> Unit,
+    feedScreenByReviewId: @Composable (Int) -> Unit,
 ) {
     NavHost(
         navController = rootNavController.navController, startDestination = "main",
@@ -104,7 +104,7 @@ fun TorangScreen(
             if (reviewId == null) {
                 Log.e("__TorangScreen", "reviewId is null in feedScreen")
             } else {
-                feedScreen.invoke(reviewId)
+                feedScreenByReviewId.invoke(reviewId)
             }
         }
     }

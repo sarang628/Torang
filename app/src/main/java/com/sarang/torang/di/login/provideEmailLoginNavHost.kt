@@ -1,4 +1,4 @@
-package com.sarang.torang.di.torang
+package com.sarang.torang.di.login
 
 import androidx.compose.runtime.Composable
 import com.sarang.torang.RootNavController
@@ -7,10 +7,10 @@ import com.sarang.torang.compose.signinsignup.LoginNavHost
 internal fun provideEmailLoginNavHost(rootNavController: RootNavController): @Composable () -> Unit =
     {
         LoginNavHost(
-            onSuccessLogin = { rootNavController.popBackStack() },
+            onSuccessLogin = rootNavController::popBackStack,
             onLookAround = {},
             showTopBar = true,
-            onBack = { rootNavController.popBackStack() },
+            onBack = rootNavController::popBackStack,
             showLookAround = false
         )
     }

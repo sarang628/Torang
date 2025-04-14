@@ -1,4 +1,4 @@
-package com.sarang.torang.di.torang
+package com.sarang.torang.di.gallery
 
 import androidx.compose.runtime.Composable
 import com.sarang.torang.RootNavController

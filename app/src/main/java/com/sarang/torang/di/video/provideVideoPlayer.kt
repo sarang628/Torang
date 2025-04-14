@@ -1,4 +1,4 @@
-package com.sarang.torang.di.torang
+package com.sarang.torang.di.video
 
 import androidx.compose.runtime.Composable
 
