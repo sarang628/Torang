@@ -15,6 +15,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.rememberNavController
 import com.sarang.torang.di.addreview_di.provideAddReviewScreen
 import com.sarang.torang.di.addreview_di.provideModReviewScreen
@@ -23,7 +24,7 @@ import com.sarang.torang.di.gallery.provideGalleryNavHost
 import com.sarang.torang.di.likes.provideLikeScreen
 import com.sarang.torang.di.login.provideEmailLoginNavHost
 import com.sarang.torang.di.login.provideLoginNavHost
-import com.sarang.torang.di.main_di.provideMainScreen1
+import com.sarang.torang.di.main_di.provideMainScreen
 import com.sarang.torang.di.profile_di.provideEditProfileScreen
 import com.sarang.torang.di.profile_di.provideProfileScreen
 import com.sarang.torang.di.restaurant_detail.provideRestaurantNavScreen
@@ -64,7 +65,7 @@ fun ProvideTorangScreen() {
     var reviewId: Int? by remember { mutableStateOf(null) }
     TorangScreen(
         rootNavController = rootNavController,
-        mainScreen = provideMainScreen1(rootNavController, state),
+        mainScreen = provideMainScreen(rootNavController),
         profileScreen = provideProfileScreen(rootNavController),
         settingsScreen = provideSettingScreen(rootNavController),
         splashScreen = provideSplashScreen(rootNavController),
