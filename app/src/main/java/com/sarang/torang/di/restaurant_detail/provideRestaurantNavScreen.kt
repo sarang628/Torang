@@ -12,7 +12,7 @@ import com.google.maps.android.compose.rememberCameraPositionState
 import com.sarang.torang.RootNavController
 import com.sarang.torang.compose.restaurant.RestaurantNavScreen
 import com.sarang.torang.di.image.provideTorangAsyncImage
-import com.sarang.torang.di.feed_di.provideFeedScreenByRestaurantId
+import com.sarang.torang.di.main_di.provideFeedScreenByRestaurantId
 
 internal fun provideRestaurantNavScreen(
     rootNavController: RootNavController,
