@@ -1,18 +1,20 @@
-package com.sryang.torang.di.restaurant_detail
+package com.sarang.torang.di.restaurant_detail
 
-import com.sarang.torang.data.restaurant.Feed
-import com.sarang.torang.data.restaurant.MenuData
-import com.sarang.torang.data.restaurant.RestaurantImage
-import com.sarang.torang.data.restaurant.RestaurantInfo
-import com.sarang.torang.uistate.RestaurantInfoUIState
-import com.sarang.torang.usecase.GetMenuUseCase
-import com.sarang.torang.usecase.GetRestaurantGalleryUseCase
-import com.sarang.torang.usecase.GetRestaurantInfoUseCase
-import com.sarang.torang.usecase.RestaurantInfoService
 import com.sarang.torang.api.ApiRestaurant
 import com.sarang.torang.api.ApiReview
 import com.sarang.torang.api.handle
 import com.sarang.torang.data.RestaurantDetail
+import com.sarang.torang.data.restaurant.Feed
+import com.sarang.torang.data.restaurant.MenuData
+import com.sarang.torang.data.restaurant.RestaurantImage
+import com.sarang.torang.data.restaurant.RestaurantInfoData
+import com.sarang.torang.repository.RestaurantRepository
+import com.sarang.torang.uistate.RestaurantInfoUIState
+import com.sarang.torang.usecase.FetchRestaurantUseCase
+import com.sarang.torang.usecase.FetchReviewsUseCase
+import com.sarang.torang.usecase.GetMenuUseCase
+import com.sarang.torang.usecase.GetRestaurantGalleryUseCase
+import com.sarang.torang.usecase.GetRestaurantInfoUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,30 +25,9 @@ import retrofit2.HttpException
 @Module
 class RestaurantServiceModule {
     @Provides
-    fun provideRestaruantService(
-        apiRestaurant: ApiRestaurant,
-        apiReview: ApiReview
-    ): RestaurantInfoService {
-        return object : RestaurantInfoService {
-            override suspend fun loadRestaurant(restaurantId: Int): RestaurantInfoUIState {
-                try {
-                    val result: RestaurantDetail = apiRestaurant.getRestaurantDetail(restaurantId)
-                    return RestaurantInfoUIState(
-                        restaurantInfoData = result.toRestaurantInfoData(),
-                        menus = result.toMenus(),
-                        restaurantImage = result.toRestaurantImages(),
-                        reviewRowData = result.toReviewRowData(),
-                        reviewSummaryData = result.toReviewSummaryData(),
-                        reviews = ArrayList()
-                    )
-
-                } catch (e: HttpException) {
-                    val message = e.handle()
-                    throw Exception(message)
-                }
-            }
-
-            override suspend fun loadReviews(restaurantId: Int): List<Feed> {
+    fun providesFetchReviewsUseCase(apiReview: ApiReview): FetchReviewsUseCase {
+        return object : FetchReviewsUseCase {
+            override suspend fun invoke(restaurantId: Int): List<Feed> {
                 try {
                     return apiReview.getReviews(restaurantId).map { it.toFeedData() }
                 } catch (e: HttpException) {
@@ -57,8 +38,29 @@ class RestaurantServiceModule {
     }
 
     @Provides
+    fun providesFetchRestaurantUseCase(
+        restaurantRepository: RestaurantRepository,
+    ): FetchRestaurantUseCase {
+        return object : FetchRestaurantUseCase {
+            override suspend fun invoke(restaurantId: Int): RestaurantInfoData {
+                try {
+                    val result: RestaurantDetail =
+                        restaurantRepository.loadRestaurantDetail(restaurantId)
+                    return result.toRestaurantInfoData()
+
+                } catch (e: HttpException) {
+                    val message = e.handle()
+                    throw Exception(message)
+                } catch (e: Exception) {
+                    throw Exception(e.message)
+                }
+            }
+        }
+    }
+
+    @Provides
     fun providesGetRestaurantGalleryUseCase(
-        apiRestaurant: ApiRestaurant
+        apiRestaurant: ApiRestaurant,
     ): GetRestaurantGalleryUseCase {
         return object : GetRestaurantGalleryUseCase {
             override suspend fun invoke(restaurantId: Int): List<RestaurantImage> {
@@ -70,7 +72,7 @@ class RestaurantServiceModule {
     @Provides
     fun providesGetRestaurantInfoUseCase(apiRestaurant: ApiRestaurant): GetRestaurantInfoUseCase {
         return object : GetRestaurantInfoUseCase {
-            override suspend fun invoke(restaurantId: Int): RestaurantInfo {
+            override suspend fun invoke(restaurantId: Int): RestaurantInfoData {
                 return apiRestaurant.getRestaurantDetail(restaurantId).toRestaurantInfoData()
             }
         }

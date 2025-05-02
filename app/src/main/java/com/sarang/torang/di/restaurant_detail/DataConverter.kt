@@ -1,18 +1,18 @@
-package com.sryang.torang.di.restaurant_detail
+package com.sarang.torang.di.restaurant_detail
 
 import com.sarang.torang.BuildConfig
+import com.sarang.torang.data.RestaurantDetail
 import com.sarang.torang.data.restaurant.Feed
 import com.sarang.torang.data.restaurant.HoursOfOperation
 import com.sarang.torang.data.restaurant.MenuData
 import com.sarang.torang.data.restaurant.RestaurantImage
-import com.sarang.torang.data.restaurant.RestaurantInfo
+import com.sarang.torang.data.restaurant.RestaurantInfoData
 import com.sarang.torang.data.restaurant.ReviewRowData
 import com.sarang.torang.data.restaurant.ReviewSummaryData
-import com.sarang.torang.data.RestaurantDetail
 import com.sarang.torang.data.remote.response.FeedApiModel
 
-fun RestaurantDetail.toRestaurantInfoData(): RestaurantInfo {
-    return RestaurantInfo(
+fun RestaurantDetail.toRestaurantInfoData(): RestaurantInfoData {
+    return RestaurantInfoData(
         foodType = this.restaurant.restaurantType,
         distance = "100m",
         open = "영업 중",
@@ -26,8 +26,8 @@ fun RestaurantDetail.toRestaurantInfoData(): RestaurantInfo {
         rating = this.restaurant.rating,
         reviewCount = this.restaurant.reviewCount,
         price = this.restaurant.prices,
-        lat = this.restaurant.lat,
-        lon = this.restaurant.lon
+        lon = this.restaurant.lon,
+        lat = this.restaurant.lat
     )
 }
 
@@ -90,7 +90,7 @@ fun FeedApiModel.toFeedData(): Feed {
         name = this.user.userName,
         restaurantName = this.restaurant.restaurantName,
         rating = this.rating,
-        profilePictureUrl = this.user.profilePicUrl,
+        profilePictureUrl = BuildConfig.PROFILE_IMAGE_SERVER_URL + this.user.profilePicUrl,
         likeAmount = this.like_amount,
         commentAmount = this.comment_amount,
         author = "",
