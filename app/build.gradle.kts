@@ -165,9 +165,22 @@ dependencies {
     implementation(libs.chat)
     implementation(libs.torangGrid)
     implementation(libs.bottomdetectlazycolunm)
+    implementation(libs.restaurantDetailContainer)
+    implementation(libs.restaurantOverView)
+    implementation(libs.restaurantInfo)
+    implementation(libs.restaurantGallery)
+    implementation(libs.restaurantMenus)
+    implementation(libs.restaurantReview)
+
 
     implementation(libs.androidx.media3.exoplayer)
     implementation(libs.androidx.media3.ui)
     implementation("androidx.media3:media3-session:1.4.0")
     implementation("androidx.media3:media3-exoplayer-hls:1.4.0")
+
+    implementation(libs.accompanist.permissions)
+    implementation(libs.play.services.location)
+    implementation(libs.kotlin.coroutines.play)
+    implementation(libs.androidx.work.runtime.ktx)
+    implementation(libs.composePermissionTest)
 }

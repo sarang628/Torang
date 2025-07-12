@@ -49,3 +49,21 @@
 [submodule "app/src/main/java/com/sarang/torang/di/image"]
 	path = app/src/main/java/com/sarang/torang/di/image
 	url = https://github.com/sarang628/image.git
+[submodule "app/src/main/java/com/sarang/torang/di/restaurant_detail_container_di"]
+	path = app/src/main/java/com/sarang/torang/di/restaurant_detail_container_di
+	url = https://github.com/sarang628/restaurant_detail_container_di.git
+[submodule "app/src/main/java/com/sarang/torang/di/restaurant_review_di"]
+	path = app/src/main/java/com/sarang/torang/di/restaurant_review_di
+	url = https://github.com/sarang628/restaurant_review_di.git
+[submodule "app/src/main/java/com/sarang/torang/di/restaurant_gallery_di"]
+	path = app/src/main/java/com/sarang/torang/di/restaurant_gallery_di
+	url = https://github.com/sarang628/restaurant_gallery_di
+[submodule "app/src/main/java/com/sarang/torang/di/restaurant_menu_di"]
+	path = app/src/main/java/com/sarang/torang/di/restaurant_menu_di
+	url = https://github.com/sarang628/restaurant_menu_di.git
+[submodule "app/src/main/java/com/sarang/torang/di/restaurant_overview_di"]
+	path = app/src/main/java/com/sarang/torang/di/restaurant_overview_di
+	url = https://github.com/sarang628/restaurant_overview_di.git
+[submodule "app/src/main/java/com/sarang/torang/di/restauarnt_info_di"]
+	path = app/src/main/java/com/sarang/torang/di/restauarnt_info_di
+	url = https://github.com/sarang628/restauarnt_info_di.git

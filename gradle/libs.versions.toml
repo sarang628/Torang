@@ -52,9 +52,9 @@ chatVersion = 'ea29716da1'
 torangGridVersion = 'f31f7a31e6'
 expandableTextVersion = '547e79fc42'
 composePermissionTestVersion = '5159bc3d34'
-restaurantOverViewVersion = 'b922514012'
-restaurantDetailContaierVersion = '06fba5a790'
+restaurantOverViewVersion = 'd1944706ce'
 featureDeliveryVersion = "2.1.0"
+restaurantDetailContaierVersion = '06fba5a790'
 serialization = "1.7.10"
 media3Exoplayer = "1.4.0"
 media3Ui = "1.4.0"
@@ -66,6 +66,9 @@ accompanist = "0.32.0"
 play-services-location = "21.1.0"
 coroutines = "1.7.3"
 restaurantInfoVersion = "b922514012"
+restaurantMenusVersion = "396e8056be"
+restaurantReviewVersion = "d5d5aa49d5"
+restaurantGalleryVersion = "1943ea995e"
 
 # @formatter:off
 [libraries]
@@ -152,6 +155,9 @@ torangGrid                      = { group = "com.github.sarang628", name = "Tora
 restaurantInfo                  = { group = "com.github.sarang628", name = "RestaurantInfo",        version.ref = "restaurantInfoVersion" }
 composePermissionTest           = { group = "com.github.sarang628", name = "ComposePermissionTest", version.ref = "composePermissionTestVersion" }
 restaurantOverView              = { group = "com.github.sarang628", name = "RestaurantOverView",    version.ref = "restaurantOverViewVersion" }
+restaurantMenus                 = { group = "com.github.sarang628", name = "RestaurantMenus",       version.ref = "restaurantMenusVersion" }
+restaurantReview                = { group = "com.github.sarang628", name = "RestaurantReview",      version.ref = "restaurantReviewVersion" }
+restaurantGallery               = { group = "com.github.sarang628", name = "RestaurantGallery",     version.ref = "restaurantGalleryVersion" }
 restaurantDetailContainer       = { group = "com.github.sarang628", name = "RestaurantDetailContainer",    version.ref = "restaurantDetailContaierVersion" }
 themes                          = { group = "com.github.bingley1",  name = "Themes",                version.ref = "themesVersion" }
 feature-delivery                = { group = "com.google.android.play", name = "feature-delivery",   version.ref = "featureDeliveryVersion"}

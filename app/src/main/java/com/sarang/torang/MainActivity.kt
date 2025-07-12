@@ -26,6 +26,7 @@ import com.sarang.torang.di.main_di.ProvideMainScreen
 import com.sarang.torang.di.main_di.provideFeedScreen
 import com.sarang.torang.di.profile_di.provideEditProfileScreen
 import com.sarang.torang.di.profile_di.provideProfileScreen
+import com.sarang.torang.di.restaurant_detail_container_di.provideRestaurantDetailContainer
 import com.sarang.torang.di.settings.provideSettingScreen
 import com.sarang.torang.di.splash_di.provideSplashScreen
 import com.sarang.torang.di.torangimagepager.provideRestaurantImagePager
@@ -71,7 +72,7 @@ fun ProvideTorangScreen() {
         loginScreen = provideLoginNavHost(rootNavController),
         editProfileScreen = provideEditProfileScreen(rootNavController),
         editProfileImageScreen = provideGalleryNavHost(rootNavController),
-        restaurantScreen = {  },
+        restaurantScreen = { provideRestaurantDetailContainer().invoke() },
         modReviewScreen = provideModReviewScreen(rootNavController),
         emailLoginScreen = provideEmailLoginNavHost(rootNavController),
         imagePagerScreen = provideReviewImagePager(rootNavController, onComment = { reviewId = it }),
