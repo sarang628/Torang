@@ -140,7 +140,6 @@ dependencies {
     implementation(libs.profile)
     implementation(libs.finding)
     implementation(libs.myReview)
-    implementation(libs.torangDetail)
     implementation(libs.addReview)
     implementation(libs.login)
     implementation(libs.splash)

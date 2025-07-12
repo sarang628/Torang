@@ -52,6 +52,8 @@ chatVersion = 'ea29716da1'
 torangGridVersion = 'f31f7a31e6'
 expandableTextVersion = '547e79fc42'
 composePermissionTestVersion = '5159bc3d34'
+restaurantOverViewVersion = 'b922514012'
+restaurantDetailContaierVersion = '06fba5a790'
 featureDeliveryVersion = "2.1.0"
 serialization = "1.7.10"
 media3Exoplayer = "1.4.0"
@@ -63,6 +65,7 @@ constraintlayoutVersion = "2.1.4"
 accompanist = "0.32.0"
 play-services-location = "21.1.0"
 coroutines = "1.7.3"
+restaurantInfoVersion = "b922514012"
 
 # @formatter:off
 [libraries]
@@ -146,9 +149,13 @@ expandableText                  = { group = "com.github.sarang628", name = "Expa
 bottomdetectlazycolunm          = { group = "com.github.sarang628", name = "BottomDetectLazyColunm",version.ref = "bottomDetectLazyColunmVersion" }
 chat                            = { group = "com.github.sarang628", name = "Chat",                  version.ref = "chatVersion" }
 torangGrid                      = { group = "com.github.sarang628", name = "TorangGrid",            version.ref = "torangGridVersion" }
+restaurantInfo                  = { group = "com.github.sarang628", name = "RestaurantInfo",        version.ref = "restaurantInfoVersion" }
 composePermissionTest           = { group = "com.github.sarang628", name = "ComposePermissionTest", version.ref = "composePermissionTestVersion" }
+restaurantOverView              = { group = "com.github.sarang628", name = "RestaurantOverView",    version.ref = "restaurantOverViewVersion" }
+restaurantDetailContainer       = { group = "com.github.sarang628", name = "RestaurantDetailContainer",    version.ref = "restaurantDetailContaierVersion" }
 themes                          = { group = "com.github.bingley1",  name = "Themes",                version.ref = "themesVersion" }
 feature-delivery                = { group = "com.google.android.play", name = "feature-delivery",   version.ref = "featureDeliveryVersion"}
+
 # @formatter:on
 
 androidx-media3-exoplayer = { group = "androidx.media3", name = "media3-exoplayer", version.ref = "media3Exoplayer" }
