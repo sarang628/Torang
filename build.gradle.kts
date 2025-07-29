@@ -9,9 +9,9 @@ plugins {
 
 extra.apply {
     // Sdk and tools
-    set("compileSdk", 34)
+    set("compileSdk", 35)
     set("minSdk", 26)
-    set("targetSdk", 34)
+    set("targetSdk", 35)
     set("buildToolsVersion", "30.0.3")
     set("compose_version", "1.6.0")
 }

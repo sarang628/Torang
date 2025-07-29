@@ -72,7 +72,7 @@ fun ProvideTorangScreen() {
         loginScreen = provideLoginNavHost(rootNavController),
         editProfileScreen = provideEditProfileScreen(rootNavController),
         editProfileImageScreen = provideGalleryNavHost(rootNavController),
-        restaurantScreen = { provideRestaurantDetailContainer().invoke() },
+        restaurantScreen = provideRestaurantDetailContainer(rootNavController) ,
         modReviewScreen = provideModReviewScreen(rootNavController),
         emailLoginScreen = provideEmailLoginNavHost(rootNavController),
         imagePagerScreen = provideReviewImagePager(rootNavController, onComment = { reviewId = it }),
