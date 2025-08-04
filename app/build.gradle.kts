@@ -149,7 +149,7 @@ dependencies {
     implementation(libs.cardInfo)
     implementation(libs.map)
     implementation(libs.torangBottomSheet)
-    //implementation(libs.instagramGallery)
+    implementation(libs.instagramGallery)
     implementation(libs.filter)
     implementation(libs.main)
     implementation(libs.report)
