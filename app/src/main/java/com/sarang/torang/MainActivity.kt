@@ -45,15 +45,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             TorangTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background,
-                ) {
+                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
                     ProvideTorangScreen()
-                }
-            }
-        }
-    }
+    } } } }
 }
 
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -64,7 +58,7 @@ fun ProvideTorangScreen() {
     var reviewId: Int? by remember { mutableStateOf(null) }
     TorangScreen(
         rootNavController = rootNavController,
-        mainScreen = { ProvideMainScreen(rootNavController) },
+        mainScreen = ProvideMainScreen(rootNavController),
         profileScreen = provideProfileScreen(rootNavController),
         settingsScreen = provideSettingScreen(rootNavController),
         splashScreen = provideSplashScreen(rootNavController),
