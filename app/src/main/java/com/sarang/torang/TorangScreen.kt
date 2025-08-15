@@ -30,82 +30,40 @@ fun TorangScreen(
     likesScreen: @Composable (Int) -> Unit,
     feedScreenByReviewId: @Composable (Int) -> Unit,
 ) {
-    NavHost(
-        navController = rootNavController.navController, startDestination = "main",
-    ) {
-        composable("main") {
-            mainScreen.invoke()
-        }
-        composable("addReview") {
-            addReviewScreen.invoke({})
-        }
-        composable("${RootScreen.restaurants}/{restaurantId}") { backStackEntry ->
-            restaurantScreen.invoke(backStackEntry)
-        }
-        composable("profile/{id}") {
-            profileScreen.invoke(it)
-        }
-        composable("splash") {
-            splashScreen.invoke()
-        }
-        composable("login") {
-            loginScreen.invoke()
-        }
-        composable("settings") {
-            settingsScreen.invoke()
-        }
-        composable("editProfile") {
-            editProfileScreen.invoke()
-        }
-        composable("EditProfileImage") {
-            editProfileImageScreen.invoke()
-        }
-        composable("modReview/{reviewId}") {
-            modReviewScreen.invoke(it)
-        }
-        composable("emailLogin") {
-            emailLoginScreen.invoke()
-        }
+    NavHost(navController = rootNavController.navController, startDestination = "main",) {
+        composable("main") { mainScreen.invoke() }
+        composable("addReview") { addReviewScreen.invoke({}) }
+        composable("${RootScreen.restaurants}/{restaurantId}") { backStackEntry -> restaurantScreen.invoke(backStackEntry) }
+        composable("profile/{id}") { profileScreen.invoke(it) }
+        composable("splash") { splashScreen.invoke() }
+        composable("login") { loginScreen.invoke() }
+        composable("settings") { settingsScreen.invoke() }
+        composable("editProfile") { editProfileScreen.invoke() }
+        composable("EditProfileImage") { editProfileImageScreen.invoke() }
+        composable("modReview/{reviewId}") { modReviewScreen.invoke(it) }
+        composable("emailLogin") { emailLoginScreen.invoke() }
         composable("imagePager/{reviewId}/{position}") {
             val reviewId = it.arguments?.getString("reviewId")?.toInt()
             val position = it.arguments?.getString("position")?.toInt()
-            Log.d(
-                "__TorangScreen",
-                "navigate ImagePager : reviewId : $reviewId, position : $position"
-            )
-            if (reviewId != null)
-                imagePagerScreen.invoke(reviewId, position ?: 0)
-            else {
-                Log.e("__TorangScreen", "reviewId is null")
-            }
+            Log.d("__TorangScreen", "navigate ImagePager : reviewId : $reviewId, position : $position")
+            if (reviewId != null) imagePagerScreen.invoke(reviewId, position ?: 0)
+            else { Log.e("__TorangScreen", "reviewId is null") }
         }
         composable("restaurangImagePager/{imageId}") {
             val imageId = it.arguments?.getString("imageId")?.toInt()
-            Log.d(
-                "__TorangScreen",
-                "navigate ImagePager : imageId : $imageId"
-            )
-            if (imageId != null)
-                restaurantImagePagerScreen.invoke(imageId)
-            else {
-                Log.e("__TorangScreen", "imageId is null")
-            }
+            Log.d("__TorangScreen", "navigate ImagePager : imageId : $imageId")
+            if (imageId != null) restaurantImagePagerScreen.invoke(imageId)
+            else { Log.e("__TorangScreen", "imageId is null") }
         }
         composable("like/{reviewId}") {
             val reviewId = it.arguments?.getString("reviewId")?.toInt()
-            if (reviewId == null) {
-                Log.e("__TorangScreen", "reviewId is null in likeScreen")
-            } else {
-                likesScreen.invoke(reviewId)
-            }
+            if (reviewId == null) { Log.e("__TorangScreen", "reviewId is null in likeScreen") }
+            else { likesScreen.invoke(reviewId) }
         }
         composable("review/{reviewId}") {
             val reviewId = it.arguments?.getString("reviewId")?.toInt()
-            if (reviewId == null) {
-                Log.e("__TorangScreen", "reviewId is null in feedScreen")
-            } else {
-                feedScreenByReviewId.invoke(reviewId)
-            }
+            if (reviewId == null) { Log.e("__TorangScreen", "reviewId is null in feedScreen") }
+            else { feedScreenByReviewId.invoke(reviewId) }
         }
     }
 }
@@ -120,67 +78,19 @@ object RootScreen {
 
 class RootNavController(val navController: NavHostController) {
     fun modReview(): (Int) -> Unit = { navController.navigate("modReview/${it}") }
-
-    fun imagePager(reviewId: Int, position: Int) {
-        navController.navigate("imagePager/${reviewId}/${position}")
-    }
-
-    fun emailLogin() {
-        navController.navigate("emailLogin")
-    }
-
-    fun restaurant(it: Int) {
-        navController.navigate(RootScreen.restaurants + "/${it}")
-    }
-
-    fun settings() {
-        navController.navigate("settings")
-    }
-
-    fun popBackStack() {
-        navController.popBackStack()
-    }
-
-    fun main() {
-        navController.navigate("main") {
-            popUpTo(0)
-        }
-    }
-
-    fun restaurantImagePager(it: Int) {
-        navController.navigate("restaurangImagePager/${it}")
-    }
-
-    fun addReview() {
-        navController.navigate("addReview")
-    }
-
-    fun splash() {
-        navController.navigate("splash")
-    }
-
-    fun editProfileImage() {
-        navController.navigate("EditProfileImage")
-    }
-
-    fun singleTopLogin() {
-        navController.singleTop("login")
-    }
-
-    fun singleTopMain() {
-        navController.singleTop("main")
-    }
-
-    fun profile(userId: Int) {
-        Log.d("__RootNavController", "profile : $userId")
-        navController.navigate("profile/${userId}")
-    }
-
-    fun like(reviewId: Int) {
-        navController.navigate("like/${reviewId}")
-    }
-
-    fun review(reviewId: Int) {
-        navController.navigate("review/${reviewId}")
-    }
+    fun imagePager(reviewId: Int, position: Int) { navController.navigate("imagePager/${reviewId}/${position}") }
+    fun emailLogin() { navController.navigate("emailLogin") }
+    fun restaurant(it: Int) { navController.navigate(RootScreen.restaurants + "/${it}") }
+    fun settings() { navController.navigate("settings") }
+    fun popBackStack() { navController.popBackStack() }
+    fun main() { navController.navigate("main") { popUpTo(0) } }
+    fun restaurantImagePager(it: Int) { navController.navigate("restaurangImagePager/${it}") }
+    fun addReview() { navController.navigate("addReview") }
+    fun splash() { navController.navigate("splash") }
+    fun editProfileImage() { navController.navigate("EditProfileImage") }
+    fun singleTopLogin() { navController.singleTop("login") }
+    fun singleTopMain() { navController.singleTop("main") }
+    fun profile(userId: Int) { Log.d("__RootNavController", "profile : $userId") ; navController.navigate("profile/${userId}") }
+    fun like(reviewId: Int) { navController.navigate("like/${reviewId}") }
+    fun review(reviewId: Int) { navController.navigate("review/${reviewId}") }
 }
