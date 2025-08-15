@@ -77,20 +77,21 @@ object RootScreen {
 }
 
 class RootNavController(val navController: NavHostController) {
-    fun modReview(): (Int) -> Unit = { navController.navigate("modReview/${it}") }
-    fun imagePager(reviewId: Int, position: Int) { navController.navigate("imagePager/${reviewId}/${position}") }
-    fun emailLogin() { navController.navigate("emailLogin") }
-    fun restaurant(it: Int) { navController.navigate(RootScreen.restaurants + "/${it}") }
-    fun settings() { navController.navigate("settings") }
-    fun popBackStack() { navController.popBackStack() }
-    fun main() { navController.navigate("main") { popUpTo(0) } }
-    fun restaurantImagePager(it: Int) { navController.navigate("restaurangImagePager/${it}") }
-    fun addReview() { navController.navigate("addReview") }
-    fun splash() { navController.navigate("splash") }
-    fun editProfileImage() { navController.navigate("EditProfileImage") }
-    fun singleTopLogin() { navController.singleTop("login") }
-    fun singleTopMain() { navController.singleTop("main") }
-    fun profile(userId: Int) { Log.d("__RootNavController", "profile : $userId") ; navController.navigate("profile/${userId}") }
-    fun like(reviewId: Int) { navController.navigate("like/${reviewId}") }
-    fun review(reviewId: Int) { navController.navigate("review/${reviewId}") }
+    val tag = "__RootNavController"
+    fun modReview(): (Int) -> Unit =                { navController.navigate("modReview/${it}") }
+    fun imagePager(reviewId: Int, position: Int)    { navController.navigate("imagePager/${reviewId}/${position}") }
+    fun emailLogin()                                { navController.navigate("emailLogin") }
+    fun restaurant(it: Int)                         { navController.navigate(RootScreen.restaurants + "/${it}") }
+    fun settings()                                  { navController.navigate("settings") }
+    fun popBackStack()                              { navController.popBackStack() }
+    fun main()                                      { navController.navigate("main") { popUpTo(0) } }
+    fun restaurantImagePager(it: Int)               { navController.navigate("restaurangImagePager/${it}") }
+    fun addReview()                                 { navController.navigate("addReview") }
+    fun splash()                                    { navController.navigate("splash") }
+    fun editProfileImage()                          { navController.navigate("EditProfileImage") }
+    fun singleTopLogin()                            { navController.singleTop("login") }
+    fun singleTopMain()                             { navController.singleTop("main") }
+    fun profile(userId: Int)                        { Log.d(tag, "profile. userId:$userId") ; navController.navigate("profile/${userId}") }
+    fun like(reviewId: Int)                         { navController.navigate("like/${reviewId}") }
+    fun review(reviewId: Int)                       { Log.d(tag, "review. reviewId:${reviewId}"); navController.navigate("review/${reviewId}") }
 }
