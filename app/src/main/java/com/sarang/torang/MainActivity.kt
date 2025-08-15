@@ -72,6 +72,6 @@ fun ProvideTorangScreen() {
         imagePagerScreen = provideReviewImagePager(rootNavController, onComment = { reviewId = it }),
         restaurantImagePagerScreen = provideRestaurantImagePager(rootNavController, onComment = { reviewId = it }),
         likesScreen = provideLikeScreen(rootNavController),
-        feedScreenByReviewId = provideFeedScreen(rootNavController, state, reviewId ?: 0)
+        feedScreenByReviewId = provideFeedScreen(reviewId ?: 0, rootNavController, state)
     )
 }
