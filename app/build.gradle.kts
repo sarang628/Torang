@@ -183,4 +183,6 @@ dependencies {
     implementation(libs.kotlin.coroutines.play)
     implementation(libs.androidx.work.runtime.ktx)
     implementation(libs.composePermissionTest)
+    implementation(libs.torangnetwork)
+    implementation(libs.torangdatabase)
 }

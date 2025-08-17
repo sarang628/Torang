@@ -79,3 +79,6 @@
 [submodule "app/src/main/java/com/sarang/torang/di/cardinfo_di"]
 	path = app/src/main/java/com/sarang/torang/di/cardinfo_di
 	url = https://github.com/sarang628/cardinfo_di.git
+[submodule "app/src/main/java/com/sarang/torang/di/torang_network_di"]
+	path = app/src/main/java/com/sarang/torang/di/torang_network_di
+	url = https://github.com/sarang628/torang_network_di.git
