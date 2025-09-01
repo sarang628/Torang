@@ -58,7 +58,7 @@ fun ProvideTorangScreen() {
     var reviewId: Int? by remember { mutableStateOf(null) }
     TorangScreen(
         rootNavController = rootNavController,
-        mainScreen = ProvideMainScreen(rootNavController),
+        mainScreen = { ProvideMainScreen(rootNavController) },
         profileScreen = provideProfileScreen(rootNavController),
         settingsScreen = provideSettingScreen(rootNavController),
         splashScreen = provideSplashScreen(rootNavController),
