@@ -1,7 +1,7 @@
 package com.sarang.torang.di.login
 
 import android.content.Context
-import com.sarang.torang.data.dao.LoggedInUserDao
+import com.sarang.torang.core.database.dao.LoggedInUserDao
 import com.sarang.torang.repository.LoginRepository
 import com.sarang.torang.session.SessionService
 import com.sarang.torang.usecase.CheckEmailDuplicateUseCase
