@@ -15,7 +15,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunner = "com.sarang.torang.CustomTestRunner"
 
-        versionCode = 100
+        versionCode = 101
         versionName = "0.1.0"
     }
 
@@ -185,4 +185,5 @@ dependencies {
     implementation(libs.composePermissionTest)
     implementation(libs.torangnetwork)
     implementation(libs.torangdatabase)
+    implementation(libs.restaurantListBottomSheet)
 }
