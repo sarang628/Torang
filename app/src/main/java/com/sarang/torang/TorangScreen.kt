@@ -14,21 +14,22 @@ import com.sarang.torang.di.util.singleTop
 @Composable
 fun TorangScreen(
     rootNavController: RootNavController,
-    profileScreen: @Composable (NavBackStackEntry) -> Unit,
-    settingsScreen: @Composable () -> Unit,
-    splashScreen: @Composable () -> Unit,
-    addReviewScreen: @Composable (onClose: () -> Unit) -> Unit,
-    modReviewScreen: @Composable (NavBackStackEntry) -> Unit,
-    loginScreen: @Composable () -> Unit,
-    restaurantScreen: @Composable (NavBackStackEntry) -> Unit,
-    editProfileScreen: @Composable () -> Unit,
-    editProfileImageScreen: @Composable () -> Unit,
-    mainScreen: @Composable () -> Unit,
-    emailLoginScreen: @Composable () -> Unit,
-    imagePagerScreen: @Composable (Int, Int) -> Unit,
-    restaurantImagePagerScreen: @Composable (Int) -> Unit,
-    likesScreen: @Composable (Int) -> Unit,
-    feedScreenByReviewId: @Composable (Int) -> Unit,
+    loginScreen                 : @Composable () -> Unit                    = {},
+    settingsScreen              : @Composable () -> Unit                    = {},
+    splashScreen                : @Composable () -> Unit                    = {},
+    editProfileScreen           : @Composable () -> Unit                    = {},
+    editProfileImageScreen      : @Composable () -> Unit                    = {},
+    mainScreen                  : @Composable () -> Unit                    = {},
+    emailLoginScreen            : @Composable () -> Unit                    = {},
+    mapScreen                   : @Composable () -> Unit                    = {},
+    restaurantImagePagerScreen  : @Composable (Int) -> Unit                 = {},
+    likesScreen                 : @Composable (Int) -> Unit                 = {},
+    feedScreenByReviewId        : @Composable (Int) -> Unit                 = {},
+    imagePagerScreen            : @Composable (Int, Int) -> Unit            = {_,_->},
+    addReviewScreen             : @Composable (onClose: () -> Unit) -> Unit = {},
+    profileScreen               : @Composable (NavBackStackEntry) -> Unit   = {},
+    modReviewScreen             : @Composable (NavBackStackEntry) -> Unit   = {},
+    restaurantScreen            : @Composable (NavBackStackEntry) -> Unit   = {},
 ) {
     NavHost(navController = rootNavController.navController, startDestination = "main",) {
         composable("main") { mainScreen.invoke() }
@@ -65,6 +66,7 @@ fun TorangScreen(
             if (reviewId == null) { Log.e("__TorangScreen", "reviewId is null in feedScreen") }
             else { feedScreenByReviewId.invoke(reviewId) }
         }
+        composable("map"){mapScreen.invoke()}
     }
 }
 
@@ -94,4 +96,5 @@ class RootNavController(val navController: NavHostController) {
     fun profile(userId: Int)                        { Log.d(tag, "profile. userId:$userId") ; navController.navigate("profile/${userId}") }
     fun like(reviewId: Int)                         { navController.navigate("like/${reviewId}") }
     fun review(reviewId: Int)                       { Log.d(tag, "review. reviewId:${reviewId}"); navController.navigate("review/${reviewId}") }
+    fun map()                                       { Log.d(tag, "goMap"); navController.navigate("map") }
 }
