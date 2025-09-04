@@ -16,6 +16,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import com.example.screen_map.compose.MapScreen
+import com.google.maps.android.compose.rememberCameraPositionState
 import com.sarang.torang.di.addreview_di.provideAddReviewScreen
 import com.sarang.torang.di.addreview_di.provideModReviewScreen
 import com.sarang.torang.di.gallery.provideGalleryNavHost
@@ -56,22 +58,24 @@ fun ProvideTorangScreen() {
     val state = rememberPullToRefreshState()
     val rootNavController = RootNavController(rememberNavController())
     var reviewId: Int? by remember { mutableStateOf(null) }
+    val cameraPositionState = rememberCameraPositionState()
     TorangScreen(
-        rootNavController = rootNavController,
-        mainScreen = { ProvideMainScreen(rootNavController) },
-        profileScreen = provideProfileScreen(rootNavController),
-        settingsScreen = provideSettingScreen(rootNavController),
-        splashScreen = provideSplashScreen(rootNavController),
-        addReviewScreen = provideAddReviewScreen(rootNavController),
-        loginScreen = provideLoginNavHost(rootNavController),
-        editProfileScreen = provideEditProfileScreen(rootNavController),
-        editProfileImageScreen = provideGalleryNavHost(rootNavController),
-        restaurantScreen = provideRestaurantDetailContainer(rootNavController) ,
-        modReviewScreen = provideModReviewScreen(rootNavController),
-        emailLoginScreen = provideEmailLoginNavHost(rootNavController),
-        imagePagerScreen = provideReviewImagePager(rootNavController, onComment = { reviewId = it }),
-        restaurantImagePagerScreen = provideRestaurantImagePager(rootNavController, onComment = { reviewId = it }),
-        likesScreen = provideLikeScreen(rootNavController),
-        feedScreenByReviewId = provideFeedScreen(reviewId ?: 0, rootNavController, state)
+        rootNavController           = rootNavController,
+        mainScreen                  = { ProvideMainScreen(rootNavController) },
+        profileScreen               = provideProfileScreen(rootNavController),
+        settingsScreen              = provideSettingScreen(rootNavController),
+        splashScreen                = provideSplashScreen(rootNavController),
+        addReviewScreen             = provideAddReviewScreen(rootNavController),
+        loginScreen                 = provideLoginNavHost(rootNavController),
+        editProfileScreen           = provideEditProfileScreen(rootNavController),
+        editProfileImageScreen      = provideGalleryNavHost(rootNavController),
+        restaurantScreen            = provideRestaurantDetailContainer(rootNavController) ,
+        modReviewScreen             = provideModReviewScreen(rootNavController),
+        emailLoginScreen            = provideEmailLoginNavHost(rootNavController),
+        imagePagerScreen            = provideReviewImagePager(rootNavController, onComment = { reviewId = it }),
+        restaurantImagePagerScreen  = provideRestaurantImagePager(rootNavController, onComment = { reviewId = it }),
+        likesScreen                 = provideLikeScreen(rootNavController),
+        feedScreenByReviewId        = provideFeedScreen(reviewId ?: 0, rootNavController, state),
+        mapScreen                   = { MapScreen(cameraPositionState = cameraPositionState) }
     )
 }
