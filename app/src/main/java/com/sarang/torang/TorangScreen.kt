@@ -21,7 +21,7 @@ fun TorangScreen(
     editProfileImageScreen      : @Composable () -> Unit                    = {},
     mainScreen                  : @Composable () -> Unit                    = {},
     emailLoginScreen            : @Composable () -> Unit                    = {},
-    mapScreen                   : @Composable () -> Unit                    = {},
+    mapScreen                   : @Composable (Int?) -> Unit                = {},
     restaurantImagePagerScreen  : @Composable (Int) -> Unit                 = {},
     likesScreen                 : @Composable (Int) -> Unit                 = {},
     feedScreenByReviewId        : @Composable (Int) -> Unit                 = {},
@@ -66,7 +66,10 @@ fun TorangScreen(
             if (reviewId == null) { Log.e("__TorangScreen", "reviewId is null in feedScreen") }
             else { feedScreenByReviewId.invoke(reviewId) }
         }
-        composable("map"){mapScreen.invoke()}
+        composable("map/{restaurantId}"){
+            val restaurantId = it.arguments?.getString("restaurantId")?.toInt()
+            mapScreen.invoke(restaurantId)
+        }
     }
 }
 
@@ -96,5 +99,5 @@ class RootNavController(val navController: NavHostController) {
     fun profile(userId: Int)                        { Log.d(tag, "profile. userId:$userId") ; navController.navigate("profile/${userId}") }
     fun like(reviewId: Int)                         { navController.navigate("like/${reviewId}") }
     fun review(reviewId: Int)                       { Log.d(tag, "review. reviewId:${reviewId}"); navController.navigate("review/${reviewId}") }
-    fun map()                                       { Log.d(tag, "goMap"); navController.navigate("map") }
+    fun map(restaurantId : Int)                     { Log.d(tag, "goMap"); navController.navigate("map/${restaurantId}") }
 }

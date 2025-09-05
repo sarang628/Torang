@@ -17,6 +17,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.example.screen_map.compose.MapScreen
+import com.example.screen_map.compose.MapScreenSingleRestaurantMarker
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.sarang.torang.di.addreview_di.provideAddReviewScreen
 import com.sarang.torang.di.addreview_di.provideModReviewScreen
@@ -76,6 +77,6 @@ fun ProvideTorangScreen() {
         restaurantImagePagerScreen  = provideRestaurantImagePager(rootNavController, onComment = { reviewId = it }),
         likesScreen                 = provideLikeScreen(rootNavController),
         feedScreenByReviewId        = provideFeedScreen(reviewId ?: 0, rootNavController, state),
-        mapScreen                   = { MapScreen(cameraPositionState = cameraPositionState) }
+        mapScreen                   = { MapScreenSingleRestaurantMarker(cameraPositionState = cameraPositionState, restaurantId = it ?: -1) }
     )
 }
