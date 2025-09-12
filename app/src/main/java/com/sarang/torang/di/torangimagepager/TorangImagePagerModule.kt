@@ -21,7 +21,7 @@ class TorangImagePagerModule {
     fun provideGetReviewUseCase(repository: FeedRepository): GetReviewForReviewImagePagerUseCase {
         return object : GetReviewForReviewImagePagerUseCase {
             override suspend fun invoke(reviewId: Int): ImagePagerUiState {
-                val it = repository.getFeedByReviewId(reviewId)
+                val it = repository.findById(reviewId)
                 return ImagePagerUiState(
                     list = it.images.map { BuildConfig.REVIEW_IMAGE_SERVER_URL + it.pictureUrl },
                     name = it.review.userName,
@@ -40,7 +40,7 @@ class TorangImagePagerModule {
     fun provideGetReviewForRestaurantImagePagerUseCase(repository: FeedRepository): GetReviewForRestaurantImagePagerUseCase {
         return object : GetReviewForRestaurantImagePagerUseCase {
             override suspend fun invoke(reviewId: Int): RestaurantImagePageContents {
-                val it = repository.getFeedByReviewId(reviewId)
+                val it = repository.findById(reviewId)
                 return RestaurantImagePageContents(
                     contents = it.review.contents,
                     likeCount = it.review.likeAmount.toString(),
