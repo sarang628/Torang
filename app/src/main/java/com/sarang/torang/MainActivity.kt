@@ -21,6 +21,7 @@ import com.example.screen_map.compose.MapScreenSingleRestaurantMarker
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.sarang.torang.di.addreview_di.provideAddReviewScreen
 import com.sarang.torang.di.addreview_di.provideModReviewScreen
+import com.sarang.torang.di.finding_di.FindingWithPermission
 import com.sarang.torang.di.gallery.provideGalleryNavHost
 import com.sarang.torang.di.likes.provideLikeScreen
 import com.sarang.torang.di.login.provideEmailLoginNavHost
@@ -34,6 +35,7 @@ import com.sarang.torang.di.settings.provideSettingScreen
 import com.sarang.torang.di.splash_di.provideSplashScreen
 import com.sarang.torang.di.torangimagepager.provideRestaurantImagePager
 import com.sarang.torang.di.torangimagepager.provideReviewImagePager
+import com.sryang.library.compose.workflow.BestPracticeViewModel
 import com.sryang.library.pullrefresh.rememberPullToRefreshState
 import com.sryang.torang.ui.TorangTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -62,7 +64,8 @@ fun ProvideTorangScreen() {
     val cameraPositionState = rememberCameraPositionState()
     TorangScreen(
         rootNavController           = rootNavController,
-        mainScreen                  = { ProvideMainScreen(rootNavController) },
+        mainScreen                  = { ProvideMainScreen(rootNavController,
+        findingMapScreen            = { FindingWithPermission(navController = rootNavController, viewModel = BestPracticeViewModel()) }) },
         profileScreen               = provideProfileScreen(rootNavController),
         settingsScreen              = provideSettingScreen(rootNavController),
         splashScreen                = provideSplashScreen(rootNavController),
