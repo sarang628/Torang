@@ -91,3 +91,6 @@
 [submodule "app/src/main/java/com/sarang/torang/di/restaurant_list_bottom_sheet_di"]
 	path = app/src/main/java/com/sarang/torang/di/restaurant_list_bottom_sheet_di
 	url = https://github.com/sarang628/restaurant_list_bottom_sheet_di.git
+[submodule "app/src/main/java/com/sarang/torang/di/pulltorefresh"]
+	path = app/src/main/java/com/sarang/torang/di/pulltorefresh
+	url = https://github.com/sarang628/pulltorefresh.git
