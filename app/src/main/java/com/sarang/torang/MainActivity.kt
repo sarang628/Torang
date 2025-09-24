@@ -16,7 +16,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.example.screen_map.compose.MapScreen
 import com.example.screen_map.compose.MapScreenSingleRestaurantMarker
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.sarang.torang.di.addreview_di.provideAddReviewScreen
@@ -29,7 +28,7 @@ import com.sarang.torang.di.login.provideEmailLoginNavHost
 import com.sarang.torang.di.login.provideLoginNavHost
 import com.sarang.torang.di.main_di.ProvideMainScreen
 import com.sarang.torang.di.main_di.provideAlarm
-import com.sarang.torang.di.main_di.provideFeedGreed
+import com.sarang.torang.di.main_di.provideFeedGrid
 import com.sarang.torang.di.main_di.provideFeedScreen
 import com.sarang.torang.di.profile_di.provideEditProfileScreen
 import com.sarang.torang.di.profile_di.provideMyProfileScreenNavHost
@@ -70,7 +69,7 @@ fun ProvideTorangScreen() {
         rootNavController           = rootNavController,
         mainScreen                  = { ProvideMainScreen(rootNavController,
             findingMapScreen        = { FindingWithPermission(navController = rootNavController, viewModel = BestPracticeViewModel()) },
-            feedGrid                = provideFeedGreed(),
+            feedGrid                = provideFeedGrid(),
             myProfileScreen         = provideMyProfileScreenNavHost(rootNavController),
             addReview               = provideAddReviewScreen(rootNavController),
             chat                    = provideChatScreen(),
