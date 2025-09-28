@@ -21,15 +21,15 @@ import com.google.maps.android.compose.rememberCameraPositionState
 import com.sarang.torang.di.addreview_di.provideAddReviewScreen
 import com.sarang.torang.di.addreview_di.provideModReviewScreen
 import com.sarang.torang.di.chat_di.provideChatScreen
-import com.sarang.torang.di.finding_di.FindingWithPermission
+import com.sarang.torang.di.finding_di.findingWithPermission
 import com.sarang.torang.di.gallery.provideGalleryNavHost
 import com.sarang.torang.di.likes.provideLikeScreen
 import com.sarang.torang.di.login.provideEmailLoginNavHost
 import com.sarang.torang.di.login.provideLoginNavHost
-import com.sarang.torang.di.main_di.ProvideMainScreen
 import com.sarang.torang.di.main_di.provideAlarm
 import com.sarang.torang.di.main_di.provideFeedGrid
 import com.sarang.torang.di.main_di.provideFeedScreen
+import com.sarang.torang.di.main_di.provideMainScreen
 import com.sarang.torang.di.profile_di.provideEditProfileScreen
 import com.sarang.torang.di.profile_di.provideMyProfileScreenNavHost
 import com.sarang.torang.di.profile_di.provideProfileScreen
@@ -67,13 +67,13 @@ fun ProvideTorangScreen() {
     val cameraPositionState = rememberCameraPositionState()
     TorangScreen(
         rootNavController           = rootNavController,
-        mainScreen                  = { ProvideMainScreen(rootNavController,
-            findingMapScreen        = { FindingWithPermission(navController = rootNavController, viewModel = BestPracticeViewModel()) },
+        mainScreen                  = provideMainScreen(rootNavController,
+            findingMapScreen        = findingWithPermission(navController = rootNavController, viewModel = BestPracticeViewModel()),
             feedGrid                = provideFeedGrid(),
             myProfileScreen         = provideMyProfileScreenNavHost(rootNavController),
             addReview               = provideAddReviewScreen(rootNavController),
             chat                    = provideChatScreen(),
-            alarm                   = provideAlarm(rootNavController)) },
+            alarm                   = provideAlarm(rootNavController)) ,
         profileScreen               = provideProfileScreen(rootNavController),
         settingsScreen              = provideSettingScreen(rootNavController),
         splashScreen                = provideSplashScreen(rootNavController),
