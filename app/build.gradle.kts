@@ -186,4 +186,6 @@ dependencies {
     implementation(libs.torangnetwork)
     implementation(libs.torangdatabase)
     implementation(libs.restaurantListBottomSheet)
+
+    implementation("io.coil-kt:coil-compose:2.6.0")
 }
