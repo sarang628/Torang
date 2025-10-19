@@ -34,7 +34,7 @@ import com.sarang.torang.di.gallery.provideGalleryNavHost
 import com.sarang.torang.di.likes.provideLikeScreen
 import com.sarang.torang.di.login.provideEmailLoginNavHost
 import com.sarang.torang.di.login.provideLoginNavHost
-import com.sarang.torang.di.main_di.provideFeedScreen
+import com.sarang.torang.di.main_di.provideFeedMainScreen
 import com.sarang.torang.di.main_di.provideAlarm
 import com.sarang.torang.di.main_di.provideFeedGrid
 import com.sarang.torang.di.main_di.provideMainScreen
@@ -93,7 +93,7 @@ fun ProvideTorangScreen() {
         addReview                   = provideAddReviewScreen(rootNavController),
         chat                        = provideChatScreen(),
         alarm                       = provideAlarm(rootNavController),
-        feed                        = provideFeedScreen(rootNavController, dialogsViewModel, feedScreenState, mainScreenState)) ,
+        feed                        = provideFeedMainScreen(rootNavController, dialogsViewModel, feedScreenState, mainScreenState)) ,
         profileScreen               = provideProfileScreen(rootNavController),
         settingsScreen              = provideSettingScreen(rootNavController),
         splashScreen                = provideSplashScreen(rootNavController),
@@ -107,7 +107,7 @@ fun ProvideTorangScreen() {
         imagePagerScreen            = provideReviewImagePager(rootNavController, onComment = { reviewId = it }),
         restaurantImagePagerScreen  = provideRestaurantImagePager(rootNavController, onComment = { reviewId = it }),
         likesScreen                 = provideLikeScreen(rootNavController),
-        feedScreenByReviewId        = provideFeedScreen(reviewId ?: 0, rootNavController, state),
+        feedScreenByReviewId        = provideFeedMainScreen(reviewId ?: 0, rootNavController, state),
         mapScreen                   = { MapScreenSingleRestaurantMarker(cameraPositionState = cameraPositionState, restaurantId = it ?: -1) }
     )
 }
