@@ -82,7 +82,7 @@ fun ProvideTorangScreen() {
     TorangScreen(
         rootNavController           = rootNavController,
         mainScreen                  = provideMainScreen(
-        navController               = rootNavController,
+        rootNavController               = rootNavController,
         dialogsViewModel            = dialogsViewModel,
         feedScreenState             = feedScreenState,
         mainScreenState             = mainScreenState,
@@ -93,7 +93,8 @@ fun ProvideTorangScreen() {
         addReview                   = provideAddReviewScreen(rootNavController),
         chat                        = provideChatScreen(),
         alarm                       = provideAlarm(rootNavController),
-        feed                        = provideFeedMainScreen(rootNavController, dialogsViewModel, feedScreenState, mainScreenState)) ,
+        //feed                        = provideFeedMainScreen(rootNavController, dialogsViewModel, feedScreenState, mainScreenState)
+        ) ,
         profileScreen               = provideProfileScreen(rootNavController),
         settingsScreen              = provideSettingScreen(rootNavController),
         splashScreen                = provideSplashScreen(rootNavController),
