@@ -89,7 +89,7 @@ fun ProvideTorangScreen() {
         findState                   = findState,
         find                        = findingWithPermission(navController = rootNavController, viewModel = BestPracticeViewModel(), findState = findState),
         feedGrid                    = provideFeedGrid(),
-        myProfile                     = provideMyProfileScreenNavHost(rootNavController),
+        myProfile                   = provideMyProfileScreenNavHost(rootNavController),
         addReview                   = provideAddReviewScreen(rootNavController),
         chat                        = provideChatScreen(),
         alarm                       = provideAlarm(rootNavController)) ,
