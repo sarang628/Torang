@@ -27,7 +27,7 @@ object LoginServiceModule {
     ): EmailLoginUseCase {
         return object : EmailLoginUseCase {
             override suspend fun invoke(id: String, email: String) {
-                loginRepository.encEmailLogin(id, email)
+                loginRepository.emailLogin(id, email)
             }
         }
     }
@@ -76,7 +76,7 @@ object LoginServiceModule {
                 email: String,
                 password: String,
             ): Boolean {
-                return loginRepository.encConfirmCode(
+                return loginRepository.confirmCode(
                     token = token,
                     confirmCode = confirmCode,
                     name = name,
@@ -94,7 +94,7 @@ object LoginServiceModule {
     ): CheckEmailDuplicateUseCase {
         return object : CheckEmailDuplicateUseCase {
             override suspend fun checkEmail(email: String, password: String): String {
-                return loginRepository.encCheckEmail(email, password)
+                return loginRepository.checkEmail(email, password)
             }
         }
     }
