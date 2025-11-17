@@ -102,4 +102,7 @@ class RootNavController(val navController: NavHostController? = null) {
     fun like(reviewId: Int)                         { navController?.navigate("like/${reviewId}") }
     fun review(reviewId: Int)                       { Log.d(tag, "review. reviewId:${reviewId}"); navController?.navigate("review/${reviewId}") }
     fun map(restaurantId : Int)                     { Log.d(tag, "goMap"); navController?.navigate("map/${restaurantId}") }
+    fun goAlarm() {
+
+    }
 }
