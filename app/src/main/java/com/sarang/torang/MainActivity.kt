@@ -34,6 +34,7 @@ import com.sarang.torang.di.gallery.provideGalleryNavHost
 import com.sarang.torang.di.likes.provideLikeScreen
 import com.sarang.torang.di.login.provideEmailLoginNavHost
 import com.sarang.torang.di.login.provideLoginNavHost
+import com.sarang.torang.di.main_di.provideAlarmScreen
 import com.sarang.torang.di.main_di.provideFeedMainScreen
 import com.sarang.torang.di.main_di.provideFeedScreenByRestaurantId
 import com.sarang.torang.di.main_di.provideMainScreen
@@ -100,6 +101,7 @@ fun ProvideTorangScreen() {
         restaurantImagePagerScreen  = provideRestaurantImagePager(rootNavController, onComment = { reviewId = it }),
         likesScreen                 = provideLikeScreen(rootNavController),
         feedScreenByReviewId        = provideFeedScreenByRestaurantId(rootNavController = rootNavController),
-        mapScreen                   = { MapScreenSingleRestaurantMarker(cameraPositionState = cameraPositionState, restaurantId = it ?: -1) }
+        mapScreen                   = { MapScreenSingleRestaurantMarker(cameraPositionState = cameraPositionState, restaurantId = it ?: -1) },
+        alarmScreen                 = provideAlarmScreen(rootNavController)
     )
 }

@@ -21,6 +21,7 @@ fun TorangScreen(
     editProfileImageScreen      : @Composable () -> Unit                    = {},
     mainScreen                  : @Composable () -> Unit                    = {},
     emailLoginScreen            : @Composable () -> Unit                    = {},
+    alarmScreen                 : @Composable () -> Unit                    = {},
     mapScreen                   : @Composable (Int?) -> Unit                = {},
     restaurantImagePagerScreen  : @Composable (Int) -> Unit                 = {},
     likesScreen                 : @Composable (Int) -> Unit                 = {},
@@ -71,6 +72,9 @@ fun TorangScreen(
                 val restaurantId = it.arguments?.getString("restaurantId")?.toInt()
                 mapScreen.invoke(restaurantId)
             }
+            composable("alarm"){
+                alarmScreen.invoke()
+            }
         }
     }
 }
@@ -102,7 +106,5 @@ class RootNavController(val navController: NavHostController? = null) {
     fun like(reviewId: Int)                         { navController?.navigate("like/${reviewId}") }
     fun review(reviewId: Int)                       { Log.d(tag, "review. reviewId:${reviewId}"); navController?.navigate("review/${reviewId}") }
     fun map(restaurantId : Int)                     { Log.d(tag, "goMap"); navController?.navigate("map/${restaurantId}") }
-    fun goAlarm() {
-
-    }
+    fun goAlarm()                                   { navController?.navigate("alarm") }
 }
