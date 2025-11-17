@@ -28,15 +28,14 @@ import com.sarang.torang.di.addreview_di.provideAddReviewScreen
 import com.sarang.torang.di.addreview_di.provideModReviewScreen
 import com.sarang.torang.di.chat_di.provideChatScreen
 import com.sarang.torang.di.finding_di.FindState
-import com.sarang.torang.di.finding_di.findingWithPermission
 import com.sarang.torang.di.finding_di.rememberFindState
 import com.sarang.torang.di.gallery.provideGalleryNavHost
 import com.sarang.torang.di.likes.provideLikeScreen
 import com.sarang.torang.di.login.provideEmailLoginNavHost
 import com.sarang.torang.di.login.provideLoginNavHost
 import com.sarang.torang.di.main_di.provideAlarmScreen
-import com.sarang.torang.di.main_di.provideFeedMainScreen
 import com.sarang.torang.di.main_di.provideFeedScreenByRestaurantId
+import com.sarang.torang.di.main_di.provideFindScreenType
 import com.sarang.torang.di.main_di.provideMainScreen
 import com.sarang.torang.di.profile_di.provideEditProfileScreen
 import com.sarang.torang.di.profile_di.provideMyProfileScreenNavHost
@@ -47,7 +46,6 @@ import com.sarang.torang.di.splash_di.provideSplashScreen
 import com.sarang.torang.di.torangimagepager.provideRestaurantImagePager
 import com.sarang.torang.di.torangimagepager.provideReviewImagePager
 import com.sarang.torang.viewmodel.FeedDialogsViewModel
-import com.sryang.library.compose.workflow.BestPracticeViewModel
 import com.sryang.library.pullrefresh.PullToRefreshLayoutState
 import com.sryang.library.pullrefresh.rememberPullToRefreshState
 import com.sryang.torang.ui.TorangTheme
@@ -86,7 +84,11 @@ fun ProvideTorangScreen() {
         dialogsViewModel            = dialogsViewModel,
         feedScreenState             = feedScreenState,
         mainScreenState             = mainScreenState,
-        findState                   = findState) ,
+        findState                   = findState,
+        chatScreen                  = provideChatScreen(),
+        findScreen                  = provideFindScreenType(findState),
+        alarmScreen                 = provideAlarmScreen(rootNavController),
+        myProfileScreen             = provideMyProfileScreenNavHost(rootNavController)) ,
         profileScreen               = provideProfileScreen(rootNavController),
         settingsScreen              = provideSettingScreen(rootNavController),
         splashScreen                = provideSplashScreen(rootNavController),
