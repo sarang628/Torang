@@ -92,7 +92,10 @@ class RootNavController(val navController: NavHostController? = null) {
     fun modReview(): (Int) -> Unit =                { navController?.navigate("modReview/${it}") }
     fun imagePager(reviewId: Int, position: Int)    { navController?.navigate("imagePager/${reviewId}/${position}") }
     fun emailLogin()                                { navController?.navigate("emailLogin") }
-    fun restaurant(it: Int)                         { navController?.navigate(RootScreen.restaurants + "/${it}") }
+    fun restaurant(it: Int)                         {
+        Log.d(tag, "restaurant: $it")
+        navController?.navigate(RootScreen.restaurants + "/${it}")
+    }
     fun settings()                                  { navController?.navigate("settings") }
     fun popBackStack()                              { navController?.popBackStack() }
     fun main()                                      { navController?.navigate("main") { popUpTo(0) } }

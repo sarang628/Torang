@@ -86,7 +86,7 @@ fun ProvideTorangScreen() {
         mainScreenState             = mainScreenState,
         findState                   = findState,
         chatScreen                  = provideChatScreen(),
-        findScreen                  = provideFindScreenType(findState),
+        findScreen                  = provideFindScreenType(findState, rootNavController),
         alarmScreen                 = provideAlarmScreen(rootNavController),
         myProfileScreen             = provideMyProfileScreenNavHost(rootNavController)) ,
         profileScreen               = provideProfileScreen(rootNavController),
