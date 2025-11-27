@@ -45,7 +45,6 @@ import com.sarang.torang.di.settings.provideSettingScreen
 import com.sarang.torang.di.splash_di.provideSplashScreen
 import com.sarang.torang.di.torangimagepager.provideRestaurantImagePager
 import com.sarang.torang.di.torangimagepager.provideReviewImagePager
-import com.sarang.torang.viewmodel.FeedDialogsViewModel
 import com.sryang.library.pullrefresh.PullToRefreshLayoutState
 import com.sryang.library.pullrefresh.rememberPullToRefreshState
 import com.sryang.torang.ui.TorangTheme

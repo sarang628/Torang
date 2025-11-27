@@ -15,7 +15,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunner = "com.sarang.torang.CustomTestRunner"
 
-        versionCode = 110
+        versionCode = 111
         versionName = "0.1.0"
     }
 
@@ -175,6 +175,7 @@ dependencies {
     implementation(libs.restaurantGallery)
     implementation(libs.restaurantMenus)
     implementation(libs.restaurantReview)
+    implementation(libs.dialogsBox)
 
 
     implementation(libs.androidx.media3.exoplayer)
