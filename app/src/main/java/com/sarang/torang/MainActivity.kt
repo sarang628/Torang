@@ -45,6 +45,7 @@ import com.sarang.torang.di.settings.provideSettingScreen
 import com.sarang.torang.di.splash_di.provideSplashScreen
 import com.sarang.torang.di.torangimagepager.provideRestaurantImagePager
 import com.sarang.torang.di.torangimagepager.provideReviewImagePager
+import com.sarang.torang.dialogsbox.compose.DialogsBoxViewModel
 import com.sryang.library.pullrefresh.PullToRefreshLayoutState
 import com.sryang.library.pullrefresh.rememberPullToRefreshState
 import com.sryang.torang.ui.TorangTheme
@@ -73,7 +74,7 @@ fun ProvideTorangScreen() {
     var reviewId            : Int?                     by remember { mutableStateOf(null) }
     val cameraPositionState : CameraPositionState      = rememberCameraPositionState()
     val findState           : FindState                = rememberFindState()
-    val dialogsViewModel    : FeedDialogsViewModel     = hiltViewModel()
+    val dialogsViewModel    : DialogsBoxViewModel      = hiltViewModel()
     val feedScreenState     : FeedScreenState          = rememberFeedScreenState()
     val mainScreenState     : MainScreenState          = rememberMainScreenState()
     TorangScreen(
