@@ -29,12 +29,19 @@ fun TorangScreen(
     imagePagerScreen            : @Composable (Int, Int) -> Unit            = {_,_->},
     profileScreen               : @Composable (NavBackStackEntry) -> Unit   = {},
     modReviewScreen             : @Composable (NavBackStackEntry) -> Unit   = {},
-    restaurantScreen            : @Composable (NavBackStackEntry) -> Unit   = {},
+    restaurantScreen            : @Composable (Int) -> Unit                 = {},
 ) {
+    val tag = "__TorangScreen"
     rootNavController.navController?.let {
         NavHost(navController = it, startDestination = "main",) {
             composable("main") { mainScreen.invoke() }
-            composable("${RootScreen.restaurants}/{restaurantId}") { backStackEntry -> restaurantScreen.invoke(backStackEntry) }
+            composable("${RootScreen.restaurants}/{restaurantId}") { backStackEntry ->
+                backStackEntry.arguments?.getString("restaurantId")?.toInt()?.let {
+                    restaurantScreen.invoke(it)
+                } ?: run {
+                    Log.e(tag, "restaurantId argument error ${backStackEntry.arguments?.getString("restaurantId")}")
+                }
+            }
             composable("profile/{id}") { profileScreen.invoke(it) }
             composable("splash") { splashScreen.invoke() }
             composable("login") { loginScreen.invoke() }
