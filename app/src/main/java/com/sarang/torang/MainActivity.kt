@@ -37,9 +37,9 @@ import com.sarang.torang.di.main_di.provideAlarmScreen
 import com.sarang.torang.di.main_di.provideFeedScreenByRestaurantId
 import com.sarang.torang.di.main_di.provideFindScreenType
 import com.sarang.torang.di.main_di.provideMainScreen
+import com.sarang.torang.di.main_di.provideMyProfileScreenNavHost
+import com.sarang.torang.di.main_di.provideProfileScreenNavHost
 import com.sarang.torang.di.profile_di.provideEditProfileScreen
-import com.sarang.torang.di.profile_di.provideMyProfileScreenNavHost
-import com.sarang.torang.di.profile_di.provideProfileScreen
 import com.sarang.torang.di.restaurant_detail_container_di.provideRestaurantDetailContainer
 import com.sarang.torang.di.settings.provideSettingScreen
 import com.sarang.torang.di.splash_di.provideSplashScreen
@@ -90,7 +90,7 @@ fun ProvideTorangScreen() {
         alarmScreen                 = provideAlarmScreen(rootNavController),
         myProfileScreen             = provideMyProfileScreenNavHost(rootNavController),
         addReviewScreenType         = provideAddReviewScreen(rootNavController)) ,
-        profileScreen               = provideProfileScreen(rootNavController),
+        profileScreen               = {}/*provideProfileScreenNavHost(rootNavController)*/,
         settingsScreen              = provideSettingScreen(rootNavController),
         splashScreen                = provideSplashScreen(rootNavController),
         loginScreen                 = provideLoginNavHost(rootNavController),

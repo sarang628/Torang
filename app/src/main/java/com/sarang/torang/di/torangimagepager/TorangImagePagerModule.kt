@@ -24,12 +24,12 @@ class TorangImagePagerModule {
                 val it = repository.findById(reviewId)
                 return ImagePagerUiState(
                     list = it.images.map { BuildConfig.REVIEW_IMAGE_SERVER_URL + it.pictureUrl },
-                    name = it.review.userName,
-                    date = it.review.createDate,
+                    name = it.review.userName ?: "",
+                    date = it.review.createDate ?: "",
                     likeCount = it.review.likeAmount.toString(),
-                    contents = it.review.contents,
+                    contents = it.review.contents ?: "",
                     commentCount = "${it.review.commentAmount} comments",
-                    userId = it.review.userId,
+                    userId = it.review.userId ?: 0,
                     reviewId = it.review.reviewId
                 )
             }
@@ -42,12 +42,12 @@ class TorangImagePagerModule {
             override suspend fun invoke(reviewId: Int): RestaurantImagePageContents {
                 val it = repository.findById(reviewId)
                 return RestaurantImagePageContents(
-                    contents = it.review.contents,
+                    contents = it.review.contents ?: "",
                     likeCount = it.review.likeAmount.toString(),
-                    name = it.review.userName,
+                    name = it.review.userName ?: "",
                     commentCount = it.review.commentAmount.toString(),
                     reviewId = it.review.reviewId,
-                    userId = it.review.userId
+                    userId = it.review.userId ?: 0
                 )
             }
         }
@@ -62,12 +62,12 @@ class TorangImagePagerModule {
                     ReviewImageEntity(
                         pictureId = it.pictureId,
                         pictureUrl = BuildConfig.REVIEW_IMAGE_SERVER_URL + it.pictureUrl,
-                        restaurantId = it.restaurantId,
-                        reviewId = it.reviewId,
-                        userId = it.userId,
-                        createDate = it.createDate,
-                        menu = it.menu,
-                        menuId = it.menuId
+                        restaurantId = it.restaurantId ?: 0,
+                        reviewId = it.reviewId ?: 0,
+                        userId = it.userId ?: 0,
+                        createDate = it.createDate ?: "",
+                        menu = it.menu ?: 0,
+                        menuId = it.menuId ?: 0
                     )
                 }
             }
