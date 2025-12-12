@@ -14,6 +14,7 @@ import com.sarang.torang.di.util.singleTop
 @Composable
 fun TorangScreen(
     rootNavController           : RootNavController,
+    tag                         : String                                    = "__TorangScreen",
     loginScreen                 : @Composable () -> Unit                    = {},
     settingsScreen              : @Composable () -> Unit                    = {},
     splashScreen                : @Composable () -> Unit                    = {},
@@ -26,6 +27,7 @@ fun TorangScreen(
     restaurantImagePagerScreen  : @Composable (Int) -> Unit                 = {},
     likesScreen                 : @Composable (Int) -> Unit                 = {},
     feedScreenByReviewId        : @Composable (Int) -> Unit                 = {},
+    myFeedScreenByReviewId      : @Composable (Int) -> Unit                 = {},
     imagePagerScreen            : @Composable (Int, Int) -> Unit            = {_,_->},
     profileScreen               : @Composable (NavBackStackEntry) -> Unit   = {},
     modReviewScreen             : @Composable (NavBackStackEntry) -> Unit   = {},
@@ -55,22 +57,22 @@ fun TorangScreen(
                 val position = it.arguments?.getString("position")?.toInt()
                 Log.d("__TorangScreen", "navigate ImagePager : reviewId : $reviewId, position : $position")
                 if (reviewId != null) imagePagerScreen.invoke(reviewId, position ?: 0)
-                else { Log.e("__TorangScreen", "reviewId is null") }
+                else { Log.e(tag, "reviewId is null") }
             }
             composable("restaurangImagePager/{imageId}") {
                 val imageId = it.arguments?.getString("imageId")?.toInt()
                 Log.d("__TorangScreen", "navigate ImagePager : imageId : $imageId")
                 if (imageId != null) restaurantImagePagerScreen.invoke(imageId)
-                else { Log.e("__TorangScreen", "imageId is null") }
+                else { Log.e(tag, "imageId is null") }
             }
             composable("like/{reviewId}") {
                 val reviewId = it.arguments?.getString("reviewId")?.toInt()
-                if (reviewId == null) { Log.e("__TorangScreen", "reviewId is null in likeScreen") }
+                if (reviewId == null) { Log.e(tag, "reviewId is null in likeScreen") }
                 else { likesScreen.invoke(reviewId) }
             }
             composable("review/{reviewId}") {
                 val reviewId = it.arguments?.getString("reviewId")?.toInt()
-                if (reviewId == null) { Log.e("__TorangScreen", "reviewId is null in feedScreen") }
+                if (reviewId == null) { Log.e(tag, "reviewId is null in feedScreen") }
                 else { feedScreenByReviewId.invoke(reviewId) }
             }
             composable("map/{restaurantId}"){
@@ -79,6 +81,11 @@ fun TorangScreen(
             }
             composable("alarm"){
                 alarmScreen.invoke()
+            }
+            composable("myReview/{reviewId}") {
+                val reviewId = it.arguments?.getString("reviewId")?.toInt()
+                if (reviewId == null) { Log.e(tag, "reviewId is null in feedScreen") }
+                else { myFeedScreenByReviewId.invoke(reviewId) }
             }
         }
     }
@@ -115,4 +122,5 @@ class RootNavController(val navController: NavHostController? = null) {
     fun review(reviewId: Int)                       { Log.d(tag, "review. reviewId:${reviewId}"); navController?.navigate("review/${reviewId}") }
     fun map(restaurantId : Int)                     { Log.d(tag, "goMap"); navController?.navigate("map/${restaurantId}") }
     fun goAlarm()                                   { navController?.navigate("alarm") }
+    fun myReview(reviewId: Int)                     { Log.d(tag, "review. reviewId:${reviewId}"); navController?.navigate("myReview/${reviewId}") }
 }
