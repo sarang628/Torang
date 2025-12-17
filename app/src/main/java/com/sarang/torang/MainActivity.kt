@@ -39,7 +39,6 @@ import com.sarang.torang.di.main_di.provideFeedScreenByRestaurantId
 import com.sarang.torang.di.main_di.provideFindScreenType
 import com.sarang.torang.di.main_di.provideMainScreen
 import com.sarang.torang.di.main_di.provideMyProfileScreenNavHost
-import com.sarang.torang.di.main_di.provideProfileScreenNavHost
 import com.sarang.torang.di.profile_di.provideEditProfileScreen
 import com.sarang.torang.di.restaurant_detail_container_di.provideRestaurantDetailContainer
 import com.sarang.torang.di.settings.provideSettingScreen
