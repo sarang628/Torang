@@ -35,10 +35,11 @@ import com.sarang.torang.di.login.provideEmailLoginNavHost
 import com.sarang.torang.di.login.provideLoginNavHost
 import com.sarang.torang.di.main_di.ProvideMyFeedScreen
 import com.sarang.torang.di.main_di.provideAlarmScreen
-import com.sarang.torang.di.main_di.provideFeedScreenByRestaurantId
+import com.sarang.torang.di.main_di.provideFeedScreenByReviewId
 import com.sarang.torang.di.main_di.provideFindScreenType
 import com.sarang.torang.di.main_di.provideMainScreen
 import com.sarang.torang.di.main_di.provideMyProfileScreenNavHost
+import com.sarang.torang.di.main_di.provideProfileScreenNavHost
 import com.sarang.torang.di.profile_di.provideEditProfileScreen
 import com.sarang.torang.di.restaurant_detail_container_di.provideRestaurantDetailContainer
 import com.sarang.torang.di.settings.provideSettingScreen
@@ -90,7 +91,7 @@ fun ProvideTorangScreen() {
         alarmScreen                 = provideAlarmScreen(rootNavController),
         myProfileScreen             = provideMyProfileScreenNavHost(rootNavController),
         addReviewScreenType         = provideAddReviewScreen(rootNavController)) ,
-        profileScreen               = {}/*provideProfileScreenNavHost(rootNavController)*/,
+        profileScreen               = provideProfileScreenNavHost(rootNavController),
         settingsScreen              = provideSettingScreen(rootNavController),
         splashScreen                = provideSplashScreen(rootNavController),
         loginScreen                 = provideLoginNavHost(rootNavController),
@@ -102,7 +103,7 @@ fun ProvideTorangScreen() {
         imagePagerScreen            = provideReviewImagePager(rootNavController, onComment = { reviewId = it }),
         restaurantImagePagerScreen  = provideRestaurantImagePager(rootNavController, onComment = { reviewId = it }),
         likesScreen                 = provideLikeScreen(rootNavController),
-        feedScreenByReviewId        = provideFeedScreenByRestaurantId(rootNavController = rootNavController),
+        feedScreenByReviewId        = provideFeedScreenByReviewId(rootNavController = rootNavController),
         myFeedScreenByReviewId      = { ProvideMyFeedScreen(rootNavController = rootNavController, reviewId = it) },
         mapScreen                   = { MapScreenSingleRestaurantMarker(cameraPositionState = cameraPositionState, restaurantId = it ?: -1) },
         alarmScreen                 = provideAlarmScreen(rootNavController)
