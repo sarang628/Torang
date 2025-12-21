@@ -1,8 +1,8 @@
 package com.sarang.torang.di.torangimagepager
 
 import com.sarang.torang.BuildConfig
-import com.sarang.torang.repository.FeedRepository
 import com.sarang.torang.repository.PicturesRepository
+import com.sarang.torang.repository.feed.FeedRepository
 import com.sryang.library.data.RestaurantImagePageContents
 import com.sryang.library.data.ReviewImageEntity
 import com.sryang.library.uistate.ImagePagerUiState
