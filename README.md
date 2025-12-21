@@ -11,6 +11,13 @@
 - 상황에 맞는 적절한 음식점 선택
 - 다양한 사람들과 교류하고 재미있는 컨텐츠들이 가득
 
+# Development Enviroments
+
+- [kotlin](https://developer.android.com/kotlin)
+- [android app architecture](https://developer.android.com/topic/architecture/intro)
+- [multi module](https://developer.android.com/topic/modularization)
+- [hilt](https://developer.android.com/training/dependency-injection/hilt-android)
+
 # Features
 
 ## [피드](https://github.com/sarang628/Feed)
@@ -25,32 +32,3 @@
 ![피드](screenshot/feed.gif "feed")
 
 ### 맛집 찾기
-
-### 음식점 정보
-
-### 리뷰 등록
-
-## Screenshots
-
-# Development Enviroment
-
-# Architecture
-
-# Modularization
-
-## modules
-
-- [feed](https://github.com/sarang628/Feed)
-- [finding](https://github.com/sarang628/finding)
-- [comment](https://github.com/sarang628/Comment)
-- [gallery](https://github.com/sarang628/InstagramGallery)
-- [login](https://github.com/sarang628/login)
-- [review](https://github.com/sarang628/addReview)
-
-# Build
-
-# Testing
-
-# UI
-
-# Performance
