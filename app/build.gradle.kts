@@ -15,7 +15,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunner = "com.sarang.torang.CustomTestRunner"
 
-        versionCode = 128
+        versionCode = 132
         versionName = "0.1.0"
     }
 
