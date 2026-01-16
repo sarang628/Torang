@@ -9,10 +9,10 @@
 
 # Tech Stack
 
-- [kotlin](https://developer.android.com/kotlin)
-- [android app architecture](https://developer.android.com/topic/architecture/intro)
-- [multi module](https://developer.android.com/topic/modularization)
-- [hilt](https://developer.android.com/training/dependency-injection/hilt-android)
+- [Kotlin](./docs/Kotlin.md)
+- [Android App Architecture](https://developer.android.com/topic/architecture/intro)
+- [Multi Module](https://developer.android.com/topic/modularization)
+- [Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
 
 # Features
 

@@ -11,5 +11,6 @@
 KMP를 통해 ios와 함께 구현 가능
 
 - [코틀린 우선 전략](./KotlinFirstClass.md)
-- 
+- [코틀린 기초 문법 배우기](./LearnTheKotlinProgrammingLanguage.md)
+  - 변수, 타입추론, null safety, 조건문, 함수, 클래스, 상호운용성
 
