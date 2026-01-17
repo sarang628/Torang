@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -47,10 +48,14 @@ import com.sarang.torang.di.splash_di.provideSplashScreen
 import com.sarang.torang.di.torangimagepager.provideRestaurantImagePager
 import com.sarang.torang.di.torangimagepager.provideReviewImagePager
 import com.sarang.torang.dialogsbox.compose.DialogsBoxViewModel
+import com.sarang.torang.viewmodel.profile.FeedListViewModel
+import com.sarang.torang.viewmodel.profile.MyFeedListViewModel
 import com.sryang.library.pullrefresh.PullToRefreshLayoutState
 import com.sryang.library.pullrefresh.rememberPullToRefreshState
 import com.sryang.torang.ui.TorangTheme
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -78,6 +83,8 @@ fun ProvideTorangScreen() {
     val dialogsViewModel    : DialogsBoxViewModel      = hiltViewModel()
     val feedScreenState     : FeedScreenState          = rememberFeedScreenState()
     val mainScreenState     : MainScreenState          = rememberMainScreenState()
+    val myFeedListViewModel : MyFeedListViewModel      = hiltViewModel()
+    val scope               : CoroutineScope           = rememberCoroutineScope()
     TorangScreen(
         rootNavController           = rootNavController,
         mainScreen                  = provideMainScreen(
@@ -89,8 +96,9 @@ fun ProvideTorangScreen() {
         chatScreen                  = provideChatScreen(),
         findScreen                  = provideFindScreenType(findState, rootNavController),
         alarmScreen                 = provideAlarmScreen(rootNavController),
-        myProfileScreen             = provideMyProfileScreenNavHost(rootNavController),
-        addReviewScreenType         = provideAddReviewScreen(rootNavController)) ,
+        myProfileScreen             = provideMyProfileScreenNavHost(rootNavController, myFeedListViewModel),
+        addReviewScreenType         = provideAddReviewScreen(rootNavController),
+        onProfile                   = { scope.launch { myFeedListViewModel.reload()}}),
         profileScreen               = provideProfileScreenNavHost(rootNavController),
         settingsScreen              = provideSettingScreen(rootNavController),
         splashScreen                = provideSplashScreen(rootNavController),
