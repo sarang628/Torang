@@ -15,7 +15,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunner = "com.sarang.torang.CustomTestRunner"
 
-        versionCode = 136
+        versionCode = 137
         versionName = "0.1.0"
     }
 
@@ -48,7 +48,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.6"
+        kotlinCompilerExtensionVersion = libs.versions.kotlinCompilerExtension.get()
     }
 
     compileOptions {

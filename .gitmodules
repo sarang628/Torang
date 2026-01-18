@@ -100,3 +100,6 @@
 [submodule "app/src/main/java/com/sarang/torang/di/dialogsbox_di"]
 	path = app/src/main/java/com/sarang/torang/di/dialogsbox_di
 	url = https://github.com/sarang628/dialogsbox_di.git
+[submodule "documents"]
+	path = documents
+	url = https://github.com/sarang628/documents.git
