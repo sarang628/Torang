@@ -191,6 +191,8 @@ dependencies {
     implementation(libs.torangnetwork)
     implementation(libs.torangdatabase)
     implementation(libs.restaurantListBottomSheet)
+    implementation(libs.shortForm)
+    implementation(libs.androidx.lifecycle.process)
 
     implementation("io.coil-kt:coil-compose:2.6.0")
 }
