@@ -97,7 +97,7 @@ fun ProvideTorangScreen() {
         findScreen                  = provideFindScreenType(findState, rootNavController),
         alarmScreen                 = provideAlarmScreen(rootNavController),
         myProfileScreen             = provideMyProfileScreenNavHost(rootNavController, myFeedListViewModel),
-        addReviewScreenType         = provideAddReviewScreen(rootNavController),
+        addReviewScreenType         = provideAddReviewScreen(navHostController =  rootNavController),
         onProfile                   = { scope.launch { myFeedListViewModel.reload()}}),
         profileScreen               = provideProfileScreenNavHost(rootNavController),
         settingsScreen              = provideSettingScreen(rootNavController),
