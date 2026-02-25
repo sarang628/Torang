@@ -7,14 +7,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.sarang.torang.di.util.singleTop
-
+private const val tag = "__TorangScreen"
 /**
  * @param profileScreen 피드화면에서 프로필 클릭 시 이동하는 화면. 메인 하단 내 프로필과 관련없음.
  */
 @Composable
 fun TorangScreen(
-    rootNavController           : RootNavController,
-    tag                         : String                                    = "__TorangScreen",
+    rootNavController           : RootNavController                         = RootNavController(),
     loginScreen                 : @Composable () -> Unit                    = {},
     settingsScreen              : @Composable () -> Unit                    = {},
     splashScreen                : @Composable () -> Unit                    = {},
@@ -89,38 +88,4 @@ fun TorangScreen(
             }
         }
     }
-}
-
-
-object RootScreen {
-    object Main
-    object AddReview
-
-    val restaurants: String = "restaurants"
-}
-
-class RootNavController(val navController: NavHostController? = null) {
-    val tag = "__RootNavController"
-    fun modReview(): (Int) -> Unit =                { navController?.navigate("modReview/${it}") }
-    fun imagePager(reviewId: Int, position: Int)    { navController?.navigate("imagePager/${reviewId}/${position}") }
-    fun emailLogin()                                { navController?.navigate("emailLogin") }
-    fun restaurant(it: Int)                         {
-        Log.d(tag, "restaurant: $it")
-        navController?.navigate(RootScreen.restaurants + "/${it}")
-    }
-    fun settings()                                  { navController?.navigate("settings") }
-    fun popBackStack()                              { navController?.popBackStack() }
-    fun main()                                      { navController?.navigate("main") { popUpTo(0) } }
-    fun restaurantImagePager(it: Int)               { navController?.navigate("restaurangImagePager/${it}") }
-    fun addReview()                                 { navController?.navigate("addReview") }
-    fun splash()                                    { navController?.navigate("splash") }
-    fun editProfileImage()                          { navController?.navigate("EditProfileImage") }
-    fun singleTopLogin()                            { navController?.singleTop("login") }
-    fun singleTopMain()                             { navController?.singleTop("main") }
-    fun profile(userId: Int)                        { Log.d(tag, "profile. userId:$userId") ; navController?.navigate("profile/${userId}") }
-    fun like(reviewId: Int)                         { navController?.navigate("like/${reviewId}") }
-    fun review(reviewId: Int)                       { Log.d(tag, "review. reviewId:${reviewId}"); navController?.navigate("review/${reviewId}") }
-    fun map(restaurantId : Int)                     { Log.d(tag, "goMap"); navController?.navigate("map/${restaurantId}") }
-    fun goAlarm()                                   { navController?.navigate("alarm") }
-    fun myReview(reviewId: Int)                     { Log.d(tag, "review. reviewId:${reviewId}"); navController?.navigate("myReview/${reviewId}") }
 }
