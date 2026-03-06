@@ -103,3 +103,6 @@
 [submodule "documents"]
 	path = documents
 	url = https://github.com/sarang628/documents.git
+[submodule "app/src/main/java/com/sarang/torang/di/login_di"]
+	path = app/src/main/java/com/sarang/torang/di/login_di
+	url = https://github.com/sarang628/login_di.git
