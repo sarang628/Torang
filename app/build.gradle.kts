@@ -15,7 +15,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunner = "com.sarang.torang.CustomTestRunner"
 
-        versionCode = 150
+        versionCode = 151
         versionName = "0.1.0"
 
         buildConfigField("String", "SERVER_URL", "\"http://sarang628.iptime.org\"")
