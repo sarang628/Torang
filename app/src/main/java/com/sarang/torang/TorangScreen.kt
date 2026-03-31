@@ -58,6 +58,9 @@ fun TorangScreen(
                 if (reviewId != null) imagePagerScreen.invoke(reviewId, position ?: 0)
                 else { Log.e(tag, "reviewId is null") }
             }
+            composable("imagePager/pictureId/{pictureId}") {
+                val pictureId = it.arguments?.getString("pictureId")?.toInt()
+            }
             composable("restaurangImagePager/{imageId}") {
                 val imageId = it.arguments?.getString("imageId")?.toInt()
                 Log.d("__TorangScreen", "navigate ImagePager : imageId : $imageId")
