@@ -50,7 +50,6 @@ import kotlinx.coroutines.launch
 fun ProvideTorangScreen() {
     val rootNavController   : RootNavController        = RootNavController(rememberNavController())
     var reviewId            : Int?                     by remember { mutableStateOf(null) }
-    val cameraPositionState : CameraPositionState      = rememberCameraPositionState()
     val findState           : FindState                = rememberFindState()
     val dialogsViewModel    : DialogsBoxViewModel      = hiltViewModel()
     val feedScreenState     : FeedScreenState          = rememberFeedScreenState()
@@ -85,7 +84,7 @@ fun ProvideTorangScreen() {
         likesScreen                 = provideLikeScreen(rootNavController),
         feedScreenByReviewId        = provideFeedScreenByReviewId(rootNavController = rootNavController),
         myFeedScreenByReviewId      = { ProvideMyFeedScreen(rootNavController = rootNavController, reviewId = it) },
-        mapScreen                   = { MapScreenSingleRestaurantMarker(cameraPositionState = cameraPositionState, restaurantId = it ?: -1) },
+        mapScreen                   = { MapScreenSingleRestaurantMarker(restaurantId = it ?: -1) },
         alarmScreen                 = provideAlarmScreen(rootNavController)
     )
 }
