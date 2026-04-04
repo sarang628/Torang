@@ -56,7 +56,6 @@ import kotlinx.coroutines.launch
 @Composable
 fun ProvideTorangScreen() {
     val rootNavController   : RootNavController        = RootNavController(rememberNavController())
-    var reviewId            : Int?                     by remember { mutableStateOf(null) }
     val findState           : FindState                = rememberFindState()
     val dialogsViewModel    : DialogsBoxViewModel      = hiltViewModel()
     val feedScreenState     : FeedScreenState          = rememberFeedScreenState()
@@ -86,8 +85,8 @@ fun ProvideTorangScreen() {
         restaurantScreen            = ProvideRestaurantDetailColumn(rootNavController) ,
         modReviewScreen             = provideModReviewScreen(rootNavController),
         emailLoginScreen            = provideEmailLoginNavHost(rootNavController),
-        imagePagerScreen            = provideReviewImagePager(rootNavController, onComment = { reviewId = it }),
-        restaurantImagePagerScreen  = provideRestaurantImagePager(rootNavController, onComment = { reviewId = it }),
+        imagePagerScreen            = provideReviewImagePager(rootNavController),
+        restaurantImagePagerScreen  = provideRestaurantImagePager(rootNavController),
         likesScreen                 = provideLikeScreen(rootNavController),
         feedScreenByReviewId        = provideFeedScreenByReviewId(rootNavController = rootNavController),
         myFeedScreenByReviewId      = { ProvideMyFeedScreen(rootNavController = rootNavController, reviewId = it) },
