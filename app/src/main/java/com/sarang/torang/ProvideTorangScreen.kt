@@ -1,22 +1,12 @@
 package com.sarang.torang
 
-import android.Manifest
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
-import com.example.screen_map.compose.MapScreenSingleRestaurantMarker
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.google.accompanist.permissions.isGranted
-import com.google.accompanist.permissions.rememberPermissionState
-import com.google.maps.android.compose.CameraPositionState
-import com.google.maps.android.compose.rememberCameraPositionState
 import com.sarang.torang.compose.MainScreenState
 import com.sarang.torang.compose.feed.state.FeedScreenState
 import com.sarang.torang.compose.feed.state.rememberFeedScreenState
@@ -37,7 +27,7 @@ import com.sarang.torang.di.main_di.provideFindScreenType
 import com.sarang.torang.di.main_di.provideMainScreen
 import com.sarang.torang.di.main_di.provideMyProfileScreenNavHost
 import com.sarang.torang.di.main_di.provideProfileScreenNavHost
-import com.sarang.torang.di.map_di.MapScreenForFindingWithPermission
+import com.sarang.torang.di.map_di.provideMapScreen
 import com.sarang.torang.di.profile_di.provideEditProfileScreen
 import com.sarang.torang.di.restaurant_detail_container_di.ProvideRestaurantDetailColumn
 import com.sarang.torang.di.settings.provideSettingScreen
@@ -46,7 +36,6 @@ import com.sarang.torang.di.torangimagepager.provideRestaurantImagePager
 import com.sarang.torang.di.torangimagepager.provideReviewImagePager
 import com.sarang.torang.dialogsbox.compose.DialogsBoxViewModel
 import com.sarang.torang.viewmodel.profile.MyFeedListViewModel
-import com.sryang.library.compose.workflow.BestPracticeViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -90,16 +79,7 @@ fun ProvideTorangScreen() {
         likesScreen                 = provideLikeScreen(rootNavController),
         feedScreenByReviewId        = provideFeedScreenByReviewId(rootNavController = rootNavController),
         myFeedScreenByReviewId      = { ProvideMyFeedScreen(rootNavController = rootNavController, reviewId = it) },
-        mapScreen                   = {
-            val bestPracticeViewModel : BestPracticeViewModel = hiltViewModel()
-            val requestPermission = rememberPermissionState(Manifest.permission.ACCESS_FINE_LOCATION)
-            MapScreenForFindingWithPermission(viewModel = bestPracticeViewModel) {
-                MapScreenSingleRestaurantMarker(restaurantId = it ?: -1,
-                                                onBack = rootNavController::popBackStack,
-                                                requestPermission = {bestPracticeViewModel.request()},
-                                                hasPermission = requestPermission.status.isGranted)
-            }
-                                      },
+        mapScreen                   = provideMapScreen(rootNavController),
         alarmScreen                 = provideAlarmScreen(rootNavController)
     )
 }

@@ -14,7 +14,7 @@ class RootNavController(val navController: NavHostController? = null) {
     fun settings()                                  { navController?.navigate("settings") }
     fun popBackStack()                              { navController?.popBackStack() }
     fun main()                                      { navController?.navigate("main") { popUpTo(0) } }
-    fun restaurantImagePager(it: Int)               { navController?.navigate("restaurangImagePager/${it}") }
+    fun restaurantImagePager(it: Int)               { navController?.navigate("restaurantImagePager/${it}") }
     fun addReview()                                 { navController?.navigate("addReview") }
     fun splash()                                    { navController?.navigate("splash") }
     fun editProfileImage()                          { navController?.navigate("EditProfileImage") }

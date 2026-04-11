@@ -36,13 +36,6 @@ fun TorangScreen(
     rootNavController.navController?.let {
         NavHost(navController = it, startDestination = "main",) {
             composable("main") { mainScreen.invoke() }
-            composable("${RootScreen.restaurants}/{restaurantId}") { backStackEntry ->
-                backStackEntry.arguments?.getString("restaurantId")?.toInt()?.let {
-                    restaurantScreen.invoke(it)
-                } ?: run {
-                    Log.e(tag, "restaurantId argument error ${backStackEntry.arguments?.getString("restaurantId")}")
-                }
-            }
             composable("profile/{id}") { profileScreen.invoke(it) }
             composable("splash") { splashScreen.invoke() }
             composable("login") { loginScreen.invoke() }
@@ -51,6 +44,14 @@ fun TorangScreen(
             composable("EditProfileImage") { editProfileImageScreen.invoke() }
             composable("modReview/{reviewId}") { modReviewScreen.invoke(it) }
             composable("emailLogin") { emailLoginScreen.invoke() }
+            composable("alarm"){ alarmScreen.invoke() }
+            composable("${RootScreen.restaurants}/{restaurantId}") { backStackEntry ->
+                backStackEntry.arguments?.getString("restaurantId")?.toInt()?.let {
+                    restaurantScreen.invoke(it)
+                } ?: run {
+                    Log.e(tag, "restaurantId argument error ${backStackEntry.arguments?.getString("restaurantId")}")
+                }
+            }
             composable("imagePager/{reviewId}/{position}") {
                 val reviewId = it.arguments?.getString("reviewId")?.toInt()
                 val position = it.arguments?.getString("position")?.toInt()
@@ -61,7 +62,7 @@ fun TorangScreen(
             composable("imagePager/pictureId/{pictureId}") {
                 val pictureId = it.arguments?.getString("pictureId")?.toInt()
             }
-            composable("restaurangImagePager/{imageId}") {
+            composable("restaurantImagePager/{imageId}") {
                 val imageId = it.arguments?.getString("imageId")?.toInt()
                 Log.d("__TorangScreen", "navigate ImagePager : imageId : $imageId")
                 if (imageId != null) restaurantImagePagerScreen.invoke(imageId)
@@ -80,9 +81,6 @@ fun TorangScreen(
             composable("map/{restaurantId}"){
                 val restaurantId = it.arguments?.getString("restaurantId")?.toInt()
                 mapScreen.invoke(restaurantId)
-            }
-            composable("alarm"){
-                alarmScreen.invoke()
             }
             composable("myReview/{reviewId}") {
                 val reviewId = it.arguments?.getString("reviewId")?.toInt()

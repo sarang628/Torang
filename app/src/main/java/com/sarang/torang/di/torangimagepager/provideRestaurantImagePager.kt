@@ -6,9 +6,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.sarang.torang.RootNavController
+import com.sarang.torang.provideRestaurantImagePager
 import com.sryang.imagepager.provideImagePager
 import com.sryang.library.ExpandableText
-import com.sryang.library.provideRestaurantImagePager
 
 internal fun provideRestaurantImagePager(
     rootNavController: RootNavController,
