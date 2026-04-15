@@ -5,8 +5,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.torangscreensettings.compose.SettingsScreen
 import com.sarang.torang.RootNavController
+import com.sarang.torang.compose.SettingsScreen
 
 fun provideSettingScreen(rootNavController: RootNavController): @Composable () -> Unit = {
     Scaffold {
