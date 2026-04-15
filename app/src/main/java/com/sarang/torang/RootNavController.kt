@@ -1,6 +1,5 @@
 package com.sarang.torang
 
-import android.util.Log
 import androidx.navigation.NavHostController
 import com.sarang.torang.di.util.singleTop
 
@@ -12,7 +11,8 @@ class RootNavController(val navController: NavHostController? = null) {
     fun emailLogin()                                { navController?.navigate("emailLogin") }
     fun restaurant(it: Int)                         { navController?.navigate(RootScreen.restaurants + "/${it}") }
     fun settings()                                  { navController?.navigate("settings") }
-    fun popBackStack()                              { navController?.popBackStack() }
+    fun popBackStack()                              { if(navController?.previousBackStackEntry != null) navController.popBackStack()
+    }
     fun main()                                      { navController?.navigate("main") { popUpTo(0) } }
     fun restaurantImagePager(it: Int)               { navController?.navigate("restaurantImagePager/${it}") }
     fun addReview()                                 { navController?.navigate("addReview") }
